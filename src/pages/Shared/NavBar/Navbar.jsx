@@ -14,21 +14,21 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="flex justify-between items-center py-4">
             <a href="#" className="text-2xl font-bold text-white tracking-wide">
-              Sifat<span className="text-[#28E98C]">.</span>
+              Sifat<span className="text-[#0ef]">.</span>
             </a>
 
             {/* Desktop Menu */}
             <nav className="hidden md:flex space-x-10 text-white text-lg font-medium">
-              <a href="#about" className="hover:text-[#28E98C] transition">
+              <a href="#about" className="hover:text-[#0ef] transition">
                 About
               </a>
-              <a href="#projects" className="hover:text-[#28E98C] transition">
+              <a href="#projects" className="hover:text-[#0ef] transition">
                 Projects
               </a>
-              <a href="#skills" className="hover:text-[#28E98C] transition">
+              <a href="#skills" className="hover:text-[#0ef] transition">
                 Skills
               </a>
-              <a href="#contact" className="hover:text-[#28E98C] transition">
+              <a href="#contact" className="hover:text-[#0ef] transition">
                 Contact
               </a>
             </nav>
@@ -44,7 +44,7 @@ const Navbar = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden text-gray-200 hover:text-[#28E98C] focus:outline-none"
+              className="md:hidden text-gray-200 hover:text-[#0ef] focus:outline-none"
             >
               {isOpen ? (
                 <svg
@@ -81,23 +81,23 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden bg-[#03045E] text-gray-200 border-t border-[#0077B6]">
+          <div className="md:hidden bg-[#25262F] text-gray-200 border-t border-[#0077B6]">
             <nav className="flex flex-col items-center py-6 space-y-6 text-lg">
-              <a href="#about" className="hover:text-[#28E98C] transition">
+              <a href="#about" className="hover:text-[#0ef] transition">
                 About
               </a>
-              <a href="#projects" className="hover:text-[#28E98C] transition">
+              <a href="#projects" className="hover:text-[#0ef] transition">
                 Projects
               </a>
-              <a href="#skills" className="hover:text-[#28E98C] transition">
+              <a href="#skills" className="hover:text-[#0ef] transition">
                 Skills
               </a>
-              <a href="#contact" className="hover:text-[#28E98C] transition">
+              <a href="#contact" className="hover:text-[#0ef] transition">
                 Contact
               </a>
               <a
                 href="#contact"
-                className="px-5 py-2 border border-[#28E98C] hover:bg-[#28E98C] text-white font-semibold rounded-lg shadow-md transition"
+                className="px-5 py-2 border border-[#0ef] hover:bg-[#0ef] text-white font-semibold rounded-lg shadow-md transition"
               >
                 Hire Me
               </a>

@@ -16,6 +16,7 @@ import {
   SiTensorflow,
 } from "react-icons/si";
 import ContactSection from "../../Components/ContactSection/ContactSection";
+import { ToastContainer } from "react-toastify";
 const webSkills = [
     { name: "Angular", icon: <FaAngular className="text-red-500" /> },
     { name: "React", icon: <FaReact className="text-sky-400" /> },
@@ -35,6 +36,7 @@ const webSkills = [
 const Home = () => {
     return (
       <div>
+        <ToastContainer />
         <section
           id="home"
           className="w-full min-h-screen bg-[#25262F] flex items-center font-fontPrimary"

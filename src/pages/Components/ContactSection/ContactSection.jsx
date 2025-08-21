@@ -1,6 +1,8 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { FaEnvelope, FaPhoneAlt, FaLinkedin, FaGithub } from "react-icons/fa";
+import { useState } from "react";
+import { FaEnvelope, FaGithub, FaLinkedin, FaPhoneAlt } from "react-icons/fa";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -10,7 +12,6 @@ export default function ContactSection() {
     subject: "",
     message: "",
   });
-  const [status, setStatus] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,23 +19,37 @@ export default function ContactSection() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus("Sending...");
-
     try {
-      const res = await fetch("http://localhost:5000/send", {
+      const res = await fetch("https://sifat-portfolio-backend.vercel.app/api/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
-      if (res.ok) {
-        setStatus("✅ Message sent successfully!");
-        setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
-      } else {
-        setStatus("❌ Failed to send message. Try again later.");
-      }
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Server error");
+
+      toast.success("✅ Message sent successfully!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+      });
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" }); // Reset form
     } catch (error) {
-      setStatus("⚠️ Error connecting to server.");
+      toast.error(`⚠️ ${error.message}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+      });
+      console.error("Form submission error:", error);
     }
   };
 
@@ -65,15 +80,18 @@ export default function ContactSection() {
             </p>
             <div className="space-y-4 text-gray-300">
               <p className="flex items-center gap-3">
-                <FaEnvelope className="text-[#0ef]" /> <a href="mailto:sifatict26@gmail.com">sifatict26@gmail.com</a>
+                <FaEnvelope className="text-[#0ef]" />{" "}
+                <a href="mailto:sifatict26@gmail.com">sifatict26@gmail.com</a>
               </p>
               <p className="flex items-center gap-3">
-                <FaPhoneAlt className="text-[#0ef]" /> <a href="tel:+8801521565259">+880 1521565259</a>
+                <FaPhoneAlt className="text-[#0ef]" />{" "}
+                <a href="tel:+8801521565259">+880 1521565259</a>
               </p>
               <div className="flex gap-5 mt-6 text-xl">
                 <a
                   href="https://linkedin.com/in/sifat26"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-[#0ef] transition"
                 >
                   <FaLinkedin />
@@ -81,6 +99,7 @@ export default function ContactSection() {
                 <a
                   href="https://github.com/"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-[#0ef] transition"
                 >
                   <FaGithub />
@@ -131,7 +150,6 @@ export default function ContactSection() {
                 value={formData.subject}
                 onChange={handleChange}
                 className="p-3 rounded-lg bg-[#1e1f26] border border-gray-600 focus:outline-none focus:border-[#0ef] transition"
-                required
               />
               <textarea
                 name="message"
@@ -149,9 +167,6 @@ export default function ContactSection() {
             >
               Send Message
             </button>
-            {status && (
-              <p className="text-center mt-4 text-gray-300">{status}</p>
-            )}
           </motion.form>
         </div>
       </div>

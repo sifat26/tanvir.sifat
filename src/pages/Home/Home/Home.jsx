@@ -17,6 +17,8 @@ import {
 } from "react-icons/si";
 import ContactSection from "../../Components/ContactSection/ContactSection";
 import { ToastContainer } from "react-toastify";
+import EducationSection from "../../Components/EducationSection/EducationSection";
+import AboutMeSection from "../../Components/AboutMe/AboutMeSection";
 const webSkills = [
     { name: "Angular", icon: <FaAngular className="text-red-500" /> },
     { name: "React", icon: <FaReact className="text-sky-400" /> },
@@ -127,93 +129,8 @@ const Home = () => {
         </a> */}
           </motion.div>
         </section>
-        <section
-          id="about"
-          className="w-full bg-[#25262F] py-20 text-white font-fontPrimary"
-        >
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
-            {/* Section Header */}
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
-              About Me
-            </h2>
-
-            <div className="grid md:grid-cols-2 gap-12 items-start">
-              {/* About Text */}
-              <div>
-                <h3 className="text-2xl font-semibold mb-4">Hi, I'm Sifat</h3>
-                <p className="text-gray-300 mb-4">
-                  I am a passionate web developer and machine learning
-                  enthusiast, specializing in creating modern, responsive, and
-                  interactive web applications. I enjoy building clean and
-                  maintainable code while delivering great user experiences.
-                </p>
-                <p className="text-gray-300">
-                  I am continuously learning and exploring new technologies in
-                  software development and AI to improve my skills and deliver
-                  innovative solutions.
-                </p>
-              </div>
-
-              {/* Education & Experience */}
-              <div className="space-y-8">
-                {/* Education */}
-                <div>
-                  <h3 className="text-xl font-semibold mb-3">Education</h3>
-                  <ul className="space-y-3 text-gray-300">
-                    <li>
-                      <span className="font-semibold">
-                        M.Sc. Engineering, ICT
-                      </span>{" "}
-                      <br />
-                      Mawlana Bhashani Science & Technology University, 2025
-                    </li>
-                    <li>
-                      <span className="font-semibold">
-                        B.Sc. Engineering, ICT
-                      </span>{" "}
-                      <br />
-                      Mawlana Bhashani Science & Technology University, 2020 -
-                      2025
-                    </li>
-                    <li>
-                      <span className="font-semibold">
-                        Higher Secondary Certificate, Science
-                      </span>{" "}
-                      <br />
-                      Major General Mahmudul Hasan Adarsha College, Tangail,
-                      2017 - 2019, GPA: 4.83
-                    </li>
-                    <li>
-                      <span className="font-semibold">
-                        Secondary School Certificate, Science
-                      </span>{" "}
-                      <br />
-                      Adi-Tangail High School, Tangail, GPA: 5.00
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Experience */}
-                <div>
-                  <h3 className="text-xl font-semibold mb-3">Experience</h3>
-                  <ul className="space-y-3 text-gray-300">
-                    <li>
-                      <span className="font-semibold">Jr Web Developer</span>{" "}
-                      <br />
-                      Universaltech Research & Development | Jun 2024 - Present
-                      | Remote <br />
-                      <span className="text-gray-400">
-                        Building dynamic, responsive web applications with
-                        Angular. Passionate about clean code, UX, and continuous
-                        learning.
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <AboutMeSection />
+        <EducationSection />
         <section
           id="skills"
           className="w-full min-h-screen bg-[#25262F] text-white py-20 font-fontPrimary"

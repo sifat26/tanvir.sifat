@@ -7,6 +7,7 @@ import {
   FaNodeJs,
   FaBootstrap,
   FaPython,
+  FaArrowDown,
 } from "react-icons/fa";
 import {
   SiTailwindcss,
@@ -19,6 +20,7 @@ import ContactSection from "../../Components/ContactSection/ContactSection";
 import { ToastContainer } from "react-toastify";
 import EducationSection from "../../Components/EducationSection/EducationSection";
 import AboutMeSection from "../../Components/AboutMe/AboutMeSection";
+import ProjectsSection from "../../Components/ProjectsSection/ProjectsSection";
 const webSkills = [
     { name: "Angular", icon: <FaAngular className="text-red-500" /> },
     { name: "React", icon: <FaReact className="text-sky-400" /> },
@@ -40,97 +42,123 @@ const Home = () => {
       <div>
         <ToastContainer />
         <section
-          id="home"
-          className="w-full min-h-screen bg-[#25262F] flex items-center font-fontPrimary"
+      id="home"
+      className="w-full min-h-screen bg-gradient-to-b from-[#1e1f26] to-[#25262F] flex items-center justify-center font-fontPrimary relative overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 flex flex-col md:flex-row items-center justify-between gap-8">
+        {/* Left content */}
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-center md:text-left w-full md:w-1/2"
         >
-          <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col-reverse md:flex-row items-center justify-between">
-            {/* Left content */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-center md:text-left mt-8 md:mt-0"
-            >
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-                Hi, I’m <span className="text-[#0ef]">Sifat</span>
-              </h1>
-
-              <h2 className="text-xl md:text-2xl text-gray-300 mb-6">
-                <Typewriter
-                  words={[
-                    "Full-Stack Web Developer",
-                    "React & Next.js Specialist",
-                    "UI/UX Focused Engineer",
-                  ]}
-                  loop={true}
-                  cursor
-                  cursorStyle="|"
-                  typeSpeed={60}
-                  deleteSpeed={40}
-                  delaySpeed={1500}
-                />
-              </h2>
-
-              <p className="text-gray-400 text-lg md:text-xl mb-8 max-w-xl">
-                I build modern, responsive, and scalable web applications with a
-                focus on clean code and great user experience.
-              </p>
-
-              <div className="flex justify-center md:justify-start space-x-4">
-                <motion.a
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  href="#projects"
-                  className="px-6 py-3 bg-[#0ef] text-black font-semibold rounded-lg shadow-md hover:shadow-[0_0_15px_#0ef] transition"
-                >
-                  View Projects
-                </motion.a>
-                <motion.a
-                  whileHover={{
-                    scale: 1.05,
-                    backgroundColor: "#0ef",
-                    color: "#000",
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  href="#contact"
-                  className="px-6 py-3 border-2 border-[#0ef] text-white font-semibold rounded-lg transition"
-                >
-                  Contact Me
-                </motion.a>
-              </div>
-            </motion.div>
-
-            {/* Right content (Profile Image) */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1 }}
-              className="w-full md:w-1/2 flex justify-center max-h-[500px]"
-            >
-              <motion.img
-                whileHover={{ scale: 1.03 }}
-                transition={{ type: "spring", stiffness: 200 }}
-                src="https://i.postimg.cc/NfX7Kp1F/Prof.png"
-                alt="Sifat"
-                className="rounded-2xl shadow-[0_0_25px_rgba(0,238,255,0.35)]"
-              />
-            </motion.div>
-          </div>
-
-          {/* Scroll Indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5 }}
-            className="absolute bottom-10 w-full flex justify-center"
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight"
           >
-            {/* <a href="#about" className="text-[#0ef] hover:text-white transition">
-          <ArrowDownCircle className="w-8 h-8 animate-bounce" />
-        </a> */}
+            Hi, I’m <span className="text-[#0ef]">Sifat</span>
+          </motion.h1>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="text-xl md:text-2xl lg:text-3xl text-gray-300 mb-6 font-medium"
+          >
+            <Typewriter
+              words={[
+                "Full-Stack Web Developer",
+                "React & Angular Specialist",
+                "UI/UX Focused Engineer",
+                "Machine Learning Enthusiast",
+              ]}
+              loop={true}
+              cursor
+              cursorStyle="|"
+              typeSpeed={60}
+              deleteSpeed={40}
+              delaySpeed={1500}
+            />
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="text-gray-400 text-base md:text-lg lg:text-xl mb-8 max-w-md mx-auto md:mx-0"
+          >
+            I craft modern, responsive, and scalable web applications with a focus on clean code and exceptional user experiences.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1 }}
+            className="flex justify-center md:justify-start space-x-4"
+          >
+            <motion.a
+              whileHover={{ scale: 1.05, boxShadow: "0 0 15px #0ef" }}
+              whileTap={{ scale: 0.95 }}
+              href="#projects"
+              className="px-6 py-3 bg-gradient-to-r from-[#0077B6] to-[#0ef] text-black font-semibold rounded-lg shadow-md transition"
+            >
+              View Projects
+            </motion.a>
+            <motion.a
+              whileHover={{
+                scale: 1.05,
+                backgroundColor: "#0ef",
+                color: "#000",
+                borderColor: "#0ef",
+              }}
+              whileTap={{ scale: 0.95 }}
+              href="#contact"
+              className="px-6 py-3 border-2 border-[#0ef] text-white font-semibold rounded-lg transition"
+            >
+              Contact Me
+            </motion.a>
           </motion.div>
-        </section>
+        </motion.div>
+
+        {/* Right content (Profile Image) */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.4 }}
+          className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 flex justify-center items-center"
+        >
+          <motion.div
+            whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0, 238, 255, 0.5)" }}
+            transition={{ type: "spring", stiffness: 200 }}
+            className="relative w-full h-full rounded-full overflow-hidden border-4 border-[#0ef] shadow-[0_0_25px_rgba(0,238,255,0.4)]"
+          >
+            <img
+              src="https://i.postimg.cc/NfX7Kp1F/Prof.png"
+              alt="Sifat"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.5, duration: 0.6 }}
+        className="absolute bottom-8 w-full flex justify-center"
+      >
+        <a href="#about" className="text-[#0ef] hover:text-white transition">
+          <FaArrowDown className="w-6 h-6 animate-bounce" />
+        </a>
+      </motion.div>
+    </section>
         <AboutMeSection />
         <EducationSection />
+        
         <section
           id="skills"
           className="w-full min-h-screen bg-[#25262F] text-white py-20 font-fontPrimary"
@@ -194,6 +222,7 @@ const Home = () => {
             </div>
           </div>
         </section>
+        {/* <ProjectsSection /> */}
         <ContactSection />
       </div>
     );

@@ -15,6 +15,7 @@ import {
   SiMysql,
   SiTensorflow,
 } from "react-icons/si";
+import ContactSection from "../../Components/ContactSection/ContactSection";
 const webSkills = [
     { name: "Angular", icon: <FaAngular className="text-red-500" /> },
     { name: "React", icon: <FaReact className="text-sky-400" /> },
@@ -274,6 +275,7 @@ const Home = () => {
             </div>
           </div>
         </section>
+        <ContactSection />
       </div>
     );
 };

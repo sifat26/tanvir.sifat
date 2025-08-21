@@ -1,6 +1,14 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { FaEnvelope, FaPhoneAlt, FaLinkedin, FaGithub, FaFacebookF, FaInstagram } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaFacebookF,
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaPhoneAlt,
+  FaWhatsapp,
+} from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -21,24 +29,30 @@ export default function ContactSection() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("https://sifat-portfolio-backend.vercel.app/api/send", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        "https://sifat-portfolio-backend.vercel.app/api/send",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Server error");
 
-      toast.success(" Message sent successfully! A confirmation email has been sent to you.", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "dark",
-      });
+      toast.success(
+        " Message sent successfully! A confirmation email has been sent to you.",
+        {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "dark",
+        }
+      );
       setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
     } catch (error) {
       toast.error(`⚠️ ${error.message}`, {
@@ -55,7 +69,10 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="w-full bg-[#1e1f26] py-16 md:py-24 text-white font-fontPrimary">
+    <section
+      id="contact"
+      className="w-full bg-[#1e1f26] py-16 md:py-24 text-white font-fontPrimary"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
@@ -75,20 +92,41 @@ export default function ContactSection() {
             viewport={{ once: true }}
             className="bg-[#2e3039]/80 backdrop-blur-md p-6 md:p-8 rounded-xl shadow-lg border border-[#0ef]/30"
           >
-            <h3 className="text-2xl md:text-3xl font-semibold mb-6 text-[#0ef]">Get in Touch</h3>
+            <h3 className="text-2xl md:text-3xl font-semibold mb-6 text-[#0ef]">
+              Get in Touch
+            </h3>
             <p className="text-gray-300 text-sm md:text-base mb-6 leading-relaxed">
-              I’m excited to hear from you! Whether it’s a project idea, collaboration, or just a friendly hello, reach out anytime.
+              I’m excited to hear from you! Whether it’s a project idea,
+              collaboration, or just a friendly hello, reach out anytime.
             </p>
             <div className="space-y-4 text-gray-300 text-sm md:text-base">
               <p className="flex items-center gap-3">
                 <FaEnvelope className="text-[#0ef] w-5 h-5" />
-                <a href="mailto:sifatict26@gmail.com" className="hover:text-[#0ef] transition">
+                <a
+                  href="mailto:sifatict26@gmail.com"
+                  className="hover:text-[#0ef] transition"
+                >
                   sifatict26@gmail.com
                 </a>
               </p>
               <p className="flex items-center gap-3">
                 <FaPhoneAlt className="text-[#0ef] w-5 h-5" />
-                <a href="tel:+8801521565259" className="hover:text-[#0ef] transition">
+                <a
+                  href="tel:+8801521565259"
+                  className="hover:text-[#0ef] transition"
+                >
+                  +880 1521565259
+                </a>
+              </p>
+              <p className="flex items-center gap-3">
+                <FaWhatsapp className="text-[#0ef] w-5 h-5" />
+                <a
+                  href="https://wa.me/8801521565259"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#0ef] transition"
+                  aria-label="WhatsApp"
+                >
                   +880 1521565259
                 </a>
               </p>
@@ -103,7 +141,7 @@ export default function ContactSection() {
                   <FaLinkedin />
                 </a>
                 <a
-                  href="https://github.com/yourusername" // Replace with your actual GitHub URL
+                  href="https://github.com/sifat26"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-[#0ef] transition"
@@ -112,7 +150,7 @@ export default function ContactSection() {
                   <FaGithub />
                 </a>
                 <a
-                  href="https://facebook.com/yourusername" // Replace with your actual Facebook URL
+                  href="https://www.facebook.com/sifat.7847/" // Replace with your actual Facebook URL
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-[#0ef] transition"
@@ -121,7 +159,7 @@ export default function ContactSection() {
                   <FaFacebookF />
                 </a>
                 <a
-                  href="https://instagram.com/yourusername" // Replace with your actual Instagram URL
+                  href="https://www.instagram.com/tanvir_ahmmed_sifat/" // Replace with your actual Instagram URL
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-[#0ef] transition"
@@ -130,13 +168,13 @@ export default function ContactSection() {
                   <FaInstagram />
                 </a>
                 <a
-                  href="https://x.com/yourusername" // Replace with your actual X URL
+                  href="https://x.com/tanvirahmmedsi2" // Replace with your actual X URL
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-[#0ef] transition"
                   aria-label="X"
                 >
-                  <FaXTwitter  />
+                  <FaXTwitter />
                 </a>
               </div>
             </div>
@@ -153,7 +191,10 @@ export default function ContactSection() {
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               <motion.input
-                whileFocus={{ borderColor: "#0ef", boxShadow: "0 0 10px rgba(0, 238, 255, 0.3)" }}
+                whileFocus={{
+                  borderColor: "#0ef",
+                  boxShadow: "0 0 10px rgba(0, 238, 255, 0.3)",
+                }}
                 type="text"
                 name="name"
                 placeholder="Your Name"
@@ -163,7 +204,10 @@ export default function ContactSection() {
                 required
               />
               <motion.input
-                whileFocus={{ borderColor: "#0ef", boxShadow: "0 0 10px rgba(0, 238, 255, 0.3)" }}
+                whileFocus={{
+                  borderColor: "#0ef",
+                  boxShadow: "0 0 10px rgba(0, 238, 255, 0.3)",
+                }}
                 type="email"
                 name="email"
                 placeholder="Your Email"
@@ -173,7 +217,10 @@ export default function ContactSection() {
                 required
               />
               <motion.input
-                whileFocus={{ borderColor: "#0ef", boxShadow: "0 0 10px rgba(0, 238, 255, 0.3)" }}
+                whileFocus={{
+                  borderColor: "#0ef",
+                  boxShadow: "0 0 10px rgba(0, 238, 255, 0.3)",
+                }}
                 type="tel"
                 name="phone"
                 placeholder="Phone Number"
@@ -182,7 +229,10 @@ export default function ContactSection() {
                 className="p-3 md:p-4 rounded-lg bg-[#1e1f26] border border-gray-600 focus:outline-none focus:border-[#0ef] transition text-sm md:text-base"
               />
               <motion.input
-                whileFocus={{ borderColor: "#0ef", boxShadow: "0 0 10px rgba(0, 238, 255, 0.3)" }}
+                whileFocus={{
+                  borderColor: "#0ef",
+                  boxShadow: "0 0 10px rgba(0, 238, 255, 0.3)",
+                }}
                 type="text"
                 name="subject"
                 placeholder="Subject"
@@ -191,7 +241,10 @@ export default function ContactSection() {
                 className="p-3 md:p-4 rounded-lg bg-[#1e1f26] border border-gray-600 focus:outline-none focus:border-[#0ef] transition text-sm md:text-base"
               />
               <motion.textarea
-                whileFocus={{ borderColor: "#0ef", boxShadow: "0 0 10px rgba(0, 238, 255, 0.3)" }}
+                whileFocus={{
+                  borderColor: "#0ef",
+                  boxShadow: "0 0 10px rgba(0, 238, 255, 0.3)",
+                }}
                 name="message"
                 placeholder="Your Message"
                 value={formData.message}
@@ -202,7 +255,10 @@ export default function ContactSection() {
             </div>
 
             <motion.button
-              whileHover={{ scale: 1.02, boxShadow: "0 0 15px rgba(0, 238, 255, 0.3)" }}
+              whileHover={{
+                scale: 1.02,
+                boxShadow: "0 0 15px rgba(0, 238, 255, 0.3)",
+              }}
               whileTap={{ scale: 0.98 }}
               type="submit"
               className="mt-6 w-full px-6 py-3 bg-gradient-to-r from-[#0077B6] to-[#0ef] text-black font-semibold rounded-lg shadow-lg hover:from-[#0ef] hover:to-[#0077B6] transition"

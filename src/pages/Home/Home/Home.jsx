@@ -21,7 +21,7 @@ import { ToastContainer } from "react-toastify";
 import EducationSection from "../../Components/EducationSection/EducationSection";
 import AboutMeSection from "../../Components/AboutMe/AboutMeSection";
 import ProjectsSection from "../../Components/ProjectsSection/ProjectsSection";
-import SEO from "../../Components/SEO/SEO";
+
 const webSkills = [
     { name: "Angular", icon: <FaAngular className="text-red-500" /> },
     { name: "React", icon: <FaReact className="text-sky-400" /> },
@@ -41,7 +41,7 @@ const webSkills = [
 const Home = () => {
     return (
       <div>
-        <SEO />
+        {/* <SEO /> */}
         <ToastContainer />
         <section
       id="home"

@@ -53,10 +53,10 @@ const SEO = () => {
           "@context": "https://schema.org",
           "@type": "Person",
           "name": "Sifat",
-          "url": "https://yourdomain.com",
+          "url": "https://tanvir-sifat.vercel.app/",
           "sameAs": [
-            "https://github.com/yourusername",
-            "https://linkedin.com/in/yourprofile"
+            "https://github.com/sifat26",
+            "https://www.linkedin.com/in/sifat26/"
           ],
           "jobTitle": "Full-Stack Developer & ML Enthusiast",
           "worksFor": {

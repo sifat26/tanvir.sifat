@@ -224,7 +224,7 @@ const Home = () => {
             </div>
           </div>
         </section>
-        {/* <ProjectsSection /> */}
+        <ProjectsSection />
         <ContactSection />
       </div>
     );

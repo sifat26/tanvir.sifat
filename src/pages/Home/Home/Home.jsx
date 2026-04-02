@@ -243,7 +243,7 @@ const Home = () => {
               <div className="absolute inset-3 gradient-border">
                 <div className="gradient-border-inner">
                   <img
-                    src="https://i.postimg.cc/NfX7Kp1F/Prof.png"
+                    src="https://i.postimg.cc/PJPmFmdy/IMG-20260322-171753.jpg"
                     onError={(e) => { e.target.src = '/profile.png'; }}
                     alt="Tanvir Ahmmed Sifat - Full-Stack Developer"
                     className="w-full h-full object-cover"

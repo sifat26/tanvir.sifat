@@ -82,7 +82,9 @@ const PortfolioChatbot = () => {
     if (!username) return "GitHub: Not configured.";
 
     try {
-      const profileResponse = await fetch(`https://api.github.com/users/${username}`);
+      const profileResponse = await fetch(
+        `https://api.github.com/users/${username}`,
+      );
       if (!profileResponse.ok) {
         return `GitHub: Could not load profile for ${username}.`;
       }
@@ -97,13 +99,17 @@ const PortfolioChatbot = () => {
         repos = await reposResponse.json();
       }
 
-      const topLanguages = [...new Set(repos.map((repo) => repo.language).filter(Boolean))]
+      const topLanguages = [
+        ...new Set(repos.map((repo) => repo.language).filter(Boolean)),
+      ]
         .slice(0, 5)
         .join(", ");
 
       const notableRepos = repos
         .slice(0, 4)
-        .map((repo) => `${repo.name}${repo.language ? ` (${repo.language})` : ""}`)
+        .map(
+          (repo) => `${repo.name}${repo.language ? ` (${repo.language})` : ""}`,
+        )
         .join(", ");
 
       return [

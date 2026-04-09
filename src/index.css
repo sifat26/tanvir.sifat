@@ -1,12 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-
 @font-face {
-  font-family: 'Mulish';
-  src: url('/Font/Mulish-VariableFont_wght.ttf') format('truetype');
+  font-family: "Mulish";
+  src: url("/Font/Mulish-VariableFont_wght.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
@@ -30,19 +30,26 @@
   --color-border: rgba(129, 140, 248, 0.22);
   --color-border-hover: rgba(129, 140, 248, 0.5);
   --gradient-accent: linear-gradient(135deg, #818cf8, #22d3ee);
-  --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1a2540 50%, #0f172a 100%);
+  --gradient-hero: linear-gradient(
+    135deg,
+    #0f172a 0%,
+    #1a2540 50%,
+    #0f172a 100%
+  );
   --shadow-glow: 0 0 30px rgba(129, 140, 248, 0.35);
   --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.35);
   --shadow-card-hover: 0 8px 40px rgba(129, 140, 248, 0.3);
   --radius-card: 16px;
-  --font-primary: 'Inter', 'Space Grotesk', sans-serif;
+  --font-primary: "Inter", "Space Grotesk", sans-serif;
   --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ================================
    BASE STYLES
    ================================ */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -161,7 +168,7 @@ body {
 }
 
 .btn-primary::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: #364d6e;
@@ -210,7 +217,10 @@ body {
    GRID DOT BACKGROUND
    ================================ */
 .grid-dots {
-  background-image: radial-gradient(rgba(129, 140, 248, 0.18) 1px, transparent 1px);
+  background-image: radial-gradient(
+    rgba(129, 140, 248, 0.18) 1px,
+    transparent 1px
+  );
   background-size: 32px 32px;
 }
 
@@ -227,7 +237,11 @@ body {
 .orb-1 {
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(129, 140, 248, 0.18) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(129, 140, 248, 0.18) 0%,
+    transparent 70%
+  );
   top: -200px;
   right: -200px;
 }
@@ -235,7 +249,11 @@ body {
 .orb-2 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(34, 211, 238, 0.12) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(34, 211, 238, 0.12) 0%,
+    transparent 70%
+  );
   bottom: -150px;
   left: -150px;
 }
@@ -259,8 +277,230 @@ body {
 
 .skill-badge:hover {
   border-color: var(--color-accent);
-  box-shadow: 0 0 24px rgba(129, 140, 248, 0.28), inset 0 0 20px rgba(129, 140, 248, 0.07);
+  box-shadow:
+    0 0 24px rgba(129, 140, 248, 0.28),
+    inset 0 0 20px rgba(129, 140, 248, 0.07);
   transform: translateY(-4px);
+}
+
+/* ================================
+   PORTFOLIO CHATBOT
+   ================================ */
+.chatbot-toggle {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  border: 1px solid rgba(129, 140, 248, 0.45);
+  background: linear-gradient(135deg, #6366f1, #0ea5e9);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 60;
+  box-shadow: 0 10px 28px rgba(8, 47, 73, 0.55);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.chatbot-toggle:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 36px rgba(8, 47, 73, 0.6);
+}
+
+.chatbot-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: min(380px, calc(100vw - 24px));
+  height: min(560px, calc(100vh - 40px));
+  background: rgba(15, 23, 42, 0.96);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  border-radius: 18px;
+  box-shadow: 0 16px 48px rgba(2, 6, 23, 0.62);
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  overflow: hidden;
+  z-index: 60;
+  backdrop-filter: blur(10px);
+}
+
+.chatbot-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 14px 12px;
+  border-bottom: 1px solid rgba(129, 140, 248, 0.25);
+  background: linear-gradient(
+    180deg,
+    rgba(51, 65, 85, 0.75),
+    rgba(15, 23, 42, 0.15)
+  );
+}
+
+.chatbot-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chatbot-icon-wrap {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: #e2e8f0;
+  background: linear-gradient(135deg, #4f46e5, #0ea5e9);
+}
+
+.chatbot-header h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.chatbot-header p {
+  margin: 2px 0 0;
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.chatbot-close {
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: #cbd5e1;
+  background: rgba(30, 41, 59, 0.7);
+  cursor: pointer;
+}
+
+.chatbot-messages {
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background:
+    radial-gradient(
+      circle at 85% -20%,
+      rgba(14, 165, 233, 0.14),
+      transparent 36%
+    ),
+    radial-gradient(circle at 0% 100%, rgba(99, 102, 241, 0.2), transparent 40%);
+}
+
+.chat-bubble {
+  max-width: 88%;
+  border-radius: 14px;
+  padding: 10px 12px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+}
+
+.chat-assistant {
+  align-self: flex-start;
+  color: #e2e8f0;
+  background: rgba(30, 41, 59, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.chat-user {
+  align-self: flex-end;
+  color: #ecfeff;
+  background: linear-gradient(135deg, #4f46e5, #0ea5e9);
+  border: 1px solid rgba(191, 219, 254, 0.3);
+}
+
+.chatbot-starters {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 8px 12px;
+  border-top: 1px solid rgba(129, 140, 248, 0.16);
+}
+
+.chatbot-chip {
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  color: #cbd5e1;
+  background: rgba(30, 41, 59, 0.85);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.72rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.chatbot-chip:hover {
+  border-color: rgba(129, 140, 248, 0.4);
+  color: #e2e8f0;
+}
+
+.chatbot-input-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid rgba(129, 140, 248, 0.2);
+  background: rgba(15, 23, 42, 0.9);
+}
+
+.chatbot-input-row input {
+  width: 100%;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.65);
+  color: #e2e8f0;
+  font-size: 0.86rem;
+  padding: 10px 12px;
+  outline: none;
+}
+
+.chatbot-input-row input:focus {
+  border-color: rgba(129, 140, 248, 0.55);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15);
+}
+
+.chatbot-input-row button {
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: #ffffff;
+  background: linear-gradient(135deg, #4f46e5, #0ea5e9);
+}
+
+.chatbot-input-row button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+@media (max-width: 640px) {
+  .chatbot-panel {
+    right: 8px;
+    bottom: 8px;
+    width: calc(100vw - 16px);
+    height: min(78vh, 620px);
+    border-radius: 14px;
+  }
+
+  .chatbot-toggle {
+    right: 14px;
+    bottom: 14px;
+    width: 52px;
+    height: 52px;
+  }
 }
 
 /* ================================
@@ -306,9 +546,15 @@ body {
    ANIMATED GRADIENT BORDER
    ================================ */
 @keyframes borderRotate {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .gradient-border {
@@ -332,7 +578,12 @@ body {
    ================================ */
 .section-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(99, 102, 241, 0.3),
+    transparent
+  );
   margin: 0;
 }
 
@@ -349,7 +600,7 @@ body {
 }
 
 .nav-link::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: 0;
@@ -372,8 +623,15 @@ body {
    SCROLL INDICATOR
    ================================ */
 @keyframes scrollBounce {
-  0%, 100% { transform: translateY(0); opacity: 1; }
-  50% { transform: translateY(8px); opacity: 0.6; }
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 0.6;
+  }
 }
 
 .scroll-indicator {
@@ -384,13 +642,24 @@ body {
    HERO FLOATING BADGES
    ================================ */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
-.float-1 { animation: float 4s ease-in-out infinite; }
-.float-2 { animation: float 4.5s ease-in-out 0.5s infinite; }
-.float-3 { animation: float 5s ease-in-out 1s infinite; }
+.float-1 {
+  animation: float 4s ease-in-out infinite;
+}
+.float-2 {
+  animation: float 4.5s ease-in-out 0.5s infinite;
+}
+.float-3 {
+  animation: float 5s ease-in-out 1s infinite;
+}
 
 /* ================================
    PROJECT CARD IMAGE OVERLAY
@@ -398,14 +667,20 @@ body {
 .project-img-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(8, 11, 20, 0.95) 0%, rgba(8, 11, 20, 0.4) 50%, transparent 100%);
+  background: linear-gradient(
+    to top,
+    rgba(8, 11, 20, 0.95) 0%,
+    rgba(8, 11, 20, 0.4) 50%,
+    transparent 100%
+  );
 }
 
 /* ================================
    RESPONSIVE UTILITIES
    ================================ */
 @media (max-width: 768px) {
-  .orb-1, .orb-2 {
+  .orb-1,
+  .orb-2 {
     width: 300px;
     height: 300px;
   }

@@ -3,7 +3,6 @@ import { motion } from 'motion/react';
 import { useState } from 'react';
 import SectionHeader from '../../../components/ui/SectionHeader';
 import SocialLinks from '../../../components/ui/SocialLinks';
-import ResumeButton from '../../../components/ui/ResumeButton';
 import { personal, socials } from '../../../data/portfolio';
 
 const CONTACT_ENDPOINT = 'https://sifat-portfolio-backend.vercel.app/api/send';
@@ -51,7 +50,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id='contact' className='py-20 md:py-28' aria-label='Contact'>
+    <section id='contact' className='py-14 sm:py-20 md:py-28' aria-label='Contact'>
       <div className='container-page'>
         <SectionHeader
           className='max-w-3xl'
@@ -64,7 +63,7 @@ const ContactSection = () => {
           reach me directly by email.
         </p>
 
-        <div className='mt-12 grid lg:grid-cols-12 gap-10 lg:gap-14'>
+        <div className='mt-10 sm:mt-12 grid lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-14'>
           {/* Contact details */}
           <div className='lg:col-span-5'>
             <div className='space-y-6'>
@@ -117,23 +116,20 @@ const ContactSection = () => {
               <SocialLinks className='-ml-2' links={['github', 'linkedin', 'twitter']} />
             </div>
 
-            <div className='mt-8 flex flex-wrap gap-3'>
-              <a
-                href={socials.linkedin}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='inline-flex btn btn-secondary'
-              >
-                Connect on LinkedIn
-                <ArrowUpRight className='w-3.5 h-3.5' />
-              </a>
-              <ResumeButton variant='secondary' />
-            </div>
+            <a
+              href={socials.linkedin}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='mt-8 inline-flex btn btn-secondary'
+            >
+              Connect on LinkedIn
+              <ArrowUpRight className='w-3.5 h-3.5' />
+            </a>
           </div>
 
           {/* Form */}
           <div className='lg:col-span-7'>
-            <form onSubmit={handleSubmit} className='card p-6 md:p-8' noValidate>
+            <form onSubmit={handleSubmit} className='card p-5 sm:p-6 md:p-8' noValidate>
               <div className='grid sm:grid-cols-2 gap-4'>
                 <div>
                   <label htmlFor='contact-name' className='block text-[13px] font-medium text-[var(--text)] mb-1.5'>

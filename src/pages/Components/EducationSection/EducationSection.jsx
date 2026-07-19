@@ -4,9 +4,9 @@ import { education } from '../../../data/portfolio';
 
 const EducationSection = () => {
   return (
-    <section id='education' className='py-20 md:py-28 border-b border-[var(--border)]' aria-label='Education'>
+    <section id='education' className='py-14 sm:py-20 md:py-28 border-b border-[var(--border)]' aria-label='Education'>
       <div className='container-page'>
-        <div className='grid md:grid-cols-12 gap-10 md:gap-14'>
+        <div className='grid md:grid-cols-12 gap-8 sm:gap-10 md:gap-14'>
           <SectionHeader className='md:col-span-4' eyebrow='Education' title='Academic background.' />
 
           <div className='md:col-span-8'>

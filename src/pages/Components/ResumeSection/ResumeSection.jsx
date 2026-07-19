@@ -10,7 +10,7 @@ const ResumeSection = () => {
   if (!personal.resumeUrl || personal.resumeUrl === '[ADD_RESUME_URL]') return null;
 
   return (
-    <section id='resume' className='py-20 md:py-28 border-b border-[var(--border)]' aria-label='Resume'>
+    <section id='resume' className='py-14 sm:py-20 md:py-28 border-b border-[var(--border)]' aria-label='Resume'>
       <div className='container-page max-w-3xl'>
         <ResumeCard />
       </div>

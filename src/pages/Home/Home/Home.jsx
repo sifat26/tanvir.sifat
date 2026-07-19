@@ -5,7 +5,6 @@ import ExperienceSection from '../../Components/ExperienceSection/ExperienceSect
 import HeroSection from '../../Components/Hero/HeroSection';
 import ProjectsSection from '../../Components/ProjectsSection/ProjectsSection';
 import ResearchSection from '../../Components/ResearchSection/ResearchSection';
-import ResumeSection from '../../Components/ResumeSection/ResumeSection';
 import SkillsSection from '../../Components/SkillsSection/SkillsSection';
 
 const Home = () => {
@@ -18,7 +17,6 @@ const Home = () => {
       <ResearchSection />
       <SkillsSection />
       <EducationSection />
-      <ResumeSection />
       <ContactSection />
     </main>
   );

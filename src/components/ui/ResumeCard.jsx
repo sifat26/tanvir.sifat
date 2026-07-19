@@ -19,7 +19,7 @@ const ResumeCard = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.4 }}
-      className='card p-6 md:p-7 flex flex-col sm:flex-row sm:items-center gap-6'
+      className='card p-5 sm:p-6 md:p-7 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-6'
     >
       {/* Icon + meta */}
       <div className='flex items-start gap-4 flex-1 min-w-0'>
@@ -41,12 +41,23 @@ const ResumeCard = () => {
       </div>
 
       {/* Actions */}
-      <div className='flex items-center gap-2.5 shrink-0'>
-        <a href={resumeUrl} download target='_blank' rel='noopener noreferrer' className='btn btn-primary text-[13px]'>
+      <div className='flex flex-wrap items-center gap-2.5 shrink-0'>
+        <a
+          href={resumeUrl}
+          download
+          target='_blank'
+          rel='noopener noreferrer'
+          className='btn btn-primary text-[13px] flex-1 sm:flex-none justify-center'
+        >
           <Download className='w-3.5 h-3.5' />
           Download
         </a>
-        <a href={resumeUrl} target='_blank' rel='noopener noreferrer' className='btn btn-secondary text-[13px]'>
+        <a
+          href={resumeUrl}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='btn btn-secondary text-[13px] flex-1 sm:flex-none justify-center'
+        >
           View
           <ExternalLink className='w-3.5 h-3.5' />
         </a>

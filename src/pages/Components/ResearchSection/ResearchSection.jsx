@@ -8,11 +8,11 @@ const ResearchSection = () => {
   return (
     <section
       id='research'
-      className='py-20 md:py-28 border-b border-[var(--border)]'
+      className='py-14 sm:py-20 md:py-28 border-b border-[var(--border)]'
       aria-label='Research and publications'
     >
       <div className='container-page'>
-        <div className='grid md:grid-cols-12 gap-10 md:gap-14 mb-12'>
+        <div className='grid md:grid-cols-12 gap-8 sm:gap-10 md:gap-14 mb-10 sm:mb-12'>
           <SectionHeader
             className='md:col-span-4'
             eyebrow='Research & Publications'
@@ -29,7 +29,7 @@ const ResearchSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-80px' }}
                 transition={{ duration: 0.4 }}
-                className='card p-6 md:p-8'
+                className='card p-5 sm:p-6 md:p-8'
                 aria-labelledby={`pub-${pub.id}-title`}
               >
                 {/* Conference badge row */}

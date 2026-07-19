@@ -31,7 +31,7 @@ const HeroSection = () => {
             </div>
 
             {/* Headline */}
-            <h1 className='text-[2.4rem] sm:text-5xl md:text-6xl font-semibold tracking-tightest leading-[1.05] text-[var(--text)]'>
+            <h1 className='text-[clamp(1.85rem,7vw,2.4rem)] sm:text-5xl md:text-6xl font-semibold tracking-tightest leading-[1.05] text-[var(--text)]'>
               Building scalable web applications
               <br className='hidden sm:block' />{' '}
               <span className='text-[var(--text-muted)]'>and intelligent systems.</span>

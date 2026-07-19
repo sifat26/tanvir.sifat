@@ -75,7 +75,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
   transition: background-color 0.2s ease, color 0.2s ease;
+  /* Safety net: never allow a stray element to force horizontal scroll on
+     narrow phones. `clip` (unlike `hidden`) doesn't disable the fixed navbar
+     or smooth scrolling. */
+  overflow-x: clip;
 }
+
+/* Long unbreakable strings (emails, URLs) shouldn't push layout wider than
+   the viewport on very narrow screens. */
+a, p, li, h1, h2, h3, span { overflow-wrap: break-word; }
 
 /* Selection */
 ::selection {
@@ -209,9 +217,10 @@ body {
   max-width: 1120px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
+@media (min-width: 480px) { .container-page { padding-left: 24px; padding-right: 24px; } }
 @media (min-width: 768px) { .container-page { padding-left: 40px; padding-right: 40px; } }
 
 /* ---- Scroll progress bar ---- */

@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
-import { about, personal } from '../../../data/portfolio';
 import SectionHeader from '../../../components/ui/SectionHeader';
+import { about, personal } from '../../../data/portfolio';
 
 const AboutMeSection = () => {
   return (

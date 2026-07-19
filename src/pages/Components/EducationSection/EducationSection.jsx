@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
-import { education } from '../../../data/portfolio';
 import SectionHeader from '../../../components/ui/SectionHeader';
+import { education } from '../../../data/portfolio';
 
 const EducationSection = () => {
   return (

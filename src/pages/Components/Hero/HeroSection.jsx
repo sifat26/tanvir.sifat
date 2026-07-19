@@ -1,7 +1,7 @@
-import { motion } from 'motion/react';
 import { ArrowRight, MapPin } from 'lucide-react';
-import { personal } from '../../../data/portfolio';
+import { motion } from 'motion/react';
 import SocialLinks from '../../../components/ui/SocialLinks';
+import { personal } from '../../../data/portfolio';
 
 const HeroSection = () => {
   const hasResume = personal.resumeUrl && personal.resumeUrl !== '[ADD_RESUME_URL]';
@@ -38,9 +38,9 @@ const HeroSection = () => {
 
             {/* Intro */}
             <p className='mt-6 max-w-2xl text-[17px] md:text-[18px] leading-relaxed text-[var(--text-secondary)]'>
-              I&apos;m {personal.name.split(' ').slice(0, 2).join(' ')} — a full-stack engineer shipping production
-              web applications with React, Next.js, Node.js, and Express, and a graduate researcher applying deep
-              learning to medical imaging, computer vision, and network security.
+              I&apos;m {personal.name.split(' ').slice(0, 2).join(' ')} — a full-stack engineer shipping production web
+              applications with React, Next.js, Node.js, and Express, and a graduate researcher applying deep learning
+              to medical imaging, computer vision, and network security.
             </p>
 
             {/* Meta */}

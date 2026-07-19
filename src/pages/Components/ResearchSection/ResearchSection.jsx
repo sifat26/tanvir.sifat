@@ -1,8 +1,8 @@
-import { motion } from 'motion/react';
 import { BookOpen, Calendar, MapPin } from 'lucide-react';
-import { research } from '../../../data/portfolio';
+import { motion } from 'motion/react';
 import SectionHeader from '../../../components/ui/SectionHeader';
 import { TagList } from '../../../components/ui/Tag';
+import { research } from '../../../data/portfolio';
 
 const ResearchSection = () => {
   return (

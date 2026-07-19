@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
-import { skills } from '../../../data/portfolio';
 import SectionHeader from '../../../components/ui/SectionHeader';
 import { TagList } from '../../../components/ui/Tag';
+import { skills } from '../../../data/portfolio';
 import { fadeUpDelay } from '../../../lib/motion';
 
 const SkillsSection = () => {

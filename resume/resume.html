@@ -4,13 +4,17 @@
 <meta charset="utf-8" />
 <title>Tanvir Ahmmed Sifat — Resume</title>
 <style>
-  @page { size: A4; margin: 12mm 14mm; }
+  /* Print-optimised single-column resume. Layout deliberately mirrors the
+     Arham-Malik-style reference: centered header, ALL CAPS section headings
+     with a hairline rule, compact spacing, one accent colour, and pure
+     paragraph flow (no tables, no columns) so ATS parsers read it clean. */
+  @page { size: A4; margin: 11mm 13mm; }
   :root {
-    --dark: #1a1a1a;
-    --grey: #555;
-    --navy: #1f3a5f;
-    --rule: #aebacb;
-    --callout: #f1f5fa;
+    --dark: #111111;
+    --grey: #4a4a4a;
+    --muted: #6b6b6b;
+    --rule: #111111;      /* section rule matches body text for punch */
+    --accent: #1a3357;    /* single accent, used sparingly */
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
@@ -18,193 +22,314 @@
     font-family: "Calibri", "Carlito", "Aptos", Arial, sans-serif;
     color: var(--dark);
     font-size: 10pt;
-    line-height: 1.34;
+    line-height: 1.32;
   }
+
+  /* ── Header ───────────────────────────────────────────── */
+  .header { text-align: center; margin-bottom: 6px; }
   .name {
-    font-size: 21pt;
-    font-weight: 700;
-    letter-spacing: 0.4px;
-    margin: 0;
+    font-size: 22pt;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin: 0 0 4px;
     color: var(--dark);
   }
-  .title {
-    font-size: 11pt;
-    color: var(--navy);
-    font-weight: 600;
-    margin: 3px 0 6px;
-  }
-  .contact {
-    font-size: 9pt;
-    color: var(--grey);
-    margin: 0;
-  }
-  .contact a { color: var(--navy); text-decoration: none; }
-  .contact .bar { color: var(--rule); padding: 0 6px; }
-  h2 {
+  .subtitle {
     font-size: 11pt;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.4px;
-    color: var(--navy);
-    border-bottom: 1.4px solid var(--navy);
-    padding-bottom: 3px;
-    margin: 15px 0 8px;
+    font-style: italic;
+    margin: 0 0 4px;
+    color: var(--dark);
   }
-  p { margin: 0 0 4px; }
-  .summary { margin: 2px 0 0; text-align: justify; }
-  ul { margin: 3px 0 6px; padding-left: 15px; }
-  li { margin: 0 0 3px; }
+  .subtitle .dot { padding: 0 6px; color: var(--muted); }
+  .contact {
+    font-size: 9.5pt;
+    color: var(--dark);
+    margin: 0;
+  }
+  .contact .dot { padding: 0 6px; color: var(--muted); }
+  .contact-links {
+    font-size: 9.5pt;
+    margin: 3px 0 0;
+    color: var(--dark);
+  }
+  .contact-links a {
+    color: var(--dark);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .contact-links .dot { padding: 0 8px; color: var(--muted); }
+
+  /* ── Section heading ─────────────────────────────────── */
+  h2 {
+    font-size: 10.5pt;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--dark);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2px;
+    margin: 12px 0 5px;
+  }
+
+  p { margin: 0 0 3px; }
+  ul { margin: 3px 0 4px; padding-left: 16px; }
+  li { margin: 0 0 2px; text-align: justify; }
+  strong { color: var(--dark); }
+
+  /* ── Summary block ───────────────────────────────────── */
+  .summary { text-align: justify; margin-top: 2px; }
+
+  /* ── Experience / Project rows ───────────────────────── */
   .row {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-top: 9px;
+    margin-top: 6px;
   }
-  .role-title { font-weight: 700; color: var(--dark); }
-  .dates { font-size: 9pt; color: var(--grey); white-space: nowrap; padding-left: 12px; }
-  .company { color: var(--navy); font-weight: 700; margin: 1px 0 2px; }
-  .company .loc { color: var(--grey); font-weight: 400; font-size: 9pt; }
-  .stack { font-size: 9pt; color: var(--grey); margin: 1px 0 3px; }
-  .meta { font-size: 9pt; color: var(--grey); margin: 1px 0 2px; }
+  .row.tight { margin-top: 4px; }
+  .company { font-weight: 800; color: var(--dark); }
+  .company .loc {
+    font-weight: 400;
+    font-style: italic;
+    color: var(--muted);
+    margin-left: 8px;
+  }
+  .dates {
+    font-size: 9.5pt;
+    color: var(--dark);
+    font-weight: 700;
+    white-space: nowrap;
+    padding-left: 12px;
+  }
+  .role {
+    font-weight: 700;
+    font-style: italic;
+    color: var(--accent);
+    margin: 1px 0 3px;
+  }
 
-  /* Skills — single column, one line per group (label + values) */
-  .skill-line { margin: 0 0 3px; }
-  .skill-line .label { color: var(--navy); font-weight: 700; }
+  /* ── Projects block ──────────────────────────────────── */
+  .proj-name { font-weight: 800; color: var(--dark); }
+  .proj-stack {
+    font-size: 9.5pt;
+    font-style: italic;
+    color: var(--muted);
+    margin: 1px 0 2px;
+    font-weight: 600;
+  }
+  .proj-desc { margin: 1px 0 4px; text-align: justify; }
 
-  .proj-name { font-weight: 700; color: var(--dark); }
+  /* ── Skills block ────────────────────────────────────── */
+  .skill-line { margin: 0 0 2px; }
+  .skill-line .label { font-weight: 800; color: var(--dark); }
+  .skill-line .values { color: var(--accent); }
 
-  /* Publication — plain, matching the rest of the body (no box) */
-  .pub-title { font-weight: 700; color: var(--navy); }
-  .pub-meta { font-size: 9pt; color: var(--grey); margin: 1px 0 2px; }
+  /* ── Education ───────────────────────────────────────── */
+  .edu-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 4px;
+  }
+  .edu-inst {
+    font-size: 9.5pt;
+    font-style: italic;
+    color: var(--muted);
+    margin: 1px 0 3px;
+  }
+  .edu-note { margin: 3px 0 0; text-align: justify; padding-left: 14px; }
 
-  .edu-row { display: flex; justify-content: space-between; align-items: baseline; margin-top: 7px; }
-  .edu-inst { font-size: 9pt; color: var(--grey); }
-  .langs { font-size: 9pt; }
+  .pub-title { font-weight: 800; color: var(--dark); }
 </style>
 </head>
 <body>
 
-<div class="name">Tanvir Ahmmed Sifat</div>
-<div class="title">Frontend &amp; Full Stack Developer — React · Next.js · Angular</div>
-<div class="contact">
-  Bangladesh<span class="bar">|</span>sifatict26@gmail.com<span class="bar">|</span>+880 1521 565 259
+<div class="header">
+  <div class="name">Tanvir Ahmmed Sifat</div>
+  <div class="subtitle">
+    Frontend Engineer<span class="dot">·</span>Full Stack Developer<span class="dot">·</span>AI Researcher
+  </div>
+  <div class="contact">
+    Bangladesh<span class="dot">·</span>+880 1521 565 259<span class="dot">·</span>sifatict26@gmail.com
+  </div>
+  <div class="contact-links">
+    <a href="https://tanvir-sifat.vercel.app/">tanvir-sifat.vercel.app</a>
+    <span class="dot">·</span>
+    <a href="https://linkedin.com/in/sifat26">linkedin.com/in/sifat26</a>
+    <span class="dot">·</span>
+    <a href="https://github.com/sifat26">github.com/sifat26</a>
+  </div>
 </div>
-<div class="contact" style="margin-top:2px;">
-  <a href="https://sifat26.vercel.app/">sifat26.vercel.app</a><span class="bar">|</span><a href="https://github.com/sifat26">github.com/sifat26</a><span class="bar">|</span><a href="https://linkedin.com/in/sifat26">linkedin.com/in/sifat26</a>
-</div>
 
-<h2>Professional Summary</h2>
-<p class="summary">Web developer building and shipping production applications. My day-to-day is Angular, React, and Next.js on the frontend, backed by Node.js and Express APIs, and I own deployments through to release. I work across the delivery cycle — component architecture, responsive UI, and API integration. Also a graduate researcher in applied deep learning, with a contribution to an international conference publication.</p>
+<h2>Summary</h2>
+<p class="summary">
+  Full-stack web developer with <strong>2+ years</strong> shipping <strong>production applications</strong> across
+  frontend, backend, and deployment. Build and maintain live systems with <strong>Angular</strong>, <strong>React</strong>,
+  and <strong>Next.js</strong> on the frontend, backed by <strong>Node.js</strong> and <strong>Express</strong> REST APIs.
+  Delivered three paid client platforms in three-person teams — including <strong>Bazarica</strong>, a multi-vendor
+  marketplace with payment integration and role-based dashboards. Also a graduate researcher in
+  <strong>applied deep learning</strong> with a peer-reviewed publication at an
+  <strong>international conference</strong> (ITSS-IoE 2025, United Kingdom).
+</p>
 
-<h2>Technical Skills</h2>
-<p class="skill-line"><span class="label">Frontend:</span> React, Next.js, Angular, JavaScript, TypeScript, Tailwind CSS, Bootstrap, Responsive Design</p>
-<p class="skill-line"><span class="label">Backend:</span> Node.js, Express.js, REST APIs, Authentication, Payment Gateway Integration</p>
-<p class="skill-line"><span class="label">Databases:</span> MongoDB, MySQL, Firebase</p>
-<p class="skill-line"><span class="label">Cloud &amp; Deployment:</span> Vercel, Azure, VPS, IIS Server, cPanel</p>
-<p class="skill-line"><span class="label">AI / ML:</span> Python, TensorFlow, Deep Learning, Computer Vision</p>
-<p class="skill-line"><span class="label">Developer Tools:</span> Git, GitHub, Postman, Figma, Google Analytics, VS Code</p>
-
-<h2>Professional Experience</h2>
+<h2>Experience</h2>
 <div class="row">
-  <span class="role-title">Web Developer</span>
-  <span class="dates">June 2024 – Present</span>
+  <span class="company">Universal Technology Research and Development Ltd. <span class="loc">Bangladesh</span></span>
+  <span class="dates">Jun 2024 – Present</span>
 </div>
-<div class="company">Universal Technology Research and Development Ltd. (UTRDL) <span class="loc">· Bangladesh</span></div>
+<div class="role">Web Developer</div>
 <ul>
-  <li>Build and ship Angular and Next.js applications used in live business operations, translating design specs into responsive, accessible interfaces.</li>
-  <li>Develop reusable component libraries that cut duplicate UI work across features and keep the codebase maintainable.</li>
-  <li>Integrate REST APIs end to end, managing data flow, loading and error states, and API contract changes with the backend team.</li>
-  <li>Deploy to IIS Server, configuring builds and resolving environment-specific issues in production.</li>
-  <li>Partner with backend, QA, and product to align technical direction and keep releases moving.</li>
+  <li>
+    Build and ship <strong>Angular</strong> and <strong>Next.js</strong> applications used in
+    <strong>live business operations</strong>, translating design specs into <strong>responsive, accessible</strong> interfaces.
+  </li>
+  <li>
+    Develop <strong>reusable component libraries</strong> that cut duplicate UI work across features and keep the
+    codebase maintainable.
+  </li>
+  <li>
+    Integrate <strong>REST APIs</strong> end to end — managing data flow, <strong>loading and error states</strong>, and
+    coordinating <strong>API contract</strong> changes with the backend team.
+  </li>
+  <li>
+    Deploy to <strong>IIS Server</strong>, configuring builds and resolving environment-specific issues in production.
+  </li>
+  <li>
+    Partner with <strong>backend, QA, and product</strong> to align technical direction and keep releases moving.
+  </li>
 </ul>
 
 <div class="row">
-  <span class="role-title">Full Stack Developer</span>
+  <span class="company">Freelance &amp; Contract <span class="loc">Remote</span></span>
   <span class="dates">2023 – Present</span>
 </div>
-<div class="company">Freelance &amp; Contract <span class="loc">· Remote</span></div>
+<div class="role">Full Stack Developer</div>
 <ul>
-  <li>Deliver client web applications in three-person teams, contributing across React/Next.js frontends and Express REST APIs (see selected projects below).</li>
-  <li>Build features spanning authentication, product and order management, catalog search, and multi-role dashboards.</li>
-  <li>Configure builds, domains, SEO, and analytics for deployments on cPanel, VPS, and Azure.</li>
+  <li>
+    Deliver <strong>client web applications</strong> in three-person teams, contributing across
+    <strong>React / Next.js</strong> frontends and <strong>Express REST APIs</strong>.
+  </li>
+  <li>
+    Build features spanning <strong>authentication</strong>, <strong>product and order management</strong>,
+    <strong>catalog search</strong>, and <strong>multi-role dashboards</strong>.
+  </li>
+  <li>
+    Configure builds, <strong>domains, SEO, and analytics</strong> for deployments on
+    <strong>cPanel, VPS, and Azure</strong>.
+  </li>
 </ul>
 
-<h2>Professional Client Projects</h2>
-<p class="meta" style="margin-bottom:5px;font-style:italic;">Paid production work delivered in three-person development teams. Bullets reflect my individual contributions.</p>
+<h2>Projects</h2>
 
-<div class="row">
+<div class="row tight">
   <span class="proj-name">Bazarica — Multi-Vendor Marketplace</span>
   <span class="dates">bazarica.com.bd</span>
 </div>
-<div class="meta">Role: Full Stack Developer &nbsp;·&nbsp; Tech: Next.js, Node.js, Express</div>
+<div class="proj-stack">Next.js · Node.js · Express · Azure VPS · Payment Gateway</div>
 <ul>
-  <li>Built dashboard views for the admin, seller, and customer roles in Next.js.</li>
-  <li>Integrated the payment gateway and order confirmation flow for live transactions.</li>
-  <li>Implemented product and order management against the Express REST API, plus catalog search across vendors.</li>
-  <li>Set up SEO metadata and Google Analytics, and deployed the app on an Azure VPS.</li>
+  <li>Built <strong>role-based dashboards</strong> for admin, seller, and customer in <strong>Next.js</strong>.</li>
+  <li>Integrated the <strong>payment gateway</strong> and <strong>order confirmation flow</strong> for live transactions.</li>
+  <li>
+    Implemented <strong>product and order management</strong> against the <strong>Express REST API</strong>,
+    plus <strong>catalog search</strong> across vendors.
+  </li>
+  <li>
+    Set up <strong>SEO metadata</strong> and <strong>Google Analytics</strong>, and deployed on
+    <strong>Azure VPS</strong>.
+  </li>
 </ul>
 
-<div class="row">
+<div class="row tight">
   <span class="proj-name">Atkias Zone — E-Commerce Platform</span>
   <span class="dates">atkias-zone.vercel.app</span>
 </div>
-<div class="meta">Role: Full Stack Developer &nbsp;·&nbsp; Tech: Next.js, Node.js, Express</div>
+<div class="proj-stack">Next.js · Node.js · Express · VPS</div>
 <ul>
-  <li>Built storefront and product pages in Next.js and connected them to the Express REST API.</li>
-  <li>Implemented user authentication and session handling.</li>
-  <li>Set up SEO metadata across product and listing pages, and deployed to a production VPS.</li>
+  <li>Built <strong>storefront and product pages</strong> in Next.js against an Express REST API.</li>
+  <li>Implemented <strong>user authentication</strong> and <strong>session handling</strong>.</li>
+  <li>Set up <strong>SEO metadata</strong> across product and listing pages and deployed to a production VPS.</li>
 </ul>
 
-<div class="row">
+<div class="row tight">
   <span class="proj-name">Outfitro — E-Commerce Platform</span>
   <span class="dates">outfitro.com</span>
 </div>
-<div class="meta">Role: Full Stack Developer &nbsp;·&nbsp; Tech: React, Node.js, Express</div>
+<div class="proj-stack">React · Node.js · Express · cPanel</div>
 <ul>
-  <li>Built the storefront and product pages in React and developed REST endpoints on the Express API.</li>
-  <li>Modeled and integrated the product and user data layer.</li>
-  <li>Implemented authentication and the cart-to-checkout flow, and deployed the app to cPanel hosting.</li>
+  <li>Built the <strong>storefront and product pages</strong> in React and developed REST endpoints on the Express API.</li>
+  <li>Modeled and integrated the <strong>product and user data layer</strong>.</li>
+  <li>Implemented <strong>authentication</strong> and the <strong>cart-to-checkout flow</strong>, and deployed to cPanel hosting.</li>
 </ul>
 
-<h2>Selected Projects</h2>
-<div class="row">
-  <span class="proj-name">BlogNest</span>
-  <span class="dates">React, Node.js, Express, MongoDB, Firebase</span>
+<div class="row tight">
+  <span class="proj-name">BlogNest — Full-Stack Publishing Platform</span>
+  <span class="dates">React · Node.js · Express · MongoDB · Firebase</span>
 </div>
-<ul>
-  <li>Full-stack publishing platform with rich-text authoring, nested comment threads, trending-post ranking, and Google OAuth.</li>
-  <li>Designed a comment schema supporting arbitrarily nested replies while keeping MongoDB read queries fast.</li>
-</ul>
-<div class="row">
-  <span class="proj-name">Woven Earth</span>
-  <span class="dates">React, Express, MongoDB, Firebase, Tailwind CSS</span>
+<p class="proj-desc">
+  Publishing platform with <strong>rich-text authoring</strong>, <strong>nested comment threads</strong>,
+  <strong>trending-post ranking</strong>, and <strong>Google OAuth</strong>. Designed a comment schema supporting
+  arbitrarily nested replies while keeping MongoDB read queries fast.
+</p>
+
+<div class="row tight">
+  <span class="proj-name">Woven Earth — Handcrafted Textiles Marketplace</span>
+  <span class="dates">React · Express · MongoDB · Firebase · Tailwind CSS</span>
 </div>
-<ul>
-  <li>Full-stack marketplace for handcrafted textiles, with a self-service artist portal, category-based discovery, and authenticated per-user collections.</li>
-</ul>
+<p class="proj-desc">
+  Marketplace for handcrafted textiles with a <strong>self-service artist portal</strong>, <strong>category-based
+  discovery</strong>, and authenticated <strong>per-user collections</strong>.
+</p>
+
+<h2>Skills</h2>
+<p class="skill-line"><span class="label">Frontend:</span>
+  <span class="values">React, Next.js, Angular, JavaScript, TypeScript, Tailwind CSS, Bootstrap, Responsive Design</span>
+</p>
+<p class="skill-line"><span class="label">Backend:</span>
+  <span class="values">Node.js, Express.js, REST APIs, Authentication, Payment Gateway Integration</span>
+</p>
+<p class="skill-line"><span class="label">Databases:</span>
+  <span class="values">MongoDB, MySQL, Firebase</span>
+</p>
+<p class="skill-line"><span class="label">Cloud &amp; Deployment:</span>
+  <span class="values">Vercel, Azure, VPS, IIS Server, cPanel</span>
+</p>
+<p class="skill-line"><span class="label">AI &amp; Machine Learning:</span>
+  <span class="values">Python, TensorFlow, Deep Learning, Computer Vision, Medical Image Analysis</span>
+</p>
+<p class="skill-line"><span class="label">Developer Tools:</span>
+  <span class="values">Git, GitHub, Postman, Figma, Google Analytics, VS Code</span>
+</p>
+<p class="skill-line"><span class="label">Languages:</span>
+  <span class="values">Bengali (native), English (professional working proficiency)</span>
+</p>
 
 <h2>Publication</h2>
-<div class="row" style="margin-top:2px;">
-  <span class="proj-name" style="color:var(--navy);">An IoT-Based Lung Cancer Detection System from CT Images Using Deep Learning</span>
-  <span class="dates">Contributing Author</span>
+<div class="row tight">
+  <span class="pub-title">An IoT-Based Lung Cancer Detection System from CT Images Using Deep Learning</span>
+  <span class="dates">2025</span>
 </div>
-<div class="meta">ITSS-IoE 2025 — International Conference on Intelligent Technology, Systems and Services for the Internet of Everything. University of Wolverhampton, United Kingdom.</div>
-<p style="margin-top:2px;">Combines IoT infrastructure with deep learning to detect lung cancer from CT images.</p>
+<div class="proj-stack">
+  ITSS-IoE 2025 — International Conference on Intelligent Technology, Systems and Services for the Internet of Everything, University of Wolverhampton, United Kingdom
+</div>
+<p class="proj-desc">
+  Combines <strong>IoT infrastructure</strong> with <strong>deep learning</strong> to detect lung cancer from
+  <strong>CT images</strong>, contributing on data pipeline design and model evaluation as a co-author.
+</p>
 
 <h2>Education</h2>
 <div class="edu-row">
-  <span class="role-title">M.Sc. in Information &amp; Communication Technology</span>
+  <span class="company">Mawlana Bhashani Science &amp; Technology University <span class="loc">Bangladesh</span></span>
   <span class="dates">2025 – Present</span>
 </div>
-<div class="edu-inst">Mawlana Bhashani Science &amp; Technology University</div>
+<div class="edu-inst">M.Sc. in Information &amp; Communication Technology</div>
+
 <div class="edu-row">
-  <span class="role-title">B.Sc. in Information &amp; Communication Technology</span>
+  <span class="company">Mawlana Bhashani Science &amp; Technology University <span class="loc">Bangladesh</span></span>
   <span class="dates">2020 – 2025</span>
 </div>
-<div class="edu-inst">Mawlana Bhashani Science &amp; Technology University</div>
-
-<h2>Languages</h2>
-<p class="langs">Bengali (native) &nbsp;·&nbsp; English (professional working proficiency)</p>
+<div class="edu-inst">B.Sc. in Information &amp; Communication Technology</div>
 
 </body>
 </html>

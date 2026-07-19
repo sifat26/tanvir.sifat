@@ -2,15 +2,16 @@
  * Premium single-column resume generator — strict-ATS build.
  * Produces resume/Tanvir_Ahmmed_Sifat_Resume.docx
  *
- * Design: one accent (navy), strong type hierarchy, generous spacing, and
- * consistent section rules. Everything is linear paragraph text — no tables,
- * no multi-column layout, no images/icons on data — so ATS parsers read it
- * top to bottom cleanly. Tab stops handle right-aligned dates and the aligned
- * skills labels; those are still plain text to a parser. A4 page size.
+ * Layout mirrors the Arham-Malik-style reference: centered header, ALL CAPS
+ * section headings with a hairline rule, tight spacing, one accent colour,
+ * and pure paragraph flow (no tables, no multi-column layout) so ATS parsers
+ * read every line top-to-bottom cleanly. Keywords are wrapped in bold runs,
+ * which stays as plain text to a parser but reads as emphasis in Word/PDF.
  */
 const fs = require("fs");
 const path = require("path");
 const {
+  AlignmentType,
   Document,
   Packer,
   Paragraph,
@@ -23,17 +24,15 @@ const {
 
 // ── Palette + type scale (sizes in half-points) ─────────────────────────────
 const FONT = "Calibri";
-const NAME_SIZE = 40; // 20pt
-const TITLE_SIZE = 22; // 11pt
-const SECTION_SIZE = 22; // 11pt
-const BODY_SIZE = 20; // 10pt
-const SMALL = 18; // 9pt
+const NAME_SIZE = 44;    // 22pt
+const SUB_SIZE = 22;     // 11pt
+const SECTION_SIZE = 21; // 10.5pt
+const BODY_SIZE = 20;    // 10pt
+const SMALL = 19;        // 9.5pt
 
-const DARK = "1A1A1A"; // primary text
-const GREY = "555555"; // meta / secondary
-const NAVY = "1F3A5F"; // single accent
-const RULE = "AEBACB"; // light navy for hairlines
-const CALLOUT = "F1F5FA"; // faint navy tint for the publication block
+const DARK = "111111";   // primary text
+const MUTED = "6B6B6B";  // meta / secondary
+const ACCENT = "1A3357"; // single accent for role & skill values
 
 const OUTPUT = path.join(__dirname, "Tanvir_Ahmmed_Sifat_Resume.docx");
 
@@ -43,17 +42,46 @@ const run = (text, opts = {}) =>
 
 const link = (label, url, opts = {}) =>
   new ExternalHyperlink({
-    children: [run(label, { color: NAVY, size: SMALL, ...opts })],
+    children: [run(label, { color: DARK, size: SMALL, underline: {}, ...opts })],
     link: url,
   });
 
-const sep = () => run("   |   ", { color: RULE, size: SMALL });
+const dot = (padded = true) =>
+  run(padded ? "  ·  " : "·", { color: MUTED, size: SMALL });
+
+/**
+ * Build a paragraph out of a sentence that mixes plain text and bold keywords.
+ * Accepts an array of ["plain string"] or [text, { bold: true }] pairs, so we
+ * can highlight ATS keywords without breaking the underlying text flow.
+ */
+function richLine(parts, opts = {}) {
+  const children = parts.map((p) =>
+    Array.isArray(p) ? run(p[0], p[1] || {}) : run(p)
+  );
+  return new Paragraph({
+    spacing: { after: opts.after ?? 30, before: opts.before ?? 0 },
+    alignment: opts.alignment,
+    children,
+  });
+}
+
+function bullet(parts) {
+  const children = parts.map((p) =>
+    Array.isArray(p) ? run(p[0], p[1] || {}) : run(p)
+  );
+  return new Paragraph({
+    bullet: { level: 0 },
+    spacing: { after: 20 },
+    indent: { left: 260, hanging: 200 },
+    children,
+  });
+}
 
 function sectionHeading(text) {
   return new Paragraph({
-    spacing: { before: 260, after: 120 },
+    spacing: { before: 220, after: 90 },
     border: {
-      bottom: { color: NAVY, space: 3, style: BorderStyle.SINGLE, size: 8 },
+      bottom: { color: DARK, space: 2, style: BorderStyle.SINGLE, size: 8 },
     },
     children: [
       new TextRun({
@@ -61,314 +89,459 @@ function sectionHeading(text) {
         font: FONT,
         size: SECTION_SIZE,
         bold: true,
-        color: NAVY,
-        characterSpacing: 16,
+        color: DARK,
+        characterSpacing: 12,
       }),
     ],
   });
 }
 
-// Title (bold dark) left, dates (grey) right-aligned via tab stop.
-function titleDateRow(title, dates, opts = {}) {
+// Company / project line (bold left, right-aligned dates via tab stop).
+function titleDateRow(leftParts, dates, opts = {}) {
+  const children = leftParts.map((p) =>
+    Array.isArray(p) ? run(p[0], p[1] || {}) : run(p, { bold: true })
+  );
+  children.push(new TextRun({ text: "\t", font: FONT }));
+  children.push(new TextRun({ text: dates, font: FONT, size: SMALL, color: DARK, bold: true }));
   return new Paragraph({
     tabStops: [{ type: TabStopType.RIGHT, position: TabStopPosition.MAX }],
-    spacing: { before: opts.before ?? 160, after: 6 },
+    spacing: { before: opts.before ?? 120, after: 20 },
+    children,
+  });
+}
+
+// Italic navy role sitting under the company row.
+function roleLine(role) {
+  return new Paragraph({
+    spacing: { after: 40 },
     children: [
-      new TextRun({ text: title, font: FONT, size: BODY_SIZE, bold: true, color: DARK }),
-      new TextRun({ text: "\t" + dates, font: FONT, size: SMALL, color: GREY }),
+      new TextRun({ text: role, font: FONT, size: BODY_SIZE, bold: true, italics: true, color: ACCENT }),
     ],
   });
 }
 
-// Company (navy, bold) with optional trailing meta.
-function companyRow(company, trailing) {
-  const kids = [new TextRun({ text: company, font: FONT, size: BODY_SIZE, bold: true, color: NAVY })];
-  if (trailing) kids.push(new TextRun({ text: "  ·  " + trailing, font: FONT, size: SMALL, color: GREY }));
-  return new Paragraph({ spacing: { after: 60 }, children: kids });
-}
-
-function bullet(text) {
+// Italic muted meta line (project stack, publication venue).
+function metaLine(text, opts = {}) {
   return new Paragraph({
-    bullet: { level: 0 },
-    spacing: { after: 30 },
-    indent: { left: 260, hanging: 200 },
-    children: [run(text)],
+    spacing: { after: opts.after ?? 40 },
+    children: [
+      new TextRun({ text, font: FONT, size: SMALL, italics: true, color: MUTED }),
+    ],
   });
-}
-
-function plain(children, opts = {}) {
-  return new Paragraph({ spacing: { after: opts.after ?? 60, before: opts.before ?? 0 }, children });
 }
 
 // ── Content ──────────────────────────────────────────────────────────────────
 const NAME = "Tanvir Ahmmed Sifat";
-const TITLE = "Frontend & Full Stack Developer — React · Next.js · Angular";
 
-const summary =
-  "Web developer building and shipping production applications. My day-to-day is Angular, React, and Next.js on the frontend, backed by Node.js and Express APIs, and I own deployments through to release. I work across the delivery cycle — component architecture, responsive UI, and API integration. Also a graduate researcher in applied deep learning, with a contribution to an international conference publication.";
-
-// Six logical groups, rendered one per line (single-column, ATS-safe).
-const skills = [
-  ["Frontend", "React, Next.js, Angular, JavaScript, TypeScript, Tailwind CSS, Bootstrap, Responsive Design"],
-  ["Backend", "Node.js, Express.js, REST APIs, Authentication, Payment Gateway Integration"],
-  ["Databases", "MongoDB, MySQL, Firebase"],
-  ["Cloud & Deployment", "Vercel, Azure, VPS, IIS Server, cPanel"],
-  ["AI / ML", "Python, TensorFlow, Deep Learning, Computer Vision"],
-  ["Developer Tools", "Git, GitHub, Postman, Figma, Google Analytics, VS Code"],
+const summaryParts = [
+  "Full-stack web developer with ",
+  ["2+ years", { bold: true }],
+  " shipping ",
+  ["production applications", { bold: true }],
+  " across frontend, backend, and deployment. Build and maintain live systems with ",
+  ["Angular", { bold: true }],
+  ", ",
+  ["React", { bold: true }],
+  ", and ",
+  ["Next.js", { bold: true }],
+  " on the frontend, backed by ",
+  ["Node.js", { bold: true }],
+  " and ",
+  ["Express", { bold: true }],
+  " REST APIs. Delivered three paid client platforms in three-person teams — including ",
+  ["Bazarica", { bold: true }],
+  ", a multi-vendor marketplace with payment integration and role-based dashboards. Also a graduate researcher in ",
+  ["applied deep learning", { bold: true }],
+  " with a peer-reviewed publication at an ",
+  ["international conference", { bold: true }],
+  " (ITSS-IoE 2025, United Kingdom).",
 ];
 
 const experience = [
   {
-    role: "Web Developer",
-    company: "Universal Technology Research and Development Ltd. (UTRDL)",
+    company: "Universal Technology Research and Development Ltd.",
     location: "Bangladesh",
-    period: "June 2024 – Present",
+    role: "Web Developer",
+    period: "Jun 2024 – Present",
     bullets: [
-      "Build and ship Angular and Next.js applications used in live business operations, translating design specs into responsive, accessible interfaces.",
-      "Develop reusable component libraries that cut duplicate UI work across features and keep the codebase maintainable.",
-      "Integrate REST APIs end to end, managing data flow, loading and error states, and API contract changes with the backend team.",
-      "Deploy to IIS Server, configuring builds and resolving environment-specific issues in production.",
-      "Partner with backend, QA, and product to align technical direction and keep releases moving.",
+      [
+        "Build and ship ",
+        ["Angular", { bold: true }],
+        " and ",
+        ["Next.js", { bold: true }],
+        " applications used in ",
+        ["live business operations", { bold: true }],
+        ", translating design specs into ",
+        ["responsive, accessible", { bold: true }],
+        " interfaces.",
+      ],
+      [
+        "Develop ",
+        ["reusable component libraries", { bold: true }],
+        " that cut duplicate UI work across features and keep the codebase maintainable.",
+      ],
+      [
+        "Integrate ",
+        ["REST APIs", { bold: true }],
+        " end to end — managing data flow, ",
+        ["loading and error states", { bold: true }],
+        ", and coordinating ",
+        ["API contract", { bold: true }],
+        " changes with the backend team.",
+      ],
+      [
+        "Deploy to ",
+        ["IIS Server", { bold: true }],
+        ", configuring builds and resolving environment-specific issues in production.",
+      ],
+      [
+        "Partner with ",
+        ["backend, QA, and product", { bold: true }],
+        " to align technical direction and keep releases moving.",
+      ],
     ],
   },
   {
-    role: "Full Stack Developer",
     company: "Freelance & Contract",
     location: "Remote",
+    role: "Full Stack Developer",
     period: "2023 – Present",
     bullets: [
-      "Deliver client web applications in three-person teams, contributing across React/Next.js frontends and Express REST APIs (see selected projects below).",
-      "Build features spanning authentication, product and order management, catalog search, and multi-role dashboards.",
-      "Configure builds, domains, SEO, and analytics for deployments on cPanel, VPS, and Azure.",
+      [
+        "Deliver ",
+        ["client web applications", { bold: true }],
+        " in three-person teams, contributing across ",
+        ["React / Next.js", { bold: true }],
+        " frontends and ",
+        ["Express REST APIs", { bold: true }],
+        ".",
+      ],
+      [
+        "Build features spanning ",
+        ["authentication", { bold: true }],
+        ", ",
+        ["product and order management", { bold: true }],
+        ", ",
+        ["catalog search", { bold: true }],
+        ", and ",
+        ["multi-role dashboards", { bold: true }],
+        ".",
+      ],
+      [
+        "Configure builds, ",
+        ["domains, SEO, and analytics", { bold: true }],
+        " for deployments on ",
+        ["cPanel, VPS, and Azure", { bold: true }],
+        ".",
+      ],
     ],
   },
 ];
 
 const clientProjects = [
   {
-    name: "Bazarica",
-    site: { label: "bazarica.com.bd", url: "https://bazarica.com.bd/" },
-    category: "Multi-Vendor Marketplace",
-    stack: "Next.js, Node.js, Express",
+    name: "Bazarica — Multi-Vendor Marketplace",
+    site: "bazarica.com.bd",
+    stack: "Next.js · Node.js · Express · Azure VPS · Payment Gateway",
     bullets: [
-      "Built dashboard views for the admin, seller, and customer roles in Next.js.",
-      "Integrated the payment gateway and order confirmation flow for live transactions.",
-      "Implemented product and order management against the Express REST API, plus catalog search across vendors.",
-      "Set up SEO metadata and Google Analytics, and deployed the app on an Azure VPS.",
+      [
+        "Built ",
+        ["role-based dashboards", { bold: true }],
+        " for admin, seller, and customer in ",
+        ["Next.js", { bold: true }],
+        ".",
+      ],
+      [
+        "Integrated the ",
+        ["payment gateway", { bold: true }],
+        " and ",
+        ["order confirmation flow", { bold: true }],
+        " for live transactions.",
+      ],
+      [
+        "Implemented ",
+        ["product and order management", { bold: true }],
+        " against the ",
+        ["Express REST API", { bold: true }],
+        ", plus ",
+        ["catalog search", { bold: true }],
+        " across vendors.",
+      ],
+      [
+        "Set up ",
+        ["SEO metadata", { bold: true }],
+        " and ",
+        ["Google Analytics", { bold: true }],
+        ", and deployed on ",
+        ["Azure VPS", { bold: true }],
+        ".",
+      ],
     ],
   },
   {
-    name: "Atkias Zone",
-    site: { label: "atkias-zone.vercel.app", url: "https://atkias-zone.vercel.app/" },
-    category: "E-Commerce Platform",
-    stack: "Next.js, Node.js, Express",
+    name: "Atkias Zone — E-Commerce Platform",
+    site: "atkias-zone.vercel.app",
+    stack: "Next.js · Node.js · Express · VPS",
     bullets: [
-      "Built storefront and product pages in Next.js and connected them to the Express REST API.",
-      "Implemented user authentication and session handling.",
-      "Set up SEO metadata across product and listing pages, and deployed to a production VPS.",
+      [
+        "Built ",
+        ["storefront and product pages", { bold: true }],
+        " in Next.js against an Express REST API.",
+      ],
+      [
+        "Implemented ",
+        ["user authentication", { bold: true }],
+        " and ",
+        ["session handling", { bold: true }],
+        ".",
+      ],
+      [
+        "Set up ",
+        ["SEO metadata", { bold: true }],
+        " across product and listing pages and deployed to a production VPS.",
+      ],
     ],
   },
   {
-    name: "Outfitro",
-    site: { label: "outfitro.com", url: "https://outfitro.com/" },
-    category: "E-Commerce Platform",
-    stack: "React, Node.js, Express",
+    name: "Outfitro — E-Commerce Platform",
+    site: "outfitro.com",
+    stack: "React · Node.js · Express · cPanel",
     bullets: [
-      "Built the storefront and product pages in React and developed REST endpoints on the Express API.",
-      "Modeled and integrated the product and user data layer.",
-      "Implemented authentication and the cart-to-checkout flow, and deployed the app to cPanel hosting.",
+      [
+        "Built the ",
+        ["storefront and product pages", { bold: true }],
+        " in React and developed REST endpoints on the Express API.",
+      ],
+      [
+        "Modeled and integrated the ",
+        ["product and user data layer", { bold: true }],
+        ".",
+      ],
+      [
+        "Implemented ",
+        ["authentication", { bold: true }],
+        " and the ",
+        ["cart-to-checkout flow", { bold: true }],
+        ", and deployed to cPanel hosting.",
+      ],
     ],
   },
 ];
 
 const personalProjects = [
   {
-    name: "BlogNest",
-    meta: "React, Node.js, Express, MongoDB, Firebase",
-    desc: "Full-stack publishing platform with rich-text authoring, nested comment threads, a trending-post ranking, and Google OAuth. Designed a comment schema supporting arbitrarily nested replies while keeping MongoDB read queries fast.",
+    name: "BlogNest — Full-Stack Publishing Platform",
+    stack: "React · Node.js · Express · MongoDB · Firebase",
+    desc: [
+      "Publishing platform with ",
+      ["rich-text authoring", { bold: true }],
+      ", ",
+      ["nested comment threads", { bold: true }],
+      ", ",
+      ["trending-post ranking", { bold: true }],
+      ", and ",
+      ["Google OAuth", { bold: true }],
+      ". Designed a comment schema supporting arbitrarily nested replies while keeping MongoDB read queries fast.",
+    ],
   },
   {
-    name: "Woven Earth",
-    meta: "React, Express, MongoDB, Firebase, Tailwind CSS",
-    desc: "Full-stack marketplace for handcrafted textiles, with a self-service artist portal for managing listings, category-based discovery, and authenticated per-user collections.",
+    name: "Woven Earth — Handcrafted Textiles Marketplace",
+    stack: "React · Express · MongoDB · Firebase · Tailwind CSS",
+    desc: [
+      "Marketplace for handcrafted textiles with a ",
+      ["self-service artist portal", { bold: true }],
+      ", ",
+      ["category-based discovery", { bold: true }],
+      ", and authenticated ",
+      ["per-user collections", { bold: true }],
+      ".",
+    ],
   },
+];
+
+const skills = [
+  ["Frontend", "React, Next.js, Angular, JavaScript, TypeScript, Tailwind CSS, Bootstrap, Responsive Design"],
+  ["Backend", "Node.js, Express.js, REST APIs, Authentication, Payment Gateway Integration"],
+  ["Databases", "MongoDB, MySQL, Firebase"],
+  ["Cloud & Deployment", "Vercel, Azure, VPS, IIS Server, cPanel"],
+  ["AI & Machine Learning", "Python, TensorFlow, Deep Learning, Computer Vision, Medical Image Analysis"],
+  ["Developer Tools", "Git, GitHub, Postman, Figma, Google Analytics, VS Code"],
+  ["Languages", "Bengali (native), English (professional working proficiency)"],
 ];
 
 // ── Assemble ───────────────────────────────────────────────────────────────
 const children = [];
 
-// Header block
+// ── Header (centered) ─────────────────────────────────────────────────────
 children.push(
   new Paragraph({
+    alignment: AlignmentType.CENTER,
+    spacing: { after: 60 },
+    children: [
+      new TextRun({
+        text: NAME.toUpperCase(),
+        font: FONT,
+        size: NAME_SIZE,
+        bold: true,
+        color: DARK,
+        characterSpacing: 30,
+      }),
+    ],
+  }),
+);
+children.push(
+  new Paragraph({
+    alignment: AlignmentType.CENTER,
+    spacing: { after: 60 },
+    children: [
+      new TextRun({ text: "Frontend Engineer", font: FONT, size: SUB_SIZE, bold: true, italics: true, color: DARK }),
+      new TextRun({ text: " · ", font: FONT, size: SUB_SIZE, color: MUTED }),
+      new TextRun({ text: "Full Stack Developer", font: FONT, size: SUB_SIZE, bold: true, italics: true, color: DARK }),
+      new TextRun({ text: " · ", font: FONT, size: SUB_SIZE, color: MUTED }),
+      new TextRun({ text: "AI Researcher", font: FONT, size: SUB_SIZE, bold: true, italics: true, color: DARK }),
+    ],
+  }),
+);
+children.push(
+  new Paragraph({
+    alignment: AlignmentType.CENTER,
     spacing: { after: 40 },
     children: [
-      new TextRun({ text: NAME, font: FONT, size: NAME_SIZE, bold: true, color: NAVY, characterSpacing: 20 }),
-    ],
-  }),
-);
-children.push(
-  new Paragraph({
-    spacing: { after: 100 },
-    children: [new TextRun({ text: TITLE, font: FONT, size: TITLE_SIZE, color: GREY })],
-  }),
-);
-children.push(
-  plain(
-    [
-      run("Bangladesh", { color: GREY, size: SMALL }),
-      sep(),
+      run("Bangladesh", { size: SMALL }),
+      dot(),
+      run("+880 1521 565 259", { size: SMALL }),
+      dot(),
       link("sifatict26@gmail.com", "mailto:sifatict26@gmail.com"),
-      sep(),
-      run("+880 1521 565 259", { color: GREY, size: SMALL }),
     ],
-    { after: 30 },
-  ),
+  }),
 );
 children.push(
   new Paragraph({
-    spacing: { after: 60 },
-    border: {
-      bottom: { color: RULE, space: 6, style: BorderStyle.SINGLE, size: 6 },
-    },
+    alignment: AlignmentType.CENTER,
+    spacing: { after: 20 },
     children: [
-      link("sifat26.vercel.app", "https://sifat26.vercel.app/"),
-      sep(),
-      link("github.com/sifat26", "https://github.com/sifat26"),
-      sep(),
+      link("tanvir-sifat.vercel.app", "https://tanvir-sifat.vercel.app/"),
+      dot(),
       link("linkedin.com/in/sifat26", "https://linkedin.com/in/sifat26"),
+      dot(),
+      link("github.com/sifat26", "https://github.com/sifat26"),
     ],
   }),
 );
 
-// Professional summary
-children.push(sectionHeading("Professional Summary"));
-children.push(plain([run(summary)]));
+// ── Summary ───────────────────────────────────────────────────────────────
+children.push(sectionHeading("Summary"));
+children.push(richLine(summaryParts, { after: 40 }));
 
-// Technical skills — single-column list, one line per group (label : values).
-// Plain paragraphs (no table) so every ATS reads "Label: a, b, c" cleanly.
-children.push(sectionHeading("Technical Skills"));
-for (const [label, values] of skills) {
-  children.push(
-    new Paragraph({
-      spacing: { after: 40 },
-      indent: { left: 0 },
-      children: [
-        run(label + ": ", { bold: true, color: NAVY }),
-        run(values, { size: SMALL, color: DARK }),
-      ],
-    }),
-  );
-}
-
-// Professional experience
-children.push(sectionHeading("Professional Experience"));
+// ── Experience ────────────────────────────────────────────────────────────
+children.push(sectionHeading("Experience"));
 for (const job of experience) {
-  children.push(titleDateRow(job.role, job.period));
-  children.push(companyRow(job.company, job.location));
+  children.push(
+    titleDateRow(
+      [
+        [job.company, { bold: true }],
+        ["   " + job.location, { italics: true, color: MUTED, size: SMALL }],
+      ],
+      job.period,
+      { before: 160 },
+    ),
+  );
+  children.push(roleLine(job.role));
   job.bullets.forEach((b) => children.push(bullet(b)));
 }
 
-// Professional client projects
-children.push(sectionHeading("Professional Client Projects"));
-children.push(
-  new Paragraph({
-    spacing: { after: 20 },
-    children: [
-      run(
-        "Paid production work delivered in three-person development teams. Bullets reflect my individual contributions.",
-        { size: SMALL, color: GREY, italics: true },
-      ),
-    ],
-  }),
-);
+// ── Projects ──────────────────────────────────────────────────────────────
+children.push(sectionHeading("Projects"));
 for (const p of clientProjects) {
   children.push(
-    new Paragraph({
-      tabStops: [{ type: TabStopType.RIGHT, position: TabStopPosition.MAX }],
-      spacing: { before: 160, after: 6 },
-      children: [
-        new TextRun({ text: p.name, font: FONT, size: BODY_SIZE, bold: true, color: NAVY }),
-        new TextRun({ text: "\t", font: FONT, size: SMALL }),
-        link(p.site.label, p.site.url),
-      ],
-    }),
+    titleDateRow(
+      [[p.name, { bold: true }]],
+      p.site,
+      { before: 140 },
+    ),
   );
+  children.push(metaLine(p.stack, { after: 30 }));
+  p.bullets.forEach((b) => children.push(bullet(b)));
+}
+for (const p of personalProjects) {
+  children.push(
+    titleDateRow(
+      [[p.name, { bold: true }]],
+      p.stack,
+      { before: 140 },
+    ),
+  );
+  children.push(richLine(p.desc, { after: 40 }));
+}
+
+// ── Skills ────────────────────────────────────────────────────────────────
+children.push(sectionHeading("Skills"));
+for (const [label, values] of skills) {
   children.push(
     new Paragraph({
       spacing: { after: 30 },
       children: [
-        run(p.category, { size: SMALL, color: GREY, italics: true }),
-        run("   ·   Role: ", { size: SMALL, color: GREY }),
-        run("Full Stack Developer", { size: SMALL, color: DARK }),
+        run(label + ": ", { bold: true, color: DARK }),
+        run(values, { color: ACCENT }),
       ],
     }),
   );
-  children.push(
-    new Paragraph({
-      spacing: { after: 40 },
-      children: [run("Tech: ", { size: SMALL, bold: true, color: GREY }), run(p.stack, { size: SMALL, color: DARK })],
-    }),
-  );
-  p.bullets.forEach((b) => children.push(bullet(b)));
 }
 
-// Selected personal projects
-children.push(sectionHeading("Selected Projects"));
-for (const p of personalProjects) {
-  children.push(
-    new Paragraph({
-      spacing: { before: 140, after: 6 },
-      children: [run(p.name, { bold: true, color: NAVY }), run("   " + p.meta, { color: GREY, size: SMALL })],
-    }),
-  );
-  children.push(plain([run(p.desc)], { after: 20 }));
-}
-
-// Publication — normal section, styled like Selected Projects
+// ── Publication ───────────────────────────────────────────────────────────
 children.push(sectionHeading("Publication"));
 children.push(
-  new Paragraph({
-    spacing: { before: 140, after: 6 },
-    children: [
-      run("An IoT-Based Lung Cancer Detection System from CT Images Using Deep Learning", { bold: true, color: NAVY }),
-      run("   Contributing Author", { size: SMALL, color: GREY }),
-    ],
-  }),
+  titleDateRow(
+    [["An IoT-Based Lung Cancer Detection System from CT Images Using Deep Learning", { bold: true }]],
+    "2025",
+    { before: 100 },
+  ),
 );
 children.push(
-  new Paragraph({
-    spacing: { after: 6 },
-    children: [
-      run(
-        "ITSS-IoE 2025 — International Conference on Intelligent Technology, Systems and Services for the Internet of Everything. University of Wolverhampton, United Kingdom.",
-        { size: SMALL, color: GREY },
-      ),
-    ],
-  }),
+  metaLine(
+    "ITSS-IoE 2025 — International Conference on Intelligent Technology, Systems and Services for the Internet of Everything, University of Wolverhampton, United Kingdom",
+    { after: 30 },
+  ),
 );
 children.push(
-  plain(
-    [run("Combines IoT infrastructure with deep learning to detect lung cancer from CT images.")],
-    { after: 20 },
+  richLine(
+    [
+      "Combines ",
+      ["IoT infrastructure", { bold: true }],
+      " with ",
+      ["deep learning", { bold: true }],
+      " to detect lung cancer from ",
+      ["CT images", { bold: true }],
+      ", contributing on data pipeline design and model evaluation as a co-author.",
+    ],
+    { after: 40 },
   ),
 );
 
-// Education
+// ── Education ─────────────────────────────────────────────────────────────
 children.push(sectionHeading("Education"));
 const edu = [
-  ["M.Sc. in Information & Communication Technology", "Mawlana Bhashani Science & Technology University", "2025 – Present"],
-  ["B.Sc. in Information & Communication Technology", "Mawlana Bhashani Science & Technology University", "2020 – 2025"],
+  ["Mawlana Bhashani Science & Technology University", "Bangladesh", "M.Sc. in Information & Communication Technology", "2025 – Present"],
+  ["Mawlana Bhashani Science & Technology University", "Bangladesh", "B.Sc. in Information & Communication Technology", "2020 – 2025"],
 ];
-for (const [deg, inst, period] of edu) {
-  children.push(titleDateRow(deg, period, { before: 120 }));
-  children.push(new Paragraph({ spacing: { after: 20 }, children: [run(inst, { size: SMALL, color: GREY })] }));
+for (const [inst, loc, degree, period] of edu) {
+  children.push(
+    titleDateRow(
+      [
+        [inst, { bold: true }],
+        ["   " + loc, { italics: true, color: MUTED, size: SMALL }],
+      ],
+      period,
+      { before: 120 },
+    ),
+  );
+  children.push(
+    new Paragraph({
+      spacing: { after: 30 },
+      children: [run(degree, { italics: true, color: MUTED, size: SMALL })],
+    }),
+  );
 }
-
-// Languages (kept — compact, useful)
-children.push(sectionHeading("Languages"));
-children.push(
-  plain([run("Bengali (native)   ·   English (professional working proficiency)", { size: SMALL })], { after: 0 }),
-);
 
 // ── Document ─────────────────────────────────────────────────────────────────
 const doc = new Document({
@@ -377,7 +550,10 @@ const doc = new Document({
   description: "Resume",
   styles: {
     default: {
-      document: { run: { font: FONT, size: BODY_SIZE, color: DARK }, paragraph: { spacing: { line: 264 } } },
+      document: {
+        run: { font: FONT, size: BODY_SIZE, color: DARK },
+        paragraph: { spacing: { line: 260 } },
+      },
     },
   },
   sections: [
@@ -385,7 +561,7 @@ const doc = new Document({
       properties: {
         page: {
           size: { width: 11906, height: 16838 }, // A4 in twips (210 × 297 mm)
-          margin: { top: 850, bottom: 850, left: 1020, right: 1020 }, // ~15 / 18 mm
+          margin: { top: 720, bottom: 720, left: 900, right: 900 }, // ~12.5 / 16 mm
         },
       },
       children,

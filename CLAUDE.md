@@ -44,7 +44,7 @@ SEO metadata lives entirely in `index.html` (title, description, Open Graph, Twi
 
 ## Deployment
 
-Primary target is Vercel (canonical URL `https://sifat26.vercel.app/`). The repo also ships helper scripts and configs for VPS/cPanel/IIS deploys: `deploy.sh`, `vps-setup.sh`, `nginx.conf`, and `DEPLOYMENT_GUIDE.md` / `DEPLOYMENT_README.md`.
+Primary target is Vercel (canonical URL `https://tanvir-sifat.vercel.app/`). The repo also ships helper scripts and configs for VPS/cPanel/IIS deploys: `deploy.sh`, `vps-setup.sh`, `nginx.conf`, and `DEPLOYMENT_GUIDE.md` / `DEPLOYMENT_README.md`.
 
 ## Conventions
 

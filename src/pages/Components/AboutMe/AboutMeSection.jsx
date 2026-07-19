@@ -38,11 +38,8 @@ const AboutMeSection = () => {
               <p key={i}>{p}</p>
             ))}
 
-            <div className='pt-2 flex flex-col sm:flex-row sm:items-center gap-4'>
-              <p className='text-[15px] text-[var(--text-muted)]'>
-                Want the full picture? My resume covers the experience, projects, and stack in detail.
-              </p>
-              <ResumeButton variant='secondary' className='shrink-0' />
+            <div className='pt-2'>
+              <ResumeButton variant='secondary' />
             </div>
           </motion.div>
         </div>

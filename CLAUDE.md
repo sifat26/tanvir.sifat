@@ -31,7 +31,8 @@ Single-page React 19 + Vite portfolio site. There is one route (`/`) rendering o
 Tailwind CSS 3 (`darkMode: 'class'`) plus a hand-written design system in `src/index.css`. The design system defines CSS custom properties (`--bg`, `--text`, `--accent`, `--border`, `--radius`, ...) under `:root` and overrides them under `.dark`, then exposes reusable component classes (`.btn`, `.btn-primary`, `.card`, `.eyebrow`, `.tag`, `.timeline`, `.container-page`, `.input`, `.chatbot-*`, etc.). Prefer these tokens/classes for anything themed rather than hardcoding colors, so light/dark stays consistent.
 
 **Dark mode** is applied via the `dark` class on `<html>`:
-- An inline no-flash script in `index.html` reads `localStorage.theme` (falling back to `prefers-color-scheme`) and sets the class *before* React mounts.
+
+- An inline no-flash script in `index.html` reads `localStorage.theme` (falling back to `prefers-color-scheme`) and sets the class _before_ React mounts.
 - `src/hooks/useTheme.js` reads that initial class, then owns toggling and persisting `theme` to `localStorage`.
 
 ## SEO

@@ -57,10 +57,10 @@ const ProjectMedia = ({ project }) => {
           </div>
         )}
         {isRealLink(project.links?.live) && (
-          <span className='inline-flex items-center gap-1 text-[10px] font-mono text-emerald-500'>
+          <span className='inline-flex items-center gap-1 text-[10px] font-mono text-green-500'>
             <span className='relative flex h-1.5 w-1.5'>
-              <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-70' />
-              <span className='relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500' />
+              <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-70' />
+              <span className='relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500' />
             </span>
             LIVE
           </span>

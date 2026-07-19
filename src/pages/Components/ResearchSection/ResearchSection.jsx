@@ -112,31 +112,6 @@ const ResearchSection = () => {
             </div>
           </div>
         </div>
-
-        {/* Timeline */}
-        <div className='mt-6'>
-          <div className='text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)] mb-6'>
-            Research timeline
-          </div>
-          <ol className='relative border-l border-[var(--border)] pl-6 space-y-8'>
-            {research.timeline.map((t, i) => (
-              <motion.li
-                key={i}
-                initial={{ opacity: 0, x: -8 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.35, delay: i * 0.05 }}
-              >
-                <span className='absolute -left-[5px] mt-1.5 h-2.5 w-2.5 rounded-full bg-[var(--text)] ring-4 ring-[var(--bg)]' />
-                <div className='font-mono text-[12px] text-[var(--text-muted)]'>{t.year}</div>
-                <div className='mt-1 text-[15.5px] font-medium text-[var(--text)]'>{t.title}</div>
-                <p className='mt-1 text-[14px] leading-relaxed text-[var(--text-secondary)] max-w-2xl'>
-                  {t.description}
-                </p>
-              </motion.li>
-            ))}
-          </ol>
-        </div>
       </div>
     </section>
   );

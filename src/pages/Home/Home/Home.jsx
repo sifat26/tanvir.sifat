@@ -1,3 +1,4 @@
+import { useCursorSpotlight } from '../../../hooks/useCursorSpotlight';
 import AboutMeSection from '../../Components/AboutMe/AboutMeSection';
 import ContactSection from '../../Components/ContactSection/ContactSection';
 import EducationSection from '../../Components/EducationSection/EducationSection';
@@ -8,6 +9,7 @@ import ResearchSection from '../../Components/ResearchSection/ResearchSection';
 import SkillsSection from '../../Components/SkillsSection/SkillsSection';
 
 const Home = () => {
+  useCursorSpotlight();
   return (
     <main id='main-content'>
       <HeroSection />

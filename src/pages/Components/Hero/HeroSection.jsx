@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import ResumeButton from '../../../components/ui/ResumeButton';
 import SocialLinks from '../../../components/ui/SocialLinks';
 import { personal } from '../../../data/portfolio';
-import { useMagnetic } from '../../../hooks/useMagnetic';
 
 /**
  * A tiny live "type-writer" demo of code — proves this is a builder,
@@ -47,7 +46,7 @@ const LiveCodeCard = () => {
           <span className='text-[var(--text-secondary)]'>{line.val}</span>
         </motion.div>
         <div className='mt-3 text-[var(--text-muted)]'>
-          <span className='text-emerald-500'>{'>'}</span> ready in <span className='text-[var(--text)]'>42ms</span>
+          <span className='text-green-500'>{'>'}</span> ready in <span className='text-[var(--text)]'>42ms</span>
         </div>
       </div>
     </div>
@@ -66,7 +65,6 @@ const StatCell = ({ label, value, icon: Icon }) => (
 
 const HeroSection = () => {
   const hasResume = personal.resumeUrl && personal.resumeUrl !== '[ADD_RESUME_URL]';
-  const primaryRef = useMagnetic(6);
 
   return (
     <section
@@ -84,7 +82,7 @@ const HeroSection = () => {
           height: 420,
           top: -100,
           right: -80,
-          background: 'radial-gradient(circle, #10b981, transparent 70%)',
+          background: 'radial-gradient(circle, #22c55e, transparent 70%)',
         }}
       />
       <div
@@ -95,7 +93,7 @@ const HeroSection = () => {
           height: 360,
           bottom: -80,
           left: -60,
-          background: 'radial-gradient(circle, #34d399, transparent 70%)',
+          background: 'radial-gradient(circle, #4ade80, transparent 70%)',
           animationDelay: '-4s',
         }}
       />
@@ -140,7 +138,7 @@ const HeroSection = () => {
 
             {/* CTAs */}
             <div className='mt-7 sm:mt-9 flex flex-wrap items-center gap-2.5 sm:gap-3'>
-              <a ref={primaryRef} href='#projects' className='btn btn-primary'>
+              <a href='#projects' className='btn btn-primary'>
                 View selected work
                 <ArrowRight className='w-3.5 h-3.5' />
               </a>

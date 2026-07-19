@@ -22,67 +22,76 @@
   --text-secondary: #525252;
   --text-muted: #737373;
   --text-subtle: #a3a3a3;
-  --accent: #059669;
-  --accent-hover: #047857;
-  --accent-soft: rgba(16, 185, 129, 0.1);
-  --accent-glow: rgba(16, 185, 129, 0.35);
+  /* Vibrant green (Tailwind green-500 family) — reads as a confident dev-tool
+     accent, same DNA as GitHub / terminal / VS Code success states. */
+  --accent: #16a34a;
+  --accent-hover: #15803d;
+  --accent-soft: rgba(34, 197, 94, 0.12);
+  --accent-glow: rgba(34, 197, 94, 0.4);
   --accent-contrast: #ffffff;
   --link: #0a0a0a;
-  --ring: rgba(16, 185, 129, 0.22);
+  --ring: rgba(34, 197, 94, 0.28);
   --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
   --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.06);
   --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.08);
-  --shadow-glow: 0 0 40px rgba(16, 185, 129, 0.18);
+  --shadow-glow: 0 0 40px rgba(34, 197, 94, 0.2);
   --shadow-btn:
     0 1px 2px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   --shadow-btn-hover:
-    0 2px 4px rgba(15, 23, 42, 0.1), 0 8px 24px rgba(15, 23, 42, 0.1), 0 0 0 3px rgba(16, 185, 129, 0.14),
+    0 2px 4px rgba(15, 23, 42, 0.1), 0 8px 24px rgba(15, 23, 42, 0.1), 0 0 0 3px rgba(34, 197, 94, 0.16),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  /* Solid green button shadow — grounded drop shadow + colored glow. No inset
+     glass tricks; the fill does the talking. */
   --shadow-accent-btn:
-    0 1px 2px rgba(6, 78, 59, 0.24), 0 4px 14px rgba(16, 185, 129, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    0 1px 2px rgba(20, 83, 45, 0.35), 0 4px 12px rgba(22, 163, 74, 0.3), 0 10px 24px rgba(34, 197, 94, 0.18);
   --shadow-accent-btn-hover:
-    0 2px 4px rgba(6, 78, 59, 0.28), 0 10px 28px rgba(16, 185, 129, 0.42), 0 0 0 4px rgba(16, 185, 129, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    0 2px 4px rgba(20, 83, 45, 0.4), 0 12px 28px rgba(22, 163, 74, 0.42), 0 20px 40px rgba(34, 197, 94, 0.28),
+    0 0 0 4px rgba(34, 197, 94, 0.18);
   --radius: 10px;
   --radius-lg: 14px;
-  --gradient-brand: linear-gradient(135deg, #10b981 0%, #059669 55%, #047857 100%);
+  /* Single-hue green — flat and confident like the reference. */
+  --gradient-brand: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-/* ---- Design Tokens: Dark ---- */
+/* ---- Design Tokens: Dark ----
+   Deep navy palette inspired by dev-tool references (VS Code Dark+, Vercel,
+   the DevPro template). Cooler than pure neutral black; makes the vibrant
+   green pop while feeling like a real editor / terminal surface. */
 .dark {
-  --bg: #0a0a0a;
-  --bg-subtle: #0f0f0f;
-  --bg-elevated: #111111;
-  --bg-muted: #171717;
-  --border: #1f1f1f;
-  --border-strong: #2a2a2a;
-  --text: #f5f5f5;
-  --text-secondary: #a3a3a3;
-  --text-muted: #737373;
-  --text-subtle: #525252;
-  --accent: #10b981;
-  --accent-hover: #34d399;
-  --accent-soft: rgba(16, 185, 129, 0.14);
-  --accent-glow: rgba(16, 185, 129, 0.45);
-  --accent-contrast: #0a0a0a;
-  --link: #f5f5f5;
-  --ring: rgba(16, 185, 129, 0.32);
+  --bg: #0b1120;
+  --bg-subtle: #0f172a;
+  --bg-elevated: #131c30;
+  --bg-muted: #1a2340;
+  --border: #1e293b;
+  --border-strong: #334155;
+  --text: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-subtle: #475569;
+  --accent: #22c55e;
+  --accent-hover: #4ade80;
+  --accent-soft: rgba(34, 197, 94, 0.14);
+  --accent-glow: rgba(34, 197, 94, 0.45);
+  --accent-contrast: #0b1120;
+  --link: #f1f5f9;
+  --ring: rgba(34, 197, 94, 0.34);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 60px rgba(16, 185, 129, 0.28);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.55);
+  --shadow-glow: 0 0 60px rgba(34, 197, 94, 0.3);
   --shadow-btn: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
   --shadow-btn-hover:
-    0 2px 4px rgba(0, 0, 0, 0.5), 0 10px 28px rgba(0, 0, 0, 0.45), 0 0 0 3px rgba(16, 185, 129, 0.22),
+    0 2px 4px rgba(0, 0, 0, 0.5), 0 10px 28px rgba(0, 0, 0, 0.45), 0 0 0 3px rgba(34, 197, 94, 0.24),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
   --shadow-accent-btn:
-    0 1px 2px rgba(0, 0, 0, 0.5), 0 4px 18px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    0 1px 2px rgba(0, 0, 0, 0.55), 0 4px 14px rgba(34, 197, 94, 0.35), 0 12px 30px rgba(34, 197, 94, 0.2);
   --shadow-accent-btn-hover:
-    0 2px 4px rgba(0, 0, 0, 0.5), 0 12px 32px rgba(16, 185, 129, 0.45), 0 0 0 4px rgba(16, 185, 129, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18);
-  --gradient-brand: linear-gradient(135deg, #34d399 0%, #10b981 55%, #059669 100%);
+    0 2px 4px rgba(0, 0, 0, 0.6), 0 14px 34px rgba(34, 197, 94, 0.55), 0 24px 48px rgba(34, 197, 94, 0.28),
+    0 0 0 4px rgba(34, 197, 94, 0.22);
+  /* Slightly brighter greens for dark mode so they still read as vivid. */
+  --gradient-brand: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
 }
 
 /* ---- Base ---- */
@@ -245,31 +254,41 @@ span {
   transition-duration: 0.08s;
 }
 
-/* Primary — emerald gradient with layered glow */
+/*
+ * Primary — solid vibrant green (DevPro / GitHub CTA style)
+ *
+ * The fill does the work: flat, saturated green with a subtle top-to-bottom
+ * darkening (2% shade at the bottom) for the barely-there sense of a light
+ * source from above. No glass, no gloss, no inset rings — just a confident
+ * pill that reads well from any distance.
+ */
 .btn-primary {
   background: var(--gradient-brand);
   color: #ffffff;
   box-shadow: var(--shadow-accent-btn);
   overflow: hidden;
 }
+/* Brighter green reveals on hover (green-400 → green-500) */
 .btn-primary::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #34d399 0%, #10b981 55%, #059669 100%);
+  background: linear-gradient(180deg, #4ade80 0%, #22c55e 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: -1;
 }
+/* Subtle diagonal sheen that scans across on hover */
 .btn-primary::after {
   content: '';
   position: absolute;
   top: 0;
-  left: -100%;
-  width: 100%;
+  left: -120%;
+  width: 40%;
   height: 100%;
-  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.25) 50%, transparent 70%);
-  transition: left 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+  transform: skewX(-20deg);
+  transition: left 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   pointer-events: none;
 }
 .btn-primary:hover {
@@ -281,22 +300,29 @@ span {
   opacity: 1;
 }
 .btn-primary:hover::after {
-  left: 100%;
+  left: 130%;
+}
+.btn-primary:active {
+  transform: translateY(0);
 }
 
-/* Accent — solid emerald */
+/* Accent — solid green (same fill as primary, no shine sweep) */
 .btn-accent {
-  background: var(--accent);
+  background: var(--gradient-brand);
   color: #ffffff;
   box-shadow: var(--shadow-accent-btn);
 }
 .btn-accent:hover {
-  background: var(--accent-hover);
   transform: translateY(-2px);
+  background: linear-gradient(180deg, #4ade80 0%, #22c55e 100%);
   box-shadow: var(--shadow-accent-btn-hover);
 }
+.btn-accent:active {
+  transform: translateY(0);
+}
 
-/* Secondary — outlined, neutral */
+/* Secondary — outlined, background transparent so it sits over the terminal
+   grid pattern. Green ring on hover mirrors the reference. */
 .btn-secondary {
   background: var(--bg-elevated);
   color: var(--text);
@@ -309,6 +335,9 @@ span {
   color: var(--accent);
   transform: translateY(-2px);
   box-shadow: var(--shadow-btn-hover);
+}
+.btn-secondary:active {
+  transform: translateY(0);
 }
 
 /* Ghost — text-only */
@@ -323,19 +352,40 @@ span {
 
 /* ---- Cards ---- */
 .card {
+  position: relative;
   background: var(--bg-elevated);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  isolation: isolate;
   transition:
     border-color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
+/* Cursor-tracked spotlight — coordinates set by useCursorSpotlight */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    500px circle at var(--mx, -200px) var(--my, -200px),
+    color-mix(in oklab, var(--accent) 18%, transparent),
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+}
 .card:hover {
   border-color: color-mix(in oklab, var(--accent) 30%, var(--border-strong));
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+}
+.card:hover::before {
+  opacity: 1;
 }
 
 /* Interactive link — underline sweeps in from the left on hover */
@@ -809,7 +859,11 @@ span {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%), var(--accent-soft), transparent 40%);
+  background: radial-gradient(
+    500px circle at var(--mx, -200px) var(--my, -200px),
+    color-mix(in oklab, var(--accent) 22%, transparent),
+    transparent 45%
+  );
   opacity: 0;
   transition: opacity 0.35s ease;
   pointer-events: none;

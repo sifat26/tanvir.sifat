@@ -1,6 +1,5 @@
 import { Boxes, Cloud, Code2, Cpu, Database, Wrench } from 'lucide-react';
 import { motion } from 'motion/react';
-import { useRef } from 'react';
 import SectionHeader from '../../../components/ui/SectionHeader';
 import { skills } from '../../../data/portfolio';
 import { fadeUpDelay } from '../../../lib/motion';
@@ -11,11 +10,11 @@ import { fadeUpDelay } from '../../../lib/motion';
  * previous rainbow — reads as a professional product surface.
  */
 const GROUP_META = {
-  Frontend: { icon: Code2, accent: '#10b981' },
-  Backend: { icon: Boxes, accent: '#0d9488' },
+  Frontend: { icon: Code2, accent: '#22c55e' },
+  Backend: { icon: Boxes, accent: '#16a34a' },
   'AI / ML': { icon: Cpu, accent: '#0ea5e9' },
   Databases: { icon: Database, accent: '#0891b2' },
-  Deployment: { icon: Cloud, accent: '#059669' },
+  Deployment: { icon: Cloud, accent: '#4ade80' },
   Tools: { icon: Wrench, accent: '#64748b' },
 };
 
@@ -24,25 +23,13 @@ const GROUP_META = {
  * accent icon, and chip cluster.
  */
 const BentoSkill = ({ group, items, index }) => {
-  const ref = useRef(null);
   const meta = GROUP_META[group] || { icon: Code2, accent: 'var(--accent)' };
   const Icon = meta.icon;
 
-  const onMove = (e) => {
-    const el = ref.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    el.style.setProperty('--mx', `${e.clientX - r.left}px`);
-    el.style.setProperty('--my', `${e.clientY - r.top}px`);
-  };
-
+  // Cursor spotlight is driven globally by useCursorSpotlight in Home,
+  // which sets --mx / --my on any .bento the cursor is over.
   return (
-    <motion.div
-      ref={ref}
-      onMouseMove={onMove}
-      {...fadeUpDelay(index, { duration: 0.4, step: 0.05 })}
-      className='bento group'
-    >
+    <motion.div {...fadeUpDelay(index, { duration: 0.4, step: 0.05 })} className='bento group'>
       <div className='flex items-center justify-between'>
         <div
           className='w-9 h-9 rounded-lg grid place-items-center border transition-colors'

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useScroll } from "motion/react";
-import { Menu, X, Moon, Sun, ArrowUpRight } from "lucide-react";
+import { Menu, X, Moon, Sun } from "lucide-react";
 import { navLinks, personal } from "../../../data/portfolio";
 import { useTheme } from "../../../hooks/useTheme";
+import ResumeButton from "../../../components/ui/ResumeButton";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -93,15 +94,11 @@ const Navbar = () => {
               </button>
 
               {hasResume && (
-                <a
-                  href={personal.resumeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hidden sm:inline-flex btn btn-secondary text-sm"
-                >
-                  Resume
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </a>
+                <ResumeButton
+                  variant="secondary"
+                  label="Resume"
+                  className="hidden sm:inline-flex text-sm"
+                />
               )}
 
               <a href="#contact" className="hidden sm:inline-flex btn btn-primary">
@@ -143,14 +140,11 @@ const Navbar = () => {
                 ))}
                 <div className="flex gap-2 pt-3 pb-2">
                   {hasResume && (
-                    <a
-                      href={personal.resumeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-secondary flex-1 justify-center"
-                    >
-                      Resume
-                    </a>
+                    <ResumeButton
+                      variant="secondary"
+                      label="Resume"
+                      className="flex-1 justify-center"
+                    />
                   )}
                   <a href="#contact" onClick={() => setOpen(false)} className="btn btn-primary flex-1 justify-center">
                     Get in touch

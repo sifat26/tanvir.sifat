@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { useState } from 'react';
 import SectionHeader from '../../../components/ui/SectionHeader';
 import SocialLinks from '../../../components/ui/SocialLinks';
+import ResumeButton from '../../../components/ui/ResumeButton';
 import { personal, socials } from '../../../data/portfolio';
 
 const CONTACT_ENDPOINT = 'https://sifat-portfolio-backend.vercel.app/api/send';
@@ -116,15 +117,18 @@ const ContactSection = () => {
               <SocialLinks className='-ml-2' links={['github', 'linkedin', 'twitter']} />
             </div>
 
-            <a
-              href={socials.linkedin}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='mt-8 inline-flex btn btn-secondary'
-            >
-              Connect on LinkedIn
-              <ArrowUpRight className='w-3.5 h-3.5' />
-            </a>
+            <div className='mt-8 flex flex-wrap gap-3'>
+              <a
+                href={socials.linkedin}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='inline-flex btn btn-secondary'
+              >
+                Connect on LinkedIn
+                <ArrowUpRight className='w-3.5 h-3.5' />
+              </a>
+              <ResumeButton variant='secondary' />
+            </div>
           </div>
 
           {/* Form */}

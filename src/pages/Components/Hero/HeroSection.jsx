@@ -1,6 +1,7 @@
 import { ArrowRight, MapPin } from 'lucide-react';
 import { motion } from 'motion/react';
 import SocialLinks from '../../../components/ui/SocialLinks';
+import ResumeButton from '../../../components/ui/ResumeButton';
 import { personal } from '../../../data/portfolio';
 
 const HeroSection = () => {
@@ -60,9 +61,7 @@ const HeroSection = () => {
                 <ArrowRight className='w-3.5 h-3.5' />
               </a>
               {hasResume ? (
-                <a href={personal.resumeUrl} target='_blank' rel='noopener noreferrer' className='btn btn-secondary'>
-                  Download resume
-                </a>
+                <ResumeButton variant='secondary' label='Download resume' />
               ) : (
                 <a href='#contact' className='btn btn-secondary'>
                   Get in touch

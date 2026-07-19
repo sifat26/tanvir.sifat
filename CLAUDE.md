@@ -48,6 +48,6 @@ Primary target is Vercel (canonical URL `https://sifat26.vercel.app/`). The repo
 
 ## Conventions
 
-- Components are `.jsx`, one component per folder under `src/pages/Components/<Section>/`, default-exported.
+- Components are `.jsx`, one component per folder under `src/pages/Components/<Section>/`, default-exported. Reusable presentational pieces (`SectionHeader`, `SocialLinks`, `Tag`, `ProjectCard`) live in `src/components/ui/`.
 - ESLint (`eslint.config.js`) treats unused vars as errors but ignores identifiers matching `^[A-Z_]` (constants/components).
-- Icons come from `lucide-react` and `react-icons`; animation from `motion`.
+- Icons come from `lucide-react`; animation from `motion` (imported as `motion/react`). Shared fade-up-on-scroll presets live in `src/lib/motion.js` (`fadeUp`, `fadeUpDelay`, `viewportOnce`) — reuse them instead of re-declaring inline variants, so timing/easing stays consistent.

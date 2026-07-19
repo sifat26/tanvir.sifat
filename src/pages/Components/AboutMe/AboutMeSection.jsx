@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import SectionHeader from '../../../components/ui/SectionHeader';
+import ResumeButton from '../../../components/ui/ResumeButton';
 import { about, personal } from '../../../data/portfolio';
 
 const AboutMeSection = () => {
@@ -36,6 +37,13 @@ const AboutMeSection = () => {
             {about.paragraphs.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
+
+            <div className='pt-2 flex flex-col sm:flex-row sm:items-center gap-4'>
+              <p className='text-[15px] text-[var(--text-muted)]'>
+                Want the full picture? My resume covers the experience, projects, and stack in detail.
+              </p>
+              <ResumeButton variant='secondary' className='shrink-0' />
+            </div>
           </motion.div>
         </div>
       </div>

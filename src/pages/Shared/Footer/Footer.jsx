@@ -1,99 +1,73 @@
-import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { motion } from "framer-motion";
-
-const footerLinks = [
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Education", href: "#education" },
-  { label: "Contact", href: "#contact" },
-];
-
-const socialLinks = [
-  { icon: <FaFacebook />, href: "https://www.facebook.com/sifat.7847/", label: "Facebook" },
-  { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/sifat26/", label: "LinkedIn" },
-  { icon: <FaGithub />, href: "https://github.com/sifat26", label: "GitHub" },
-  { icon: <FaXTwitter />, href: "https://x.com/tanvirahmmedsi2", label: "X (Twitter)" },
-];
+import { navLinks, personal } from "../../../data/portfolio";
+import SocialLinks from "../../../components/ui/SocialLinks";
 
 const Footer = () => {
+  const year = new Date().getFullYear();
+
   return (
     <footer
-      className="w-full font-fontPrimary relative overflow-hidden"
-      style={{ background: "var(--color-bg-primary)" }}
+      className="border-t border-[var(--border)] py-12 md:py-16"
+      role="contentinfo"
     >
-      {/* Top border gradient */}
-      <div className="h-px bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent" />
-
-      {/* Background glow */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 rounded-full pointer-events-none"
-        style={{
-          background: "radial-gradient(ellipse, rgba(99,102,241,0.08) 0%, transparent 70%)",
-          filter: "blur(40px)",
-        }}
-      />
-
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-10 relative z-10">
-        <div className="grid md:grid-cols-3 gap-8 items-center">
-
+      <div className="container-page">
+        <div className="grid md:grid-cols-12 gap-8">
           {/* Brand */}
-          <div>
-            <a href="#" className="flex items-center gap-2 w-fit group">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-400 flex items-center justify-center shadow-glow-sm">
-                <span className="text-white font-bold text-sm">S</span>
+          <div className="md:col-span-5">
+            <a href="#" className="inline-flex items-center gap-2" aria-label="Back to top">
+              <div className="w-8 h-8 rounded-md bg-[var(--text)] text-[var(--bg)] grid place-items-center font-semibold text-sm">
+                S
               </div>
-              <span className="text-xl font-bold text-white tracking-wide group-hover:text-indigo-300 transition-colors duration-300">
-                Sifat<span className="text-indigo-400">.</span>
+              <span className="text-[15px] font-semibold tracking-tight text-[var(--text)]">
+                {personal.name}
               </span>
             </a>
-            <p className="text-slate-500 text-sm mt-2 max-w-xs leading-relaxed">
-              Full-Stack Developer building modern, scalable web applications.
+            <p className="mt-4 max-w-sm text-[14px] leading-relaxed text-[var(--text-secondary)]">
+              Frontend Engineer &amp; AI Researcher. Building modern web applications
+              and intelligent systems.
             </p>
+            <SocialLinks className="mt-5 -ml-2" links={["email", "github", "linkedin", "twitter"]} />
           </div>
 
-          {/* Links */}
-          <nav className="flex justify-center" aria-label="Footer navigation">
-            <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-              {footerLinks.map((link) => (
+          {/* Sitemap */}
+          <div className="md:col-span-4">
+            <div className="text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)] mb-3">
+              Sitemap
+            </div>
+            <ul className="grid grid-cols-2 gap-y-2">
+              {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-slate-500 hover:text-indigo-300 text-sm font-medium transition-colors duration-300"
+                    className="text-[14px] text-[var(--text-secondary)] hover:text-[var(--text)]"
                   >
                     {link.label}
                   </a>
                 </li>
               ))}
             </ul>
-          </nav>
+          </div>
 
-          {/* Social */}
-          <div className="flex md:justify-end justify-center gap-3">
-            {socialLinks.map((link, i) => (
-              <a
-                key={i}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={link.label}
-                className="w-9 h-9 rounded-xl border border-white/5 text-slate-500 hover:text-white hover:border-indigo-500/30 hover:bg-indigo-500/5 flex items-center justify-center text-sm transition-all duration-300"
-              >
-                {link.icon}
-              </a>
-            ))}
+          {/* Availability */}
+          <div className="md:col-span-3">
+            <div className="text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)] mb-3">
+              Availability
+            </div>
+            <div className="inline-flex items-center gap-2 text-[13.5px] text-[var(--text-secondary)]">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-70" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
+              </span>
+              Open to opportunities
+            </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-slate-600 text-xs">
-            © 2025 Tanvir Ahmmed Sifat. All rights reserved.
+        <div className="mt-10 pt-6 border-t border-[var(--border)] flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p className="text-[12.5px] text-[var(--text-muted)]">
+            © {year} {personal.name}. All rights reserved.
           </p>
-          <p className="text-slate-600 text-xs">
-            Built with <span className="text-indigo-400">React</span> & <span className="text-indigo-400">Tailwind CSS</span>
+          <p className="text-[12.5px] text-[var(--text-muted)] font-mono">
+            Built with React, Vite, Tailwind.
           </p>
         </div>
       </div>

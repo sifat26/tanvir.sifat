@@ -1,24 +1,92 @@
 import { Bot, MessageCircle, Send, X } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  personal,
+  about,
+  experiences,
+  clientProjects,
+  projects,
+  skills,
+  education,
+  research,
+} from "../../../data/portfolio";
 
 const API_URL = "https://openrouter.ai/api/v1/chat/completions";
 
-const PROFILE_CONTEXT = `
-Name: Tanvir Ahmmed Sifat
-Role: Full-Stack Web Developer
-Primary stack: React, Next.js, Angular, Tailwind CSS, Node.js, Express.js, MongoDB, SQL
-Also works with: Python, TensorFlow, Vercel, cPanel, IIS Server
-Portfolio highlights:
-- Builds modern, scalable web applications with clean code and strong UI/UX focus.
-- Experience includes full-stack development and machine learning interest.
-- Portfolio stats mention 5+ projects, 1+ years experience, and 12+ technologies.
-Availability: Open to work.
-`;
+/**
+ * Build the assistant's knowledge from the same portfolio data the site renders,
+ * so answers stay accurate and never drift out of sync with the content.
+ */
+function buildProfileContext() {
+  const skillLines = skills.map((s) => `- ${s.group}: ${s.items.join(", ")}`).join("\n");
+
+  const experienceLines = experiences
+    .map(
+      (e) =>
+        `- ${e.role} at ${e.company} (${e.period}, ${e.type}). ${e.summary}`,
+    )
+    .join("\n");
+
+  const clientLines = clientProjects
+    .map(
+      (p) =>
+        `- ${p.title} (${p.category}, ${p.year}) — ${p.role}, ${p.team || "team project"}. ${p.overview} Tech: ${p.tech.join(", ")}. Live: ${p.links?.live && !p.links.live.startsWith("[ADD") ? p.links.live : "n/a"}.`,
+    )
+    .join("\n");
+
+  const personalLines = projects
+    .map(
+      (p) =>
+        `- ${p.title} (${p.category}, ${p.year}) — ${p.tagline} Tech: ${p.tech.join(", ")}. Live: ${p.links?.live || "n/a"}.`,
+    )
+    .join("\n");
+
+  const educationLines = education
+    .map((e) => `- ${e.degree}, ${e.institute} (${e.period}, ${e.status}).`)
+    .join("\n");
+
+  const pub = research.publications[0];
+  const publicationLine = pub
+    ? `- "${pub.title}" (${pub.role}), ${pub.conference}, ${pub.venue}, ${pub.year}. ${pub.abstract}`
+    : "None listed.";
+
+  return `Name: ${personal.name} (goes by ${personal.shortName})
+Role: ${personal.role}
+Location: ${personal.location}
+Availability: ${personal.availability}
+Contact: ${personal.email}${personal.phone ? `, ${personal.phone}` : ""}
+
+About:
+${about.paragraphs.join("\n")}
+
+Experience:
+${experienceLines}
+
+Professional client projects (paid, delivered with a collaborative development team):
+${clientLines}
+
+Personal projects:
+${personalLines}
+
+Skills:
+${skillLines}
+
+Education:
+${educationLines}
+
+Research interests: ${research.interests.join(", ")}
+Current thesis: ${research.thesis.title} — ${research.thesis.description}
+Publication:
+${publicationLine}`;
+}
+
+const PROFILE_CONTEXT = buildProfileContext();
 
 const STARTER_QUESTIONS = [
-  "What technologies does Sifat use?",
-  "Tell me about Sifat's experience",
-  "What kind of projects can Sifat build?",
+  "What are Sifat's strongest projects?",
+  "Tell me about the Bazarica marketplace",
+  "What's Sifat's research about?",
+  "Is Sifat available for hire?",
 ];
 
 const FALLBACK_MODELS = [
@@ -28,10 +96,15 @@ const FALLBACK_MODELS = [
 ];
 
 function buildSystemPrompt(extraContext = "") {
-  return `You are Sifat's portfolio assistant. Reply in concise, friendly English.
-Only answer questions related to Sifat using the context below.
-If asked something unrelated or unknown, politely say you only answer about Sifat and suggest using the contact section.
-Do not invent personal details beyond the context.
+  return `You are the portfolio assistant for ${personal.name} (Sifat). You help visitors — often recruiters and hiring managers — quickly understand his work.
+
+Guidelines:
+- Reply in concise, friendly English. Keep answers short: 2-4 sentences or a tight bullet list.
+- Answer only from the context below. Ground claims in real specifics (name the project, tech, or role) rather than generic praise.
+- On client projects, be accurate about his role: they were paid, production work delivered with a collaborative development team — never imply he built them alone.
+- If asked something you can't answer from the context, say so briefly and point them to the contact section or ${personal.email}.
+- If someone asks about hiring or availability, share that he is ${personal.availability.toLowerCase()} and suggest reaching out via the contact form.
+- Never invent details, dates, or links that aren't in the context.
 
 Context:\n${PROFILE_CONTEXT}
 
@@ -46,7 +119,7 @@ const PortfolioChatbot = () => {
     {
       role: "assistant",
       content:
-        "Hi, I am Sifat's assistant. Ask me anything about his skills, projects, or experience.",
+        "Hi! I'm Sifat's portfolio assistant. Ask me about his production work, the Bazarica marketplace, his AI research, or whether he's available to hire.",
     },
   ]);
 

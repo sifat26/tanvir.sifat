@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import Disclosure from '../../../components/ui/Disclosure';
 import ResumeButton from '../../../components/ui/ResumeButton';
 import SectionHeader from '../../../components/ui/SectionHeader';
 import { about, personal } from '../../../data/portfolio';
@@ -34,9 +35,15 @@ const AboutMeSection = () => {
             transition={{ duration: 0.4 }}
             className='md:col-span-8 space-y-5 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--text-secondary)]'
           >
-            {about.paragraphs.map((p, i) => (
+            {about.short.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
+
+            <Disclosure panelClassName='space-y-5 pt-5' toggleClassName='mt-1'>
+              {about.paragraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </Disclosure>
 
             <div className='pt-2'>
               <ResumeButton variant='secondary' />

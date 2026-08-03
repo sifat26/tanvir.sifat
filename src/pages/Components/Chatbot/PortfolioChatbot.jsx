@@ -57,7 +57,7 @@ Availability: ${personal.availability}
 Contact: ${personal.email}${personal.phone ? `, ${personal.phone}` : ""}
 
 About:
-${about.paragraphs.join("\n")}
+${[...about.short, ...about.paragraphs].join("\n")}
 
 Experience:
 ${experienceLines}

@@ -1,5 +1,6 @@
 import { BookOpen, Calendar, MapPin } from 'lucide-react';
 import { motion } from 'motion/react';
+import Disclosure, { DisclosureToggle } from '../../../components/ui/Disclosure';
 import SectionHeader from '../../../components/ui/SectionHeader';
 import { TagList } from '../../../components/ui/Tag';
 import { research } from '../../../data/portfolio';
@@ -68,48 +69,62 @@ const ResearchSection = () => {
                     </span>
                     {pub.venue}
                   </div>
-                  <div>
-                    <span className='text-[var(--text-muted)] font-mono text-[12px] uppercase tracking-wider mr-2'>
-                      Context
-                    </span>
-                    {pub.context}
-                  </div>
                 </div>
 
                 <p className='mt-5 pt-5 border-t border-[var(--border)] text-[15px] leading-relaxed text-[var(--text-secondary)]'>
-                  {pub.abstract}
+                  {pub.summary}
                 </p>
 
-                <TagList className='mt-5' items={pub.tags} variant='muted' />
+                <Disclosure
+                  renderToggle={(props) => <DisclosureToggle {...props} className='mt-4' />}
+                  panelClassName='pt-4 space-y-4'
+                >
+                  <div>
+                    <div className='text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)] mb-1.5'>
+                      Context
+                    </div>
+                    <p className='text-[14.5px] leading-relaxed text-[var(--text-secondary)]'>{pub.context}</p>
+                  </div>
+
+                  <div>
+                    <div className='text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)] mb-1.5'>
+                      Why it matters
+                    </div>
+                    <p className='text-[14.5px] leading-relaxed text-[var(--text-secondary)]'>{pub.abstract}</p>
+                  </div>
+
+                  <div className='grid sm:grid-cols-2 gap-4'>
+                    <div className='rounded-[var(--radius)] border border-[var(--border)] bg-[var(--bg-subtle)] p-4'>
+                      <div className='text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)] mb-3'>
+                        Research interests
+                      </div>
+                      <TagList items={research.interests} variant='secondary' />
+                    </div>
+
+                    <div className='rounded-[var(--radius)] border border-[var(--border)] bg-[var(--bg-subtle)] p-4'>
+                      <div className='text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)] mb-2'>
+                        Current thesis
+                      </div>
+                      <div className='text-[14.5px] font-medium text-[var(--text)]'>{research.thesis.title}</div>
+                      <p className='mt-2 text-[13.5px] leading-relaxed text-[var(--text-secondary)]'>
+                        {research.thesis.description}
+                      </p>
+                    </div>
+
+                    <div className='sm:col-span-2 rounded-[var(--radius)] border border-[var(--border)] bg-[var(--bg-subtle)] p-4'>
+                      <div className='text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)] mb-2'>
+                        Future direction
+                      </div>
+                      <p className='text-[14px] leading-relaxed text-[var(--text-secondary)]'>
+                        {research.futureDirection}
+                      </p>
+                    </div>
+                  </div>
+
+                  <TagList items={pub.tags} variant='muted' />
+                </Disclosure>
               </motion.article>
             ))}
-
-            {/* Research interests + thesis + future direction */}
-            <div className='mt-8 grid sm:grid-cols-2 gap-6'>
-              <div className='card p-5'>
-                <div className='text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)] mb-3'>
-                  Research interests
-                </div>
-                <TagList items={research.interests} variant='secondary' />
-              </div>
-
-              <div className='card p-5'>
-                <div className='text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)] mb-2'>
-                  Current thesis
-                </div>
-                <div className='text-[14.5px] font-medium text-[var(--text)]'>{research.thesis.title}</div>
-                <p className='mt-2 text-[13.5px] leading-relaxed text-[var(--text-secondary)]'>
-                  {research.thesis.description}
-                </p>
-              </div>
-
-              <div className='card p-5 sm:col-span-2'>
-                <div className='text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)] mb-2'>
-                  Future direction
-                </div>
-                <p className='text-[14px] leading-relaxed text-[var(--text-secondary)]'>{research.futureDirection}</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>

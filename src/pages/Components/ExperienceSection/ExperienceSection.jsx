@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import Disclosure, { DisclosureToggle } from '../../../components/ui/Disclosure';
 import SectionHeader from '../../../components/ui/SectionHeader';
 import { TagList } from '../../../components/ui/Tag';
 import { experiences } from '../../../data/portfolio';
@@ -35,16 +36,25 @@ const ExperienceSection = () => {
 
                 <p className='mt-4 text-[15px] leading-relaxed text-[var(--text-secondary)]'>{exp.summary}</p>
 
-                <ul className='mt-4 space-y-2.5'>
-                  {exp.highlights.map((h, idx) => (
-                    <li key={idx} className='flex gap-3 text-[14.5px] leading-relaxed text-[var(--text-secondary)]'>
-                      <span aria-hidden='true' className='mt-2 h-1 w-1 rounded-full bg-[var(--text-muted)] shrink-0' />
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
+                {/* Each card owns its own open state — independent accordions. */}
+                <Disclosure
+                  renderToggle={(props) => <DisclosureToggle {...props} className='mt-4' />}
+                  panelClassName='pt-4'
+                >
+                  <ul className='space-y-2.5'>
+                    {exp.highlights.map((h, idx) => (
+                      <li key={idx} className='flex gap-3 text-[14.5px] leading-relaxed text-[var(--text-secondary)]'>
+                        <span
+                          aria-hidden='true'
+                          className='mt-2 h-1 w-1 rounded-full bg-[var(--text-muted)] shrink-0'
+                        />
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
 
-                <TagList className='mt-5' items={exp.tech} variant='muted' />
+                  <TagList className='mt-5' items={exp.tech} variant='muted' />
+                </Disclosure>
               </motion.article>
             ))}
           </div>

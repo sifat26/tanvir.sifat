@@ -46,12 +46,19 @@ export const navLinks = [
 ];
 
 // ─── ABOUT ────────────────────────────────────────────────────
+// `short` is the default, always-visible bio. `paragraphs` is revealed by the
+// "Read more" toggle in AboutMeSection — keep the two non-overlapping so the
+// expanded view reads as a continuation, not a repeat.
 export const about = {
   headline: 'I build software end to end — and research where it goes next.',
+  short: [
+    'I ship production web applications — React, Next.js, and Angular on the front, Node.js and Express behind them — and deploy them myself.',
+    "Alongside that I'm doing an M.Sc. in ICT, applying deep learning to medical imaging and network security. My first international paper was presented in the UK.",
+  ],
   paragraphs: [
-    'I ship production web applications for a living. At Universal Technology Research and Development Limited I build Angular and Next.js interfaces for live business systems, and through client work I have delivered full-stack e-commerce platforms end to end — React and Next.js on the front, Node.js and Express APIs on the back, deployed to cPanel, VPS, and Azure. That includes Bazarica, a multi-vendor marketplace with payment integration and separate admin, seller, and customer dashboards.',
+    'At Universal Technology Research and Development Limited I build Angular and Next.js interfaces for live business systems. Through client work I have delivered full-stack e-commerce platforms end to end, deployed to cPanel, VPS, and Azure — including Bazarica, a multi-vendor marketplace with payment integration and separate admin, seller, and customer dashboards.',
     'Most of what I care about is the part users never see: reusable components, clear API contracts, and deployments I understand end to end instead of handing off. Loading and error states, data flow, the boring details that decide whether an app feels solid or breaks under real traffic.',
-    "Alongside the engineering work I'm doing an M.Sc. in ICT at Mawlana Bhashani Science & Technology University, on applied deep learning for medical image analysis, computer vision, and network intrusion detection. My first international paper was presented at ITSS-IoE 2025 in the United Kingdom.",
+    'My graduate research at Mawlana Bhashani Science & Technology University covers applied deep learning for medical image analysis, computer vision, and network intrusion detection. That work was presented at ITSS-IoE 2025 at the University of Wolverhampton.',
     "I'm looking for teams building software that has to hold up in production, where the research side is a plus rather than a distraction.",
   ],
 };
@@ -66,8 +73,7 @@ export const experiences = [
     location: 'Bangladesh',
     period: 'June 2024 — Present',
     type: 'Full-time',
-    summary:
-      'Ship production Angular and Next.js applications to internal IIS Server infrastructure, owning UI from component design through deployment.',
+    summary: 'Build and ship Angular and Next.js apps used in live business operations, and own them through to IIS deployment.',
     highlights: [
       'Build and ship Angular and Next.js applications used in live business operations, turning design specs into responsive, accessible interfaces.',
       'Built shared component libraries that cut repeated UI work across features and kept the codebase easier to maintain.',
@@ -86,7 +92,7 @@ export const experiences = [
     period: '2023 — Present',
     type: 'Contract',
     summary:
-      'Delivered production e-commerce platforms end to end for paying clients — building both the React/Next.js frontends and the Node.js/Express APIs behind them, then owning deployment.',
+      'Delivered three production e-commerce platforms end to end for paying clients — React/Next.js frontends, Express APIs, and the deployment behind them.',
     highlights: [
       'Shipped three production e-commerce platforms as part of three-person teams, including Bazarica, a multi-vendor marketplace with payments and separate admin, seller, and customer dashboards.',
       'Worked across the stack — React/Next.js frontends and Express REST APIs for authentication, product and order management, and catalog search.',
@@ -352,9 +358,11 @@ export const research = {
         'International Conference on Intelligent Technology, Systems and Services for the Internet of Everything (ITSS-IoE 2025)',
       venue: 'University of Wolverhampton, United Kingdom',
       year: '2025',
-      context: 'Presented during ITSS-IoE 2025, held in conjunction with the CyberVehiCare Launch Event.',
+      summary: 'Pairs IoT infrastructure with deep learning to detect lung cancer from CT images.',
+      context:
+        'Presented at ITSS-IoE 2025, held alongside the CyberVehiCare Launch Event — my first international publication.',
       abstract:
-        'This work combines IoT infrastructure with deep learning to detect lung cancer from CT images, contributing toward earlier diagnosis and more accessible, intelligent healthcare tooling.',
+        'Running inference at the edge rather than in a central hospital system is what makes the approach useful in practice: screening can happen where the scanner is, without shipping patient imaging off-site or waiting on specialist review. That constraint drove the work — the model had to stay accurate while small enough to deploy on limited IoT hardware. The open problems are the ones that decide whether it reaches patients: how reliably it holds up on scanners and populations it was never trained on.',
       tags: ['Deep Learning', 'Computer Vision', 'IoT', 'Healthcare'],
     },
   ],

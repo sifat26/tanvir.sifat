@@ -492,6 +492,92 @@ span {
   transform: scaleX(1);
 }
 
+/* ---- Mobile drawer links ---- */
+.drawer-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 0.975rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+.drawer-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.drawer-link-index {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-subtle);
+  transition: color 0.2s ease;
+}
+.drawer-link:hover,
+.drawer-link:active,
+.drawer-link.active {
+  color: var(--text);
+  background: var(--accent-soft);
+}
+.drawer-link:hover::before,
+.drawer-link:active::before,
+.drawer-link.active::before {
+  transform: scaleY(1);
+}
+.drawer-link.active .drawer-link-index {
+  color: var(--accent);
+}
+
+/* ---- Cursor glow ----
+   A single soft radial halo that eases toward the pointer. Deliberately faint:
+   it should read as ambient light, not as a second cursor.
+
+   `z-index: -1` puts it behind all content. That works because `html` sets no
+   background, so `body`'s background propagates to the canvas and is painted
+   below negative-z-index children rather than covering them. */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 460px;
+  height: 460px;
+  margin: -230px 0 0 -230px;
+  border-radius: 999px;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle closest-side, color-mix(in oklab, var(--accent) 20%, transparent), transparent 70%);
+  transition: opacity 0.5s ease;
+}
+.cursor-active .cursor-glow {
+  opacity: 0.55;
+}
+.dark .cursor-active .cursor-glow {
+  opacity: 0.45;
+}
+/* Devices with no fine pointer at all (phones/tablets) never show it. */
+@media not all and (any-pointer: fine) {
+  .cursor-glow {
+    display: none;
+  }
+}
+
 /* ---- Form ---- */
 .input {
   width: 100%;

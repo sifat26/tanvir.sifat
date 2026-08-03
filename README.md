@@ -72,7 +72,7 @@ Built and maintained production web applications using Angular and Next.js. Led 
 - **B.Sc. Engineering, Information & Communication Technology** — Mawlana Bhashani Science & Technology University (2020 — 2025)
   Software engineering, data structures, algorithms, databases, and web technologies.
 - **Higher Secondary Certificate, Science** — Major General Mahmudul Hasan Adarsha College, Tangail (2017 — 2019) · GPA 4.83 / 5.00
-- **Secondary School Certificate, Science** — Adi Tangail High School, Tangail (2017) · GPA 5.00 / 5.00 (Perfect Score)
+- **Secondary School Certificate, Science** — Adi Tangail High School, Tangail (2017) · GPA 5.00 / 5.00 
 
 ---
 

@@ -128,7 +128,7 @@ export const education = [
     institute: 'Adi Tangail High School, Tangail',
     period: '2017',
     status: 'Completed',
-    notes: ['GPA 5.00 / 5.00 — Perfect Score'],
+    notes: ['GPA 5.00 / 5.00 '],
   },
 ];
 

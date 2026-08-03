@@ -4,7 +4,8 @@
    Light-first, minimal, developer-focused. Full dark-mode support.
    ================================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+/* Fonts are loaded via <link> in index.html so the request starts in parallel
+   with the CSS rather than after it parses. */
 
 @tailwind base;
 @tailwind components;
@@ -213,7 +214,9 @@ span {
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.04em;
-  color: var(--text-muted);
+  /* text-secondary, not text-muted: at 11.5px the muted tone only reaches
+     3.95:1 on the dark background, below the 4.5:1 WCAG AA threshold. */
+  color: var(--text-secondary);
   text-transform: uppercase;
 }
 .eyebrow::before {

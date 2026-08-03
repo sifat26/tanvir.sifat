@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import Reveal from '../../../components/ui/Reveal';
 import SectionHeader from '../../../components/ui/SectionHeader';
 import { education } from '../../../data/portfolio';
 
@@ -12,13 +12,7 @@ const EducationSection = () => {
           <div className='md:col-span-8'>
             <ol className='relative border-l border-[var(--border)] pl-6 space-y-8'>
               {education.map((e, i) => (
-                <motion.li
-                  key={i}
-                  initial={{ opacity: 0, y: 8 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-80px' }}
-                  transition={{ duration: 0.35, delay: i * 0.05 }}
-                >
+                <Reveal as='li' key={i} delay={i * 0.05}>
                   <span className='absolute -left-[5px] mt-1.5 h-2.5 w-2.5 rounded-full bg-[var(--text)] ring-4 ring-[var(--bg)]' />
                   <div className='flex flex-wrap items-baseline justify-between gap-x-4'>
                     <div className='text-[15.5px] font-semibold text-[var(--text)]'>{e.degree}</div>
@@ -36,7 +30,7 @@ const EducationSection = () => {
                       ))}
                     </ul>
                   )}
-                </motion.li>
+                </Reveal>
               ))}
             </ol>
           </div>

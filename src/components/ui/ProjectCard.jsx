@@ -1,7 +1,7 @@
 import { ArrowRight, Users } from 'lucide-react';
-import { motion } from 'motion/react';
 import ProjectLinks from './ProjectLinks';
 import ProjectPreview from './ProjectPreview';
+import Reveal from './Reveal';
 import { TagList } from './Tag';
 
 /**
@@ -13,11 +13,9 @@ const ProjectCard = ({ project, index = 0, onOpen }) => {
   const isClient = project.type === 'client';
 
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.45, delay: index * 0.06 }}
+    <Reveal
+      as='article'
+      delay={index * 0.07}
       className='card p-4 sm:p-5 flex flex-col h-full'
     >
       <ProjectPreview project={project} />
@@ -63,7 +61,7 @@ const ProjectCard = ({ project, index = 0, onOpen }) => {
         </button>
         <ProjectLinks project={project} only='live' />
       </div>
-    </motion.article>
+    </Reveal>
   );
 };
 

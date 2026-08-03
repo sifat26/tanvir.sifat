@@ -1,9 +1,8 @@
-import { motion } from 'motion/react';
 import Disclosure, { DisclosureToggle } from '../../../components/ui/Disclosure';
+import Reveal from '../../../components/ui/Reveal';
 import SectionHeader from '../../../components/ui/SectionHeader';
 import { TagList } from '../../../components/ui/Tag';
 import { experiences } from '../../../data/portfolio';
-import { fadeUpDelay } from '../../../lib/motion';
 
 const ExperienceSection = () => {
   return (
@@ -23,7 +22,7 @@ const ExperienceSection = () => {
 
           <div className='md:col-span-8 space-y-5 sm:space-y-6'>
             {experiences.map((exp, i) => (
-              <motion.article key={exp.id} {...fadeUpDelay(i)} className='card p-5 sm:p-6 md:p-7'>
+              <Reveal as='article' key={exp.id} delay={i * 0.07} className='card p-5 sm:p-6 md:p-7'>
                 <div className='flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1'>
                   <h3 className='text-[17px] font-semibold text-[var(--text)]'>
                     {exp.role} · {exp.shortName}
@@ -55,7 +54,7 @@ const ExperienceSection = () => {
 
                   <TagList className='mt-5' items={exp.tech} variant='muted' />
                 </Disclosure>
-              </motion.article>
+              </Reveal>
             ))}
           </div>
         </div>

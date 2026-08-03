@@ -88,7 +88,7 @@ const ProjectPreview = ({ project, interactive = true, className = '' }) => {
       target='_blank'
       rel='noopener noreferrer'
       className='block group'
-      aria-label={`${project.title} — live demo`}
+      title={`${project.title} — open live site`}
     >
       {frame}
     </a>

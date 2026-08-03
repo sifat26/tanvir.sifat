@@ -100,13 +100,13 @@ const Navbar = () => {
         <div className='container-page'>
           <div className='flex items-center justify-between h-14 sm:h-16 gap-2'>
             {/* Logo */}
-            <a
-              href='#top'
-              onClick={close}
-              className='flex items-center gap-2 group min-w-0 shrink'
-              aria-label={`${personal.name} — home`}
-            >
-              <span className='w-8 h-8 rounded-md bg-[var(--text)] text-[var(--bg)] grid place-items-center font-semibold text-sm shrink-0 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105'>
+            {/* No aria-label here: the visible text ("Sifat") is the accessible
+                name, so voice-control users can say what they see. */}
+            <a href='#top' onClick={close} className='flex items-center gap-2 group min-w-0 shrink'>
+              <span
+                aria-hidden='true'
+                className='w-8 h-8 rounded-md bg-[var(--text)] text-[var(--bg)] grid place-items-center font-semibold text-sm shrink-0 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105'
+              >
                 S
               </span>
               <span className='text-[15px] font-semibold tracking-tight text-[var(--text)] truncate'>

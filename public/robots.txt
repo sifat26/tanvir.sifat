@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tanvir-sifat.vercel.app/sitemap.xml

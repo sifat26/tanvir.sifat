@@ -1,6 +1,6 @@
 import { BookOpen, Calendar, MapPin } from 'lucide-react';
-import { motion } from 'motion/react';
 import Disclosure, { DisclosureToggle } from '../../../components/ui/Disclosure';
+import Reveal from '../../../components/ui/Reveal';
 import SectionHeader from '../../../components/ui/SectionHeader';
 import { TagList } from '../../../components/ui/Tag';
 import { research } from '../../../data/portfolio';
@@ -24,12 +24,9 @@ const ResearchSection = () => {
           <div className='md:col-span-8'>
             {/* Publication card */}
             {research.publications.map((pub) => (
-              <motion.article
+              <Reveal
+                as='article'
                 key={pub.id}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-80px' }}
-                transition={{ duration: 0.4 }}
                 className='card p-5 sm:p-6 md:p-8'
                 aria-labelledby={`pub-${pub.id}-title`}
               >
@@ -123,7 +120,7 @@ const ResearchSection = () => {
 
                   <TagList items={pub.tags} variant='muted' />
                 </Disclosure>
-              </motion.article>
+              </Reveal>
             ))}
           </div>
         </div>

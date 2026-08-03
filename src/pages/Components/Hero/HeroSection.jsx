@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import ResumeButton from '../../../components/ui/ResumeButton';
 import SocialLinks from '../../../components/ui/SocialLinks';
 import { personal } from '../../../data/portfolio';
+import { useReducedMotion } from '../../../hooks/useReducedMotion';
 
 /**
  * A tiny live "type-writer" demo of code — proves this is a builder,
@@ -65,6 +66,11 @@ const StatCell = ({ label, value, icon: Icon }) => (
 
 const HeroSection = () => {
   const hasResume = personal.resumeUrl && personal.resumeUrl !== '[ADD_RESUME_URL]';
+  const reduced = useReducedMotion();
+  // Above the fold: a short fade only, no transform, so nothing delays the
+  // first paint. Skipped entirely under prefers-reduced-motion.
+  const intro = (delay) =>
+    reduced ? {} : { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { duration: 0.35, delay } };
 
   return (
     <section
@@ -101,12 +107,7 @@ const HeroSection = () => {
       <div className='container-page relative'>
         <div className='grid lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-14 items-center'>
           {/* Copy */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
-            className='lg:col-span-7'
-          >
+          <motion.div {...intro(0)} className='lg:col-span-7'>
             {/* Availability pill */}
             <div className='inline-flex items-center gap-2 mb-6 sm:mb-8 px-2.5 py-1 rounded-full border border-[var(--border)] bg-[var(--bg-subtle)] text-[12px] font-medium text-[var(--text-secondary)]'>
               <span className='relative flex h-1.5 w-1.5'>
@@ -154,25 +155,23 @@ const HeroSection = () => {
           </motion.div>
 
           {/* Interactive bento visual */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
-            className='lg:col-span-5 order-first lg:order-last'
-          >
+          <motion.div {...intro(0.08)} className='lg:col-span-5 order-first lg:order-last'>
             <div className='grid grid-cols-2 gap-3 sm:gap-4 max-w-md mx-auto lg:mx-0 lg:ml-auto'>
               {/* Portrait tile — spans full width row */}
               <div className='col-span-2 bento p-0 overflow-hidden'>
                 <div className='relative aspect-[16/10]'>
-                  <img
-                    src={personal.portrait}
-                    alt={`${personal.name} — portrait`}
-                    width='480'
-                    height='300'
-                    fetchpriority='high'
-                    decoding='async'
-                    className='w-full h-full object-cover'
-                  />
+                  <picture>
+                    <source srcSet={personal.portraitWebp} type='image/webp' />
+                    <img
+                      src={personal.portrait}
+                      alt={`${personal.name} — portrait`}
+                      width='960'
+                      height='600'
+                      fetchpriority='high'
+                      decoding='async'
+                      className='w-full h-full object-cover'
+                    />
+                  </picture>
                   <div
                     aria-hidden
                     className='absolute inset-0'

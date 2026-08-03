@@ -4,6 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Fonts: the stylesheet is also @import-ed in index.css, but a CSS
+         @import can only start downloading after the CSS itself has parsed.
+         Fetching it here in parallel removes that serial round-trip. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+
+    <!-- LCP element: the hero portrait. Preloading it lets the fetch start
+         before the JS bundle has parsed and rendered the <img>. -->
+    <link rel="preload" as="image" href="/portrait-hero.webp" type="image/webp" fetchpriority="high" />
+
     <!-- Primary Meta -->
     <title>Tanvir Ahmmed Sifat — Frontend & Full Stack Engineer, AI Researcher</title>
     <meta
@@ -28,8 +42,10 @@
     />
     <meta
       property="og:image"
-      content="https://github.com/sifat26/portfoliov2/blob/main/IMG-20260719-WA0061.jpg.jpeg?raw=true"
+      content="https://tanvir-sifat.vercel.app/og-image.png"
     />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="Tanvir Ahmmed Sifat — Frontend &amp; Full Stack Engineer, AI Researcher" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="en_US" />
@@ -43,8 +59,9 @@
     <meta name="twitter:description" content="Building scalable web applications and intelligent systems." />
     <meta
       name="twitter:image"
-      content="https://github.com/sifat26/portfoliov2/blob/main/IMG-20260719-WA0061.jpg.jpeg?raw=true"
+      content="https://tanvir-sifat.vercel.app/og-image.png"
     />
+    <meta name="twitter:image:alt" content="Tanvir Ahmmed Sifat — Frontend &amp; Full Stack Engineer, AI Researcher" />
 
     <!-- Favicon -->
     <link
@@ -52,8 +69,12 @@
       type="image/svg+xml"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0a'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Inter,sans-serif' font-weight='600' font-size='18' fill='white'%3ES%3C/text%3E%3C/svg%3E"
     />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#0b1120" media="(prefers-color-scheme: dark)" />
 
     <!-- JSON-LD: Person -->
     <script type="application/ld+json">
@@ -63,7 +84,7 @@
         "name": "Tanvir Ahmmed Sifat",
         "alternateName": "Sifat",
         "url": "https://tanvir-sifat.vercel.app/",
-        "image": "https://github.com/sifat26/portfoliov2/blob/main/IMG-20260719-WA0061.jpg.jpeg?raw=true",
+        "image": "https://tanvir-sifat.vercel.app/portrait-hero.jpg",
         "jobTitle": "Frontend & Full Stack Engineer, AI Researcher",
         "worksFor": {
           "@type": "Organization",

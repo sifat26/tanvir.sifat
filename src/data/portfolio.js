@@ -20,7 +20,12 @@ export const personal = {
   resumeUrl: '/Tanvir_Ahmmed_Sifat_Resume.pdf', // served from /public
   resumeDocx: '/Tanvir_Ahmmed_Sifat_Resume.docx', // Word version
   resumeUpdated: 'July 2026', // shown on the resume preview card
-  portrait: 'https://github.com/sifat26/portfoliov2/blob/main/IMG-20260719-WA0061.jpg.jpeg?raw=true',
+  // Locally served, pre-resized portraits (WebP + JPEG fallback). Self-hosting
+  // these removes a cross-origin request on the LCP element.
+  portrait: '/portrait-hero.jpg',
+  portraitWebp: '/portrait-hero.webp',
+  portraitSquare: '/portrait-square.jpg',
+  portraitSquareWebp: '/portrait-square.webp',
   availability: 'Open to Frontend, Full Stack, and AI Engineering roles',
 };
 

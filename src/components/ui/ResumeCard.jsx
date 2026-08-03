@@ -1,6 +1,6 @@
 import { Download, ExternalLink, FileText } from 'lucide-react';
-import { motion } from 'motion/react';
 import { personal } from '../../data/portfolio';
+import Reveal from './Reveal';
 
 /**
  * ResumeCard — a compact preview of the resume: title, last-updated, format,
@@ -14,13 +14,7 @@ const ResumeCard = () => {
   if (!resumeUrl || resumeUrl === '[ADD_RESUME_URL]') return null;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.4 }}
-      className='card p-5 sm:p-6 md:p-7 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-6'
-    >
+    <Reveal className='card p-5 sm:p-6 md:p-7 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-6'>
       {/* Icon + meta */}
       <div className='flex items-start gap-4 flex-1 min-w-0'>
         <span className='w-12 h-12 grid place-items-center rounded-xl border border-[var(--border)] bg-[var(--bg-subtle)] text-[var(--text)] shrink-0'>
@@ -62,7 +56,7 @@ const ResumeCard = () => {
           <ExternalLink className='w-3.5 h-3.5' />
         </a>
       </div>
-    </motion.div>
+    </Reveal>
   );
 };
 

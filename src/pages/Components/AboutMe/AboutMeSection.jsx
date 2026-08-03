@@ -1,5 +1,5 @@
-import { motion } from 'motion/react';
 import Disclosure from '../../../components/ui/Disclosure';
+import Reveal from '../../../components/ui/Reveal';
 import ResumeButton from '../../../components/ui/ResumeButton';
 import SectionHeader from '../../../components/ui/SectionHeader';
 import { about, personal } from '../../../data/portfolio';
@@ -16,25 +16,22 @@ const AboutMeSection = () => {
           <div className='md:col-span-4'>
             <SectionHeader eyebrow='About' title={about.headline} />
             <div className='mt-6 sm:mt-8 w-32 h-32 sm:w-40 sm:h-40 md:w-full md:max-w-[260px] aspect-square overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--bg-subtle)]'>
-              <img
-                src={personal.portrait}
-                alt={`${personal.name} — portrait`}
-                loading='lazy'
-                decoding='async'
-                width='260'
-                height='260'
-                className='w-full h-full object-cover'
-              />
+              <picture>
+                <source srcSet={personal.portraitSquareWebp} type='image/webp' />
+                <img
+                  src={personal.portraitSquare}
+                  alt={`${personal.name} — portrait`}
+                  loading='lazy'
+                  decoding='async'
+                  width='520'
+                  height='520'
+                  className='w-full h-full object-cover'
+                />
+              </picture>
             </div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.4 }}
-            className='md:col-span-8 space-y-5 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--text-secondary)]'
-          >
+          <Reveal className='md:col-span-8 space-y-5 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--text-secondary)]'>
             {about.short.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
@@ -48,7 +45,7 @@ const AboutMeSection = () => {
             <div className='pt-2'>
               <ResumeButton variant='secondary' />
             </div>
-          </motion.div>
+          </Reveal>
         </div>
       </div>
     </section>

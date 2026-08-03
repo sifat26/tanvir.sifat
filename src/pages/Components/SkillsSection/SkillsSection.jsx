@@ -1,8 +1,7 @@
 import { Boxes, Cloud, Code2, Cpu, Database, Wrench } from 'lucide-react';
-import { motion } from 'motion/react';
+import Reveal from '../../../components/ui/Reveal';
 import SectionHeader from '../../../components/ui/SectionHeader';
 import { skills } from '../../../data/portfolio';
-import { fadeUpDelay } from '../../../lib/motion';
 
 /**
  * Icon lookup per group. Palette is anchored on emerald and stays within
@@ -29,7 +28,7 @@ const BentoSkill = ({ group, items, index }) => {
   // Cursor spotlight is driven globally by useCursorSpotlight in Home,
   // which sets --mx / --my on any .bento the cursor is over.
   return (
-    <motion.div {...fadeUpDelay(index, { duration: 0.4, step: 0.05 })} className='bento group'>
+    <Reveal delay={index * 0.05} className='bento group'>
       <div className='flex items-center justify-between'>
         <div
           className='w-9 h-9 rounded-lg grid place-items-center border transition-colors'
@@ -58,7 +57,7 @@ const BentoSkill = ({ group, items, index }) => {
           </li>
         ))}
       </ul>
-    </motion.div>
+    </Reveal>
   );
 };
 

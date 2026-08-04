@@ -10,8 +10,13 @@ const Footer = () => {
         <div className='grid md:grid-cols-12 gap-8 sm:gap-10'>
           {/* Brand */}
           <div className='md:col-span-5'>
-            <a href='#' className='inline-flex items-center gap-2' aria-label='Back to top'>
-              <div className='w-8 h-8 rounded-md bg-[var(--text)] text-[var(--bg)] grid place-items-center font-semibold text-sm'>
+            {/* No aria-label: the visible name is the accessible name, so
+                voice-control users can activate it by what they see. */}
+            <a href='#top' className='inline-flex items-center gap-2' title='Back to top'>
+              <div
+                aria-hidden='true'
+                className='w-8 h-8 rounded-md bg-[var(--text)] text-[var(--bg)] grid place-items-center font-semibold text-sm'
+              >
                 S
               </div>
               <span className='text-[15px] font-semibold tracking-tight text-[var(--text)]'>{personal.name}</span>

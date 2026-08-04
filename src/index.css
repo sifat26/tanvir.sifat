@@ -69,7 +69,9 @@
   --border-strong: #334155;
   --text: #f1f5f9;
   --text-secondary: #94a3b8;
-  --text-muted: #64748b;
+  /* #64748b only reaches 3.96:1 on --bg, under the 4.5:1 WCAG AA floor; this
+     lands at 5.45:1 while staying visibly quieter than --text-secondary. */
+  --text-muted: #7c8ba3;
   --text-subtle: #475569;
   --accent: #22c55e;
   --accent-hover: #4ade80;

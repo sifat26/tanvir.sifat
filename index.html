@@ -4,15 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Fonts: the stylesheet is also @import-ed in index.css, but a CSS
-         @import can only start downloading after the CSS itself has parsed.
-         Fetching it here in parallel removes that serial round-trip. -->
+    <!-- Fonts: loaded async so the stylesheet never blocks first paint.
+         font-display:swap in the Google CSS means text renders in the fallback
+         face immediately and swaps when Inter arrives. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
+      media="print"
+      onload="this.media='all';this.onload=null"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      />
+    </noscript>
 
     <!-- LCP element: the hero portrait. Preloading it lets the fetch start
          before the JS bundle has parsed and rendered the <img>. -->

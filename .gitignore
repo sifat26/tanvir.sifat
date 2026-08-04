@@ -27,3 +27,8 @@ dist-ssr
 .env
 .env.*
 !.env.example
+
+# Local scratch space and audit output (asset generation, Lighthouse reports)
+.tmp/
+lh-report.json
+lh-*.cjs

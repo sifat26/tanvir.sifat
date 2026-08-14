@@ -1,4 +1,4 @@
-import { ArrowRight, Users } from 'lucide-react';
+﻿import { ArrowRight, Users } from 'lucide-react';
 import ProjectLinks from './ProjectLinks';
 import ProjectPreview from './ProjectPreview';
 import Reveal from './Reveal';
@@ -53,7 +53,7 @@ const ProjectCard = ({ project, index = 0, onOpen }) => {
         <button
           type='button'
           onClick={() => onOpen(project)}
-          className='btn btn-secondary text-[13px]'
+          className='btn btn-secondary text-[12.5px] sm:text-[13px]'
           aria-label={`View details for ${project.title}`}
         >
           View details

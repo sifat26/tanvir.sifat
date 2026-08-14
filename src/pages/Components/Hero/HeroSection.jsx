@@ -1,4 +1,4 @@
-import { ArrowRight, Code2, MapPin, Sparkles, Zap } from 'lucide-react';
+﻿import { ArrowRight, Code2, MapPin, Sparkles, Zap } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import ResumeButton from '../../../components/ui/ResumeButton';
@@ -32,7 +32,7 @@ const LiveCodeCard = () => {
         <span className='demo-window-dot' style={{ background: '#28c840' }} />
         <span className='ml-2 font-mono text-[11px] text-[var(--text-muted)]'>~/sifat/portfolio.tsx</span>
       </div>
-      <div className='p-4 sm:p-5 font-mono text-[13px] leading-relaxed'>
+      <div className='p-4 sm:p-5 font-mono text-[11.5px] sm:text-[13px] leading-relaxed'>
         <div className='text-[var(--text-muted)]'>// live component, updates every 2s</div>
         <motion.div
           key={i}

@@ -1,4 +1,4 @@
-import { ExternalLink } from 'lucide-react';
+﻿import { ExternalLink } from 'lucide-react';
 import { isRealLink } from '../../lib/links';
 
 /**
@@ -35,12 +35,12 @@ const ProjectPreview = ({ project, interactive = true, className = '' }) => {
       />
       <div className='text-center px-6 relative'>
         <div
-          className='mx-auto w-14 h-14 rounded-xl grid place-items-center text-xl font-semibold text-white shadow-lg'
+          className='mx-auto w-14 h-14 sm:w-16 sm:h-16 rounded-xl grid place-items-center text-xl sm:text-2xl font-semibold text-white shadow-lg'
           style={{ background: 'var(--gradient-brand)' }}
         >
           {project.title.charAt(0)}
         </div>
-        <div className='mt-3 font-mono text-[12px] uppercase tracking-wider text-[var(--text-muted)]'>
+        <div className='mt-3 font-mono text-[11px] sm:text-[12px] uppercase tracking-wider text-[var(--text-muted)]'>
           {project.category}
         </div>
       </div>

@@ -1,4 +1,4 @@
-import Disclosure from '../../../components/ui/Disclosure';
+﻿import Disclosure from '../../../components/ui/Disclosure';
 import Reveal from '../../../components/ui/Reveal';
 import ResumeButton from '../../../components/ui/ResumeButton';
 import SectionHeader from '../../../components/ui/SectionHeader';
@@ -15,7 +15,7 @@ const AboutMeSection = () => {
         <div className='grid md:grid-cols-12 gap-8 sm:gap-10 md:gap-14'>
           <div className='md:col-span-4'>
             <SectionHeader eyebrow='About' title={about.headline} />
-            <div className='mt-6 sm:mt-8 w-32 h-32 sm:w-40 sm:h-40 md:w-full md:max-w-[260px] aspect-square overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--bg-subtle)]'>
+            <div className='mt-6 sm:mt-8 w-36 h-36 sm:w-44 sm:h-44 md:w-full md:max-w-[260px] aspect-square overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--bg-subtle)]'>
               <picture>
                 <source srcSet={personal.portraitSquareWebp} type='image/webp' />
                 <img

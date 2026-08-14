@@ -1,4 +1,4 @@
-import { ArrowUpRight, Mail, Menu, Moon, Sun, X } from 'lucide-react';
+﻿import { ArrowUpRight, Mail, Menu, Moon, Sun, X } from 'lucide-react';
 import { AnimatePresence, motion, useScroll } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import SocialLinks from '../../../components/ui/SocialLinks';
@@ -130,7 +130,7 @@ const Navbar = () => {
                 onClick={toggle}
                 whileTap={{ scale: 0.88 }}
                 aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-                className='w-10 h-10 sm:w-9 sm:h-9 grid place-items-center rounded-md text-[var(--text-secondary)] hover:text-[var(--accent)] hover:bg-[var(--accent-soft)] transition-colors overflow-hidden'
+                className='w-10 h-10 grid place-items-center rounded-md text-[var(--text-secondary)] hover:text-[var(--accent)] hover:bg-[var(--accent-soft)] transition-colors overflow-hidden'
               >
                 <AnimatePresence mode='wait' initial={false}>
                   <motion.span
@@ -158,7 +158,7 @@ const Navbar = () => {
                 </a>
               )}
 
-              <a href='#contact' className='hidden sm:inline-flex btn btn-primary'>
+              <a href='#contact' className='hidden md:inline-flex btn btn-primary'>
                 Get in touch
               </a>
 
@@ -169,7 +169,7 @@ const Navbar = () => {
                 aria-label='Open menu'
                 aria-expanded={open}
                 aria-controls='mobile-menu'
-                className='lg:hidden w-10 h-10 grid place-items-center rounded-md text-[var(--text)] hover:bg-[var(--accent-soft)] transition-colors'
+                className='lg:hidden w-10 h-10 grid place-items-center rounded-md text-[var(--text)] hover:bg-[var(--accent-soft)] transition-colors shrink-0'
               >
                 <Menu className='w-5 h-5' />
               </motion.button>

@@ -1,11 +1,11 @@
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcrypt';
 import httpStatus from 'http-status';
 import { Secret } from 'jsonwebtoken';
 import config from '../../../config';
 import ApiError from '../../../errors/ApiError';
 import { jwtHelpers } from '../../../helpers/jwtHelpers';
-import Admin from './admin.model';
 import { TLoginAdmin, TLoginAdminResponse } from './admin.interface';
+import Admin from './admin.model';
 
 const loginAdmin = async (payload: TLoginAdmin): Promise<TLoginAdminResponse> => {
   const admin = await Admin.findOne({ email: payload.email });
@@ -13,12 +13,22 @@ const loginAdmin = async (payload: TLoginAdmin): Promise<TLoginAdminResponse> =>
   if (admin.isBlocked) throw new ApiError(httpStatus.FORBIDDEN, 'Account is blocked.');
   const isMatch = await bcrypt.compare(payload.password, admin.password);
   if (!isMatch) throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password.');
-  const jwtPayload = { userId: (admin._id as any).toString(), role: 'ADMIN', mustChangePassword: admin.mustChangePassword };
+  const jwtPayload = {
+    userId: (admin._id as any).toString(),
+    role: 'ADMIN',
+    mustChangePassword: admin.mustChangePassword,
+  };
   const accessToken = jwtHelpers.createToken(jwtPayload, config.jwt.secret as Secret, config.jwt.expires_in);
   return {
     accessToken,
     mustChangePassword: admin.mustChangePassword,
-    adminData: { _id: (admin._id as any).toString(), name: admin.name, email: admin.email, isBlocked: admin.isBlocked, mustChangePassword: admin.mustChangePassword },
+    adminData: {
+      _id: (admin._id as any).toString(),
+      name: admin.name,
+      email: admin.email,
+      isBlocked: admin.isBlocked,
+      mustChangePassword: admin.mustChangePassword,
+    },
   };
 };
 
@@ -42,7 +52,9 @@ const changePassword = async (adminId: string, payload: { currentPassword: strin
 };
 
 const updateProfile = async (adminId: string, payload: { name: string }) => {
-  const admin = await Admin.findByIdAndUpdate(adminId, { name: payload.name.trim() }, { new: true }).select('-password');
+  const admin = await Admin.findByIdAndUpdate(adminId, { name: payload.name.trim() }, { new: true }).select(
+    '-password',
+  );
   if (!admin) throw new ApiError(httpStatus.NOT_FOUND, 'Admin not found.');
   return admin;
 };

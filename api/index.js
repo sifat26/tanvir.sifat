@@ -14,7 +14,6 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import path from "path";
 dotenv.config({ path: path.join(process.cwd(), ".env") });
-dotenv.config({ path: path.join(__dirname, "../../.env") });
 var DEFAULT_MONGO_URI = "mongodb://sifatict26_db_user:39q1GUM5YYbmvyN3@ac-kzkc9nu-shard-00-00.fu7k8im.mongodb.net:27017,ac-kzkc9nu-shard-00-01.fu7k8im.mongodb.net:27017,ac-kzkc9nu-shard-00-02.fu7k8im.mongodb.net:27017/portfolio?ssl=true&replicaSet=atlas-ahcigm-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Cluster0";
 var config_default = {
   node_env: process.env.NODE_ENV || "development",

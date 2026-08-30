@@ -3,9 +3,13 @@ import Disclosure, { DisclosureToggle } from '../../../components/ui/Disclosure'
 import Reveal from '../../../components/ui/Reveal';
 import SectionHeader from '../../../components/ui/SectionHeader';
 import { TagList } from '../../../components/ui/Tag';
-import { research } from '../../../data/portfolio';
+import { useResearch } from '../../../hooks/usePortfolioData';
 
 const ResearchSection = () => {
+  const { data: research, isLoading } = useResearch();
+
+  if (isLoading || !research) return null;
+
   return (
     <section
       id='research'
@@ -23,12 +27,12 @@ const ResearchSection = () => {
 
           <div className='md:col-span-8'>
             {/* Publication card */}
-            {research.publications.map((pub) => (
+            {(research.publications || []).map((pub, i) => (
               <Reveal
                 as='article'
-                key={pub.id}
+                key={pub._id || i}
                 className='card p-5 sm:p-6 md:p-8'
-                aria-labelledby={`pub-${pub.id}-title`}
+                aria-labelledby={`pub-${pub._id || i}-title`}
               >
                 {/* Conference badge row */}
                 <div className='flex flex-wrap items-center gap-2 mb-5'>
@@ -47,7 +51,7 @@ const ResearchSection = () => {
                 </div>
 
                 <h3
-                  id={`pub-${pub.id}-title`}
+                  id={`pub-${pub._id || i}-title`}
                   className='text-[19px] md:text-[22px] font-semibold text-[var(--text)] leading-snug tracking-tight'
                 >
                   {pub.title}
@@ -95,16 +99,16 @@ const ResearchSection = () => {
                       <div className='text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)] mb-3'>
                         Research interests
                       </div>
-                      <TagList items={research.interests} variant='secondary' />
+                      <TagList items={research.interests || []} variant='secondary' />
                     </div>
 
                     <div className='rounded-[var(--radius)] border border-[var(--border)] bg-[var(--bg-subtle)] p-4'>
                       <div className='text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)] mb-2'>
                         Current thesis
                       </div>
-                      <div className='text-[14.5px] font-medium text-[var(--text)]'>{research.thesis.title}</div>
+                      <div className='text-[14.5px] font-medium text-[var(--text)]'>{research.thesis?.title}</div>
                       <p className='mt-2 text-[13.5px] leading-relaxed text-[var(--text-secondary)]'>
-                        {research.thesis.description}
+                        {research.thesis?.description}
                       </p>
                     </div>
 
@@ -118,7 +122,7 @@ const ResearchSection = () => {
                     </div>
                   </div>
 
-                  <TagList items={pub.tags} variant='muted' />
+                  <TagList items={pub.tags || []} variant='muted' />
                 </Disclosure>
               </Reveal>
             ))}

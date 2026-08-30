@@ -1,0 +1,11 @@
+﻿import express from 'express';
+import auth from '../../middlewares/auth';
+import validateRequest from '../../middlewares/validateRequest';
+import { AdminController } from './admin.controller';
+import { AdminValidation } from './admin.validation';
+const router = express.Router();
+router.post('/login', validateRequest(AdminValidation.loginAdminZodSchema), AdminController.loginAdmin);
+router.get('/me', auth(), AdminController.getMe);
+router.patch('/change-password', auth(), validateRequest(AdminValidation.changePasswordZodSchema), AdminController.changePassword);
+router.patch('/profile', auth(), AdminController.updateProfile);
+export const AdminRoutes = router;

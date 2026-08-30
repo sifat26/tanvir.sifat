@@ -1,9 +1,9 @@
-﻿import { ArrowRight, Code2, MapPin, Sparkles, Zap } from 'lucide-react';
+import { ArrowRight, Code2, MapPin, Sparkles, Zap } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import ResumeButton from '../../../components/ui/ResumeButton';
 import SocialLinks from '../../../components/ui/SocialLinks';
-import { personal } from '../../../data/portfolio';
+import { usePersonal } from '../../../hooks/usePortfolioData';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
 
 /**
@@ -65,8 +65,14 @@ const StatCell = ({ label, value, icon: Icon }) => (
 );
 
 const HeroSection = () => {
-  const hasResume = personal.resumeUrl && personal.resumeUrl !== '[ADD_RESUME_URL]';
+  const { data: personal, isLoading } = usePersonal();
   const reduced = useReducedMotion();
+
+  if (isLoading || !personal) {
+    return <div className='min-h-[80vh] flex items-center justify-center text-[var(--text-muted)]'>Loading...</div>;
+  }
+
+  const hasResume = personal.resumeUrl && personal.resumeUrl !== '[ADD_RESUME_URL]';
   // Above the fold: a short fade only, no transform, so nothing delays the
   // first paint. Skipped entirely under prefers-reduced-motion.
   const intro = (delay) =>
@@ -84,22 +90,22 @@ const HeroSection = () => {
         aria-hidden
         className='gradient-blob'
         style={{
-          width: 420,
-          height: 420,
-          top: -100,
-          right: -80,
-          background: 'radial-gradient(circle, #22c55e, transparent 70%)',
+          width: 480,
+          height: 480,
+          top: -120,
+          right: -100,
+          background: 'radial-gradient(circle, #6366f1, transparent 70%)',
         }}
       />
       <div
         aria-hidden
         className='gradient-blob'
         style={{
-          width: 360,
-          height: 360,
-          bottom: -80,
-          left: -60,
-          background: 'radial-gradient(circle, #4ade80, transparent 70%)',
+          width: 320,
+          height: 320,
+          bottom: -60,
+          left: -80,
+          background: 'radial-gradient(circle, #a5b4fc, transparent 70%)',
           animationDelay: '-4s',
         }}
       />
@@ -109,23 +115,26 @@ const HeroSection = () => {
           {/* Copy */}
           <motion.div {...intro(0)} className='lg:col-span-7'>
             {/* Availability pill */}
-            <div className='inline-flex items-center gap-2 mb-6 sm:mb-8 px-2.5 py-1 rounded-full border border-[var(--border)] bg-[var(--bg-subtle)] text-[12px] font-medium text-[var(--text-secondary)]'>
-              <span className='relative flex h-1.5 w-1.5'>
-                <span className='animate-ping absolute inline-flex h-full w-full rounded-full dot-live opacity-70' />
-                <span className='relative inline-flex rounded-full h-1.5 w-1.5 dot-live' />
-              </span>
-              Available for new opportunities
-            </div>
+            {personal.availability && (
+              <div className='inline-flex items-center gap-2 mb-6 sm:mb-8 px-2.5 py-1 rounded-full border border-[var(--border)] bg-[var(--bg-subtle)] text-[12px] font-medium text-[var(--text-secondary)]'>
+                <span className='relative flex h-1.5 w-1.5'>
+                  <span className='animate-ping absolute inline-flex h-full w-full rounded-full dot-live opacity-70' />
+                  <span className='relative inline-flex rounded-full h-1.5 w-1.5 dot-live' />
+                </span>
+                {personal.availability}
+              </div>
+            )}
 
             {/* Headline with gradient accent */}
             <h1 className='text-[clamp(2rem,8vw,2.7rem)] sm:text-5xl md:text-6xl font-semibold tracking-tightest leading-[1.05] text-[var(--text)]'>
-              Building <span className='text-gradient'>scalable</span> web applications.
+              {personal.headline.split('scalable')[0]}
+              <span className='text-gradient'>scalable</span>
+              {personal.headline.split('scalable')[1]}
             </h1>
 
             {/* Intro */}
             <p className='mt-5 sm:mt-6 max-w-2xl text-[15.5px] sm:text-[17px] md:text-[18px] leading-relaxed text-[var(--text-secondary)]'>
-              Frontend-focused full-stack engineer shipping production apps with{' '}
-              <span className='font-medium text-[var(--text)]'>React, Next.js, and Node</span>.
+              {personal.intro}
             </p>
 
             {/* Meta */}
@@ -144,13 +153,13 @@ const HeroSection = () => {
                 <ArrowRight className='w-3.5 h-3.5' />
               </a>
               {hasResume ? (
-                <ResumeButton variant='secondary' label='Download resume' />
+                <ResumeButton variant='secondary' label='Download resume' url={personal.resumeUrl} />
               ) : (
                 <a href='#contact' className='btn btn-secondary'>
                   Get in touch
                 </a>
               )}
-              <SocialLinks className='sm:ml-1' links={['github', 'linkedin']} />
+              <SocialLinks className='sm:ml-1' />
             </div>
           </motion.div>
 
@@ -161,7 +170,7 @@ const HeroSection = () => {
               <div className='col-span-2 bento p-0 overflow-hidden'>
                 <div className='relative aspect-[16/10]'>
                   <picture>
-                    <source srcSet={personal.portraitWebp} type='image/webp' />
+                    {personal.portraitWebp && <source srcSet={personal.portraitWebp} type='image/webp' />}
                     <img
                       src={personal.portrait}
                       alt={`${personal.name} — portrait`}
@@ -182,7 +191,7 @@ const HeroSection = () => {
                   <div className='absolute bottom-3 left-3 right-3 flex items-center justify-between'>
                     <div>
                       <div className='text-[11px] font-mono uppercase tracking-wider text-white/70'>Currently</div>
-                      <div className='text-white text-[13px] font-medium'>Web Developer · UTRDL</div>
+                      <div className='text-white text-[13px] font-medium'>{personal.role.split(',')[0]}</div>
                     </div>
                     <div className='inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-white/15 backdrop-blur border border-white/20 text-white text-[11px] font-mono'>
                       <Sparkles className='w-3 h-3' />

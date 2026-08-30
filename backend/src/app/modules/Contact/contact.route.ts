@@ -1,0 +1,10 @@
+﻿import express from 'express';
+import auth from '../../middlewares/auth';
+import { ContactController } from './contact.controller';
+const router = express.Router();
+router.post('/', ContactController.submit);
+router.get('/', auth(), ContactController.getAll);
+router.patch('/:id/read', auth(), ContactController.markRead);
+router.patch('/:id/star', auth(), ContactController.toggleStar);
+router.delete('/:id', auth(), ContactController.remove);
+export const ContactRoutes = router;

@@ -1,0 +1,13 @@
+﻿import express from 'express';
+import auth from '../../middlewares/auth';
+import { ResearchController } from './research.controller';
+const router = express.Router();
+router.get('/', ResearchController.getResearch);
+router.put('/', auth(), ResearchController.updateMain);
+router.post('/publications', auth(), ResearchController.addPublication);
+router.patch('/publications/:id', auth(), ResearchController.updatePublication);
+router.delete('/publications/:id', auth(), ResearchController.removePublication);
+router.post('/timeline', auth(), ResearchController.addTimeline);
+router.patch('/timeline/:id', auth(), ResearchController.updateTimeline);
+router.delete('/timeline/:id', auth(), ResearchController.removeTimeline);
+export const ResearchRoutes = router;

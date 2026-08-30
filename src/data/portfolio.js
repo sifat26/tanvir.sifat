@@ -44,6 +44,7 @@ export const navLinks = [
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },
+  { label: 'Blog', href: '#blog' },
   { label: 'Research', href: '#research' },
   { label: 'Education', href: '#education' },
   { label: 'Resume', href: '#resume' },
@@ -78,7 +79,8 @@ export const experiences = [
     location: 'Bangladesh',
     period: 'June 2024 — Present',
     type: 'Full-time',
-    summary: 'Build and ship Angular and Next.js apps used in live business operations, and own them through to IIS deployment.',
+    summary:
+      'Build and ship Angular and Next.js apps used in live business operations, and own them through to IIS deployment.',
     highlights: [
       'Build and ship Angular and Next.js applications used in live business operations, turning design specs into responsive, accessible interfaces.',
       'Built shared component libraries that cut repeated UI work across features and kept the codebase easier to maintain.',
@@ -197,7 +199,7 @@ export const clientProjects = [
       'Deployed and configured the app on an Azure VPS',
     ],
     tech: ['Next.js', 'Node.js', 'Express.js'],
-    image: null,
+    image: 'https://res.cloudinary.com/dklcgg4jx/image/upload/v1787860572/portfolio/projects/t5fhvymejs6pnp6yxqpd.png',
     links: { live: 'https://bazarica.com.bd/', github: null, githubServer: null },
   },
   {
@@ -219,7 +221,7 @@ export const clientProjects = [
       'Deployed the app to a production VPS',
     ],
     tech: ['Next.js', 'Node.js', 'Express.js'],
-    image: null,
+    image: 'https://res.cloudinary.com/dklcgg4jx/image/upload/v1787860658/portfolio/projects/yfp19s4ivepfvojuytpk.png',
     links: { live: 'https://atkias-zone.vercel.app/', github: null, githubServer: null },
   },
   {
@@ -241,7 +243,7 @@ export const clientProjects = [
       'Deployed the app to cPanel hosting',
     ],
     tech: ['React', 'Node.js', 'Express.js'],
-    image: null,
+    image: 'https://res.cloudinary.com/dklcgg4jx/image/upload/v1787860739/portfolio/projects/b13bcrijdmeouehlacda.png',
     links: { live: 'https://outfitro.com/', github: null, githubServer: null },
   },
 ];
@@ -250,6 +252,95 @@ export const clientProjects = [
 export const projects = [
   {
     id: 1,
+    type: 'personal',
+    title: 'Kahf Treasure',
+    category: 'E-Commerce Platform',
+    year: '2026',
+    featured: true,
+    tagline: 'A full-stack e-commerce platform for an attar and fragrance shop.',
+    problem:
+      'The client needed a high-performance, bilingual luxury storefront to present authentic alcohol-free attar oils with custom scent profiles, package deals, and instant WhatsApp ordering for the Bangladesh market.',
+    solution:
+      'Architected a Next.js App Router application with React 19, Redux Toolkit for cart state, Tailwind CSS v4 design system, Cloudinary media handling, and automated WhatsApp order message generation.',
+    features: [
+      'Dynamic product catalog with volume and price variations',
+      'Interactive Enquiry Bag / Cart Drawer',
+      'One-click WhatsApp order generation',
+      'Bilingual interface with custom typography',
+      'Full SEO metadata with JSON-LD schemas',
+      'Framer Motion scroll reveal micro-interactions',
+    ],
+    challenges:
+      'Implementing smooth bilingual typography while maintaining fast server-rendered performance and seamless responsive cart management.',
+    tech: ['Next.js', 'React', 'Redux Toolkit', 'Tailwind CSS', 'Node.js', 'Express.js', 'MongoDB', 'Cloudinary'],
+    image: 'https://res.cloudinary.com/dklcgg4jx/image/upload/v1787860479/portfolio/projects/vjwxhhcxvqyhvmrsppiz.png',
+    links: {
+      live: 'https://kahf-treasure.vercel.app',
+      github: 'https://github.com/sifat26/KAHF-TREASURE',
+      githubServer: null,
+    },
+  },
+  {
+    id: 2,
+    type: 'personal',
+    title: 'Nirnoy',
+    category: 'EdTech & Assessment Platform',
+    year: '2026',
+    featured: true,
+    tagline: 'A full-stack, server-authoritative MCQ exam and assessment platform.',
+    problem:
+      'SSC/HSC students in Bangladesh needed a reliable, portable platform to practice curriculum-aligned exams with fair server-side grading and real-time timer synchronization without cheating or answer leaks.',
+    solution:
+      'Designed and shipped a full-stack platform with React 19, Express 5, and MongoDB. Features a server-authoritative timer, answer-stripping security, instant server-side grading with rich explanations, attempt history, and admin JSON exam upload + analytics leaderboard.',
+    features: [
+      'Server-authoritative countdown timer robust to tab throttling',
+      'Server-side grading & answer-stripping security',
+      'Student account history & personal score analytics',
+      'Admin dashboard with JSON exam importer & CSV export',
+      'Per-exam leaderboards & question difficulty breakdown',
+      'Responsive UI with Bengali font support',
+    ],
+    challenges:
+      'Ensuring zero client answer leakage prior to submission while guaranteeing precise timer synchronization across disparate network speeds.',
+    tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Tailwind CSS', 'Zod'],
+    image: 'https://res.cloudinary.com/dklcgg4jx/image/upload/v1788083807/portfolio/projects/cjgejjy9x14o9gyufczf.png',
+    links: {
+      live: 'https://nirnoy.vercel.app',
+      github: 'https://github.com/sifat26/mcq-exam-platform',
+      githubServer: null,
+    },
+  },
+  {
+    id: 3,
+    type: 'personal',
+    title: 'SelfMatrix',
+    category: 'AI & Assessment Platform',
+    year: '2026',
+    featured: true,
+    tagline: 'A scenario-based communication personality assessment with AI-powered personalized insights.',
+    problem:
+      'Standard personality tests are often generic and lack actionable communication guidance, while users need contextual insights on how they make decisions, handle conflict, and collaborate in teams.',
+    solution:
+      'Engineered a 32-scenario interactive assessment evaluating 4 archetypes (Driver, Influencer, Supporter, Analyst) with custom scoring algorithms and LLM-powered personalized growth plans.',
+    features: [
+      '32 original scenario-based questions with reverse-style consistency checks',
+      'Scoring algorithm calculating primary, secondary, and blend profiles',
+      'AI-powered personalized action plans & communication advice',
+      'Shareable result URLs with state encoding',
+      'Interactive Radix UI & Tailwind CSS responsive interface',
+    ],
+    challenges:
+      'Developing an accurate weighted multi-dimensional scoring algorithm while maintaining strict AI guardrails for supportive, actionable feedback.',
+    tech: ['React', 'TypeScript', 'Node.js', 'Express.js', 'Tailwind CSS', 'Supabase'],
+    image: 'https://res.cloudinary.com/dklcgg4jx/image/upload/v1788083789/portfolio/projects/hw5fby1jqjopyu7t75jc.png',
+    links: {
+      live: 'https://selfmatrix.vercel.app',
+      github: 'https://github.com/sifat26/personality-quiz',
+      githubServer: null,
+    },
+  },
+  {
+    id: 4,
     type: 'personal',
     title: 'BlogNest',
     category: 'Full-Stack Platform',
@@ -269,7 +360,7 @@ export const projects = [
     ],
     challenges:
       'Designing a comment schema that supported arbitrarily nested replies while keeping read queries performant on MongoDB.',
-    tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Firebase'],
+    tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Firebase'],
     image: 'https://i.postimg.cc/2yxXm5S4/blognestss.png',
     links: {
       live: 'https://blognest-d41ff.web.app/',
@@ -278,7 +369,7 @@ export const projects = [
     },
   },
   {
-    id: 2,
+    id: 5,
     type: 'personal',
     title: 'Woven Earth',
     category: 'E-Commerce',
@@ -298,7 +389,7 @@ export const projects = [
     ],
     challenges:
       'Balancing an editorial, gallery-first visual style with the utility of an e-commerce interface, without falling back on template patterns.',
-    tech: ['React', 'Firebase', 'MongoDB', 'Express', 'Tailwind CSS'],
+    tech: ['React', 'Firebase', 'MongoDB', 'Express.js', 'Tailwind CSS'],
     image: 'https://i.postimg.cc/fLc8jbmM/woben.png',
     links: {
       live: 'https://art-and-craft-b1839.web.app/',
@@ -307,7 +398,7 @@ export const projects = [
     },
   },
   {
-    id: 3,
+    id: 6,
     type: 'personal',
     title: 'RoyalStays',
     category: 'Hospitality',

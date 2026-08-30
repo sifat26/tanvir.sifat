@@ -1,8 +1,9 @@
-﻿import { ArrowUpRight, Mail, Menu, Moon, Sun, X } from 'lucide-react';
+import { ArrowUpRight, Mail, Menu, Moon, Sun, X } from 'lucide-react';
 import { AnimatePresence, motion, useScroll } from 'motion/react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import SocialLinks from '../../../components/ui/SocialLinks';
-import { navLinks, personal } from '../../../data/portfolio';
+import { navLinks } from '../../../data/portfolio';
+import { useBlogs, usePersonal } from '../../../hooks/usePortfolioData';
 import { useTheme } from '../../../hooks/useTheme';
 
 // The full link row only fits from this width up; below it we use the drawer.
@@ -30,6 +31,19 @@ const Navbar = () => {
   const { scrollYProgress } = useScroll();
   const closeButtonRef = useRef(null);
 
+  const { data: personal } = usePersonal();
+  const { data: blogs } = useBlogs();
+
+  const hasBlogs = Boolean(blogs && blogs.length > 0);
+
+  // Filter out Blog link if no blogs exist
+  const visibleNavLinks = useMemo(() => {
+    return navLinks.filter((link) => {
+      if (link.href === '#blog' && !hasBlogs) return false;
+      return true;
+    });
+  }, [hasBlogs]);
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
@@ -38,7 +52,7 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    const ids = navLinks.map((l) => l.href.replace('#', ''));
+    const ids = visibleNavLinks.map((l) => l.href.replace('#', ''));
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -52,7 +66,7 @@ const Navbar = () => {
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
-  }, []);
+  }, [visibleNavLinks]);
 
   // Close the drawer when the viewport grows past the desktop breakpoint.
   useEffect(() => {
@@ -82,7 +96,7 @@ const Navbar = () => {
   }, [open]);
 
   const close = () => setOpen(false);
-  const hasResume = personal.resumeUrl && personal.resumeUrl !== '[ADD_RESUME_URL]';
+  const hasResume = personal?.resumeUrl && personal.resumeUrl !== '[ADD_RESUME_URL]';
 
   return (
     <>
@@ -100,23 +114,21 @@ const Navbar = () => {
         <div className='container-page'>
           <div className='flex items-center justify-between h-14 sm:h-16 gap-2'>
             {/* Logo */}
-            {/* No aria-label here: the visible text ("Sifat") is the accessible
-                name, so voice-control users can say what they see. */}
             <a href='#top' onClick={close} className='flex items-center gap-2 group min-w-0 shrink'>
               <span
                 aria-hidden='true'
                 className='w-8 h-8 rounded-md bg-[var(--text)] text-[var(--bg)] grid place-items-center font-semibold text-sm shrink-0 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105'
               >
-                S
+                {personal ? personal.shortName.charAt(0).toUpperCase() : 'S'}
               </span>
               <span className='text-[15px] font-semibold tracking-tight text-[var(--text)] truncate'>
-                {personal.shortName}
+                {personal ? personal.shortName : 'Loading...'}
               </span>
             </a>
 
             {/* Desktop nav */}
             <nav className='hidden lg:flex items-center gap-0.5' aria-label='Primary'>
-              {navLinks.map((link) => (
+              {visibleNavLinks.map((link) => (
                 <a key={link.href} href={link.href} className={`nav-link ${active === link.href ? 'active' : ''}`}>
                   {link.label}
                 </a>
@@ -125,6 +137,7 @@ const Navbar = () => {
 
             {/* Actions */}
             <div className='flex items-center gap-1 sm:gap-2 shrink-0'>
+              {/* Theme toggle */}
               <motion.button
                 type='button'
                 onClick={toggle}
@@ -146,22 +159,26 @@ const Navbar = () => {
                 </AnimatePresence>
               </motion.button>
 
+              {/* Resume */}
               {hasResume && (
                 <a
                   href={personal.resumeUrl}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='hidden xl:inline-flex btn btn-secondary text-sm'
+                  className='hidden 2xl:inline-flex btn btn-secondary text-sm'
                 >
                   Resume
                   <ArrowUpRight className='w-3.5 h-3.5' />
                 </a>
               )}
 
-              <a href='#contact' className='hidden md:inline-flex btn btn-primary'>
-                Get in touch
+              {/* Get in touch */}
+              <a href='#contact' className='hidden lg:inline-flex btn btn-primary text-sm px-3 xl:px-[18px]'>
+                <span className='hidden xl:inline'>Get in touch</span>
+                <span className='xl:hidden'>Contact</span>
               </a>
 
+              {/* Hamburger */}
               <motion.button
                 type='button'
                 onClick={() => setOpen(true)}
@@ -229,7 +246,7 @@ const Navbar = () => {
                 className='flex-1 overflow-y-auto overscroll-contain px-3 py-3 flex flex-col gap-0.5'
                 aria-label='Mobile'
               >
-                {navLinks.map((link, i) => (
+                {visibleNavLinks.map((link, i) => (
                   <motion.a
                     key={link.href}
                     href={link.href}
@@ -266,16 +283,18 @@ const Navbar = () => {
                   </a>
                 </div>
 
-                <div className='flex items-center justify-between gap-2'>
-                  <a
-                    href={`mailto:${personal.email}`}
-                    className='inline-flex items-center gap-2 text-xs text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors min-w-0'
-                  >
-                    <Mail className='w-3.5 h-3.5 shrink-0' />
-                    <span className='truncate'>{personal.email}</span>
-                  </a>
-                  <SocialLinks links={['github', 'linkedin']} className='-mr-2 shrink-0' />
-                </div>
+                {personal && (
+                  <div className='flex items-center justify-between gap-2'>
+                    <a
+                      href={`mailto:${personal.email}`}
+                      className='inline-flex items-center gap-2 text-xs text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors min-w-0'
+                    >
+                      <Mail className='w-3.5 h-3.5 shrink-0' />
+                      <span className='truncate'>{personal.email}</span>
+                    </a>
+                    <SocialLinks links={['github', 'linkedin']} className='-mr-2 shrink-0' />
+                  </div>
+                )}
               </motion.div>
             </motion.div>
           </>

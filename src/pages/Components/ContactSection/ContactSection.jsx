@@ -3,9 +3,9 @@ import { motion } from 'motion/react';
 import { useState } from 'react';
 import SectionHeader from '../../../components/ui/SectionHeader';
 import SocialLinks from '../../../components/ui/SocialLinks';
-import { personal, socials } from '../../../data/portfolio';
+import { usePersonal, useSocials } from '../../../hooks/usePortfolioData';
 
-const CONTACT_ENDPOINT = 'https://sifat-portfolio-backend.vercel.app/api/send';
+const CONTACT_ENDPOINT = `${import.meta.env.VITE_API_URL}/contact`;
 
 const EMPTY_FORM = { name: '', email: '', phone: '', subject: '', message: '' };
 
@@ -14,6 +14,11 @@ const ContactSection = () => {
   const [loading, setLoading] = useState(false);
   // status: null | { type: 'success' | 'error', message: string }
   const [status, setStatus] = useState(null);
+
+  const { data: personal, isLoading: isPersonalLoading } = usePersonal();
+  const { data: socials, isLoading: isSocialsLoading } = useSocials();
+
+  if (isPersonalLoading || isSocialsLoading || !personal || !socials) return null;
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -79,22 +84,24 @@ const ContactSection = () => {
                 </span>
               </a>
 
-              <a
-                href={personal.whatsapp}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='flex items-center gap-3 group'
-              >
-                <span className='w-10 h-10 grid place-items-center rounded-lg border border-[var(--border)] bg-[var(--bg-subtle)] text-[var(--text)] shrink-0'>
-                  <Phone className='w-4 h-4' />
-                </span>
-                <span>
-                  <span className='block text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)]'>
-                    Phone / WhatsApp
+              {personal.phone && (
+                <a
+                  href={personal.whatsapp || `tel:${personal.phone.replace(/[^0-9+]/g, '')}`}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='flex items-center gap-3 group'
+                >
+                  <span className='w-10 h-10 grid place-items-center rounded-lg border border-[var(--border)] bg-[var(--bg-subtle)] text-[var(--text)] shrink-0'>
+                    <Phone className='w-4 h-4' />
                   </span>
-                  <span className='text-[14.5px] text-[var(--text)] group-hover:underline'>{personal.phone}</span>
-                </span>
-              </a>
+                  <span>
+                    <span className='block text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)]'>
+                      Phone / WhatsApp
+                    </span>
+                    <span className='text-[14.5px] text-[var(--text)] group-hover:underline'>{personal.phone}</span>
+                  </span>
+                </a>
+              )}
 
               <div className='flex items-center gap-3'>
                 <span className='w-10 h-10 grid place-items-center rounded-lg border border-[var(--border)] bg-[var(--bg-subtle)] text-[var(--text)] shrink-0'>
@@ -116,15 +123,17 @@ const ContactSection = () => {
               <SocialLinks className='-ml-2' links={['github', 'linkedin', 'twitter']} />
             </div>
 
-            <a
-              href={socials.linkedin}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='mt-8 inline-flex btn btn-secondary'
-            >
-              Connect on LinkedIn
-              <ArrowUpRight className='w-3.5 h-3.5' />
-            </a>
+            {socials.linkedin && (
+              <a
+                href={socials.linkedin}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='mt-8 inline-flex btn btn-secondary'
+              >
+                Connect on LinkedIn
+                <ArrowUpRight className='w-3.5 h-3.5' />
+              </a>
+            )}
           </div>
 
           {/* Form */}
@@ -142,7 +151,7 @@ const ContactSection = () => {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className='input'
+                    className='input w-full'
                     placeholder='Your name'
                   />
                 </div>
@@ -157,7 +166,7 @@ const ContactSection = () => {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className='input'
+                    className='input w-full'
                     placeholder='you@example.com'
                   />
                 </div>
@@ -171,7 +180,7 @@ const ContactSection = () => {
                     type='tel'
                     value={formData.phone}
                     onChange={handleChange}
-                    className='input'
+                    className='input w-full'
                     placeholder='+880 …'
                   />
                 </div>
@@ -186,7 +195,7 @@ const ContactSection = () => {
                     required
                     value={formData.subject}
                     onChange={handleChange}
-                    className='input'
+                    className='input w-full'
                     placeholder="What's this about?"
                   />
                 </div>
@@ -203,7 +212,7 @@ const ContactSection = () => {
                   rows={5}
                   value={formData.message}
                   onChange={handleChange}
-                  className='input resize-y'
+                  className='input w-full resize-y'
                   placeholder='Tell me a little about your project or role…'
                 />
               </div>

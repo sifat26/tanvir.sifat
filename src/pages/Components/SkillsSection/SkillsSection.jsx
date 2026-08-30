@@ -1,32 +1,29 @@
 import { Boxes, Cloud, Code2, Cpu, Database, Wrench } from 'lucide-react';
 import Reveal from '../../../components/ui/Reveal';
 import SectionHeader from '../../../components/ui/SectionHeader';
-import { skills } from '../../../data/portfolio';
+import { TechIcon } from '../../../components/ui/Tag';
+import { useSkills } from '../../../hooks/usePortfolioData';
 
 /**
- * Icon lookup per group. Palette is anchored on emerald and stays within
- * a cool, cohesive range (emerald → teal → sky → slate) instead of the
- * previous rainbow — reads as a professional product surface.
+ * Icon lookup per group with refined palette.
  */
 const GROUP_META = {
-  Frontend: { icon: Code2, accent: '#22c55e' },
-  Backend: { icon: Boxes, accent: '#16a34a' },
+  Frontend: { icon: Code2, accent: '#6366f1' },
+  Backend: { icon: Boxes, accent: '#8b5cf6' },
   'AI / ML': { icon: Cpu, accent: '#0ea5e9' },
-  Databases: { icon: Database, accent: '#0891b2' },
-  Deployment: { icon: Cloud, accent: '#4ade80' },
-  Tools: { icon: Wrench, accent: '#64748b' },
+  Databases: { icon: Database, accent: '#06b6d4' },
+  Deployment: { icon: Cloud, accent: '#10b981' },
+  Tools: { icon: Wrench, accent: '#f59e0b' },
 };
 
 /**
- * BentoSkill — a single group tile with a mouse-tracked spotlight,
- * accent icon, and chip cluster.
+ * BentoSkill — a single group tile with mouse-tracked spotlight,
+ * accent icon, and tech-icon chips.
  */
 const BentoSkill = ({ group, items, index }) => {
   const meta = GROUP_META[group] || { icon: Code2, accent: 'var(--accent)' };
   const Icon = meta.icon;
 
-  // Cursor spotlight is driven globally by useCursorSpotlight in Home,
-  // which sets --mx / --my on any .bento the cursor is over.
   return (
     <Reveal delay={index * 0.05} className='bento group'>
       <div className='flex items-center justify-between'>
@@ -47,13 +44,17 @@ const BentoSkill = ({ group, items, index }) => {
 
       <div className='mt-4 text-[15px] font-semibold text-[var(--text)]'>{group}</div>
 
-      <ul className='mt-3 flex flex-wrap gap-1.5'>
+      <ul className='mt-3.5 flex flex-wrap gap-2'>
         {items.map((item) => (
           <li
             key={item}
-            className='font-mono text-[11.5px] px-2 py-1 rounded-md border border-[var(--border)] bg-[var(--bg-subtle)] text-[var(--text-secondary)] transition-colors group-hover:text-[var(--text)]'
+            className='inline-flex items-center gap-1.5 font-mono text-[12px] px-2.5 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--bg-subtle)] hover:bg-[var(--bg-elevated)] text-[var(--text-secondary)] hover:text-[var(--text)] hover:border-[var(--border-strong)] transition-all group/item shadow-xs cursor-default'
           >
-            {item}
+            <TechIcon
+              name={item}
+              className='w-3.5 h-3.5 shrink-0 transition-transform group-hover/item:scale-115'
+            />
+            <span>{item}</span>
           </li>
         ))}
       </ul>
@@ -62,6 +63,10 @@ const BentoSkill = ({ group, items, index }) => {
 };
 
 const SkillsSection = () => {
+  const { data: skills, isLoading } = useSkills();
+
+  if (isLoading || !skills) return null;
+
   return (
     <section
       id='skills'
@@ -81,7 +86,7 @@ const SkillsSection = () => {
 
         <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5'>
           {skills.map((g, i) => (
-            <BentoSkill key={g.group} group={g.group} items={g.items} index={i} />
+            <BentoSkill key={g._id || g.group} group={g.group} items={g.items || []} index={i} />
           ))}
         </div>
       </div>

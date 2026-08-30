@@ -1,5 +1,5 @@
 import { Download, ExternalLink, FileText } from 'lucide-react';
-import { personal } from '../../data/portfolio';
+import { usePersonal } from '../../hooks/usePortfolioData';
 import Reveal from './Reveal';
 
 /**
@@ -10,6 +10,9 @@ import Reveal from './Reveal';
  * is set on `personal`.
  */
 const ResumeCard = () => {
+  const { data: personal } = usePersonal();
+
+  if (!personal) return null;
   const { resumeUrl, resumeDocx, resumeUpdated, name } = personal;
   if (!resumeUrl || resumeUrl === '[ADD_RESUME_URL]') return null;
 
@@ -26,10 +29,14 @@ const ResumeCard = () => {
             <span>PDF</span>
             <span aria-hidden='true'>·</span>
             <span>Updated {resumeUpdated}</span>
-            <span aria-hidden='true'>·</span>
-            <a href={resumeDocx} download className='hover:text-[var(--text)] underline-offset-2 hover:underline'>
-              Word version
-            </a>
+            {resumeDocx && (
+              <>
+                <span aria-hidden='true'>·</span>
+                <a href={resumeDocx} download className='hover:text-[var(--text)] underline-offset-2 hover:underline'>
+                  Word version
+                </a>
+              </>
+            )}
           </div>
         </div>
       </div>

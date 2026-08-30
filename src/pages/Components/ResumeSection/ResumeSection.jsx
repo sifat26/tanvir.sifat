@@ -1,5 +1,5 @@
 import ResumeCard from '../../../components/ui/ResumeCard';
-import { personal } from '../../../data/portfolio';
+import { usePersonal } from '../../../hooks/usePortfolioData';
 
 /**
  * ResumeSection — thin wrapper that drops the ResumeCard into the page flow
@@ -7,7 +7,9 @@ import { personal } from '../../../data/portfolio';
  * the section disappears cleanly if the resume is ever removed.
  */
 const ResumeSection = () => {
-  if (!personal.resumeUrl || personal.resumeUrl === '[ADD_RESUME_URL]') return null;
+  const { data: personal } = usePersonal();
+
+  if (!personal || !personal.resumeUrl || personal.resumeUrl === '[ADD_RESUME_URL]') return null;
 
   return (
     <section id='resume' className='py-14 sm:py-20 md:py-28 border-b border-[var(--border)]' aria-label='Resume'>

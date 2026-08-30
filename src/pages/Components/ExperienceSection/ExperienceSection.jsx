@@ -2,9 +2,15 @@ import Disclosure, { DisclosureToggle } from '../../../components/ui/Disclosure'
 import Reveal from '../../../components/ui/Reveal';
 import SectionHeader from '../../../components/ui/SectionHeader';
 import { TagList } from '../../../components/ui/Tag';
-import { experiences } from '../../../data/portfolio';
+import { useExperiences } from '../../../hooks/usePortfolioData';
 
 const ExperienceSection = () => {
+  const { data: experiences, isLoading } = useExperiences();
+
+  if (isLoading || !experiences) {
+    return null;
+  }
+
   return (
     <section
       id='experience'
@@ -20,20 +26,29 @@ const ExperienceSection = () => {
             subtitle='Roles focused on shipping production frontend to real users.'
           />
 
-          <div className='md:col-span-8 space-y-5 sm:space-y-6'>
+          <div className='md:col-span-8 space-y-4 sm:space-y-5'>
             {experiences.map((exp, i) => (
-              <Reveal as='article' key={exp.id} delay={i * 0.07} className='card p-5 sm:p-6 md:p-7'>
-                <div className='flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1'>
-                  <h3 className='text-[17px] font-semibold text-[var(--text)]'>
-                    {exp.role} · {exp.shortName}
-                  </h3>
-                  <span className='font-mono text-[12px] text-[var(--text-muted)]'>{exp.period}</span>
-                </div>
-                <div className='mt-1 text-[13px] text-[var(--text-muted)]'>
-                  {exp.company} · {exp.location} · {exp.type}
+              <Reveal
+                as='article'
+                key={exp._id || i}
+                delay={i * 0.07}
+                className='card p-5 sm:p-6 md:p-7 border-l-2 border-l-[var(--accent)] hover:border-l-[var(--accent-hover)]'
+              >
+                <div className='flex flex-wrap items-start justify-between gap-x-4 gap-y-1'>
+                  <div>
+                    <h3 className='text-[17px] font-semibold text-[var(--text)]'>{exp.role}</h3>
+                    <div className='mt-0.5 text-[13.5px] font-medium text-[var(--accent)]'>
+                      {exp.company}
+                      {exp.location ? ` · ${exp.location}` : ''}
+                      {exp.type ? ` · ${exp.type}` : ''}
+                    </div>
+                  </div>
+                  <span className='font-mono text-[11.5px] text-[var(--text-muted)] bg-[var(--bg-muted)] px-2.5 py-1 rounded-md shrink-0 mt-0.5'>
+                    {exp.period}
+                  </span>
                 </div>
 
-                <p className='mt-4 text-[15px] leading-relaxed text-[var(--text-secondary)]'>{exp.summary}</p>
+                <p className='mt-4 text-[14.5px] leading-relaxed text-[var(--text-secondary)]'>{exp.summary}</p>
 
                 {/* Each card owns its own open state — independent accordions. */}
                 <Disclosure
@@ -41,18 +56,15 @@ const ExperienceSection = () => {
                   panelClassName='pt-4'
                 >
                   <ul className='space-y-2.5'>
-                    {exp.highlights.map((h, idx) => (
-                      <li key={idx} className='flex gap-3 text-[14.5px] leading-relaxed text-[var(--text-secondary)]'>
-                        <span
-                          aria-hidden='true'
-                          className='mt-2 h-1 w-1 rounded-full bg-[var(--text-muted)] shrink-0'
-                        />
+                    {(exp.highlights || []).map((h, idx) => (
+                      <li key={idx} className='flex gap-3 text-[14px] leading-relaxed text-[var(--text-secondary)]'>
+                        <span aria-hidden='true' className='mt-2 h-1 w-1 rounded-full bg-[var(--accent)] shrink-0' />
                         <span>{h}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <TagList className='mt-5' items={exp.tech} variant='muted' />
+                  {(exp.tech || []).length > 0 && <TagList className='mt-5' items={exp.tech} variant='muted' />}
                 </Disclosure>
               </Reveal>
             ))}

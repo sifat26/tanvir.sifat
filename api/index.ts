@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import app from '../backend/src/app';
+import config from '../backend/src/config';
 
 let isConnected = false;
 
@@ -7,7 +8,7 @@ async function connectToDatabase() {
   if (isConnected && mongoose.connection.readyState === 1) {
     return;
   }
-  const uri = process.env.MONGODB_URI;
+  const uri = process.env.MONGODB_URI || config.mongodb_uri;
   if (!uri) {
     throw new Error('MONGODB_URI environment variable is missing.');
   }

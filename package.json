@@ -8,7 +8,6 @@
     "dev:frontend": "vite",
     "dev:backend": "npm run dev --prefix backend",
     "seed": "npm run seed --prefix backend",
-    "build": "vite build",
     "build:client": "vite build",
     "build:api": "npx esbuild backend/src/serverless.ts --bundle --platform=node --target=node20 --format=esm --packages=external --outfile=api/index.js",
     "build": "vite build && npm run build:api",

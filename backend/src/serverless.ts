@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import app from '../backend/src/app';
-import config from '../backend/src/config';
+import app from './app';
+import config from './config';
 
 let isConnected = false;
 

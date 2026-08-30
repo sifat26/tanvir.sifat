@@ -9,7 +9,7 @@
     "dev:backend": "npm run dev --prefix backend",
     "seed": "npm run seed --prefix backend",
     "build:client": "vite build",
-    "build:api": "esbuild api/index.ts --bundle --platform=node --target=node20 --format=esm --packages=external --outfile=api/index.js",
+    "build:api": "esbuild backend/src/serverless.ts --bundle --platform=node --target=node20 --format=esm --packages=external --outfile=api/index.js",
     "build": "vite build && npm run build:api",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -55,7 +55,6 @@
     "@vitejs/plugin-react": "^5.0.0",
     "autoprefixer": "^10.4.21",
     "concurrently": "^10.0.5",
-    "esbuild": "^0.25.0",
     "eslint": "^9.33.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",

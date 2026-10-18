@@ -5,15 +5,16 @@ import { TechIcon } from '../../../components/ui/Tag';
 import { useSkills } from '../../../hooks/usePortfolioData';
 
 /**
- * Icon lookup per group with refined palette.
+ * Icon lookup per group — monochrome, uses design tokens only.
+ * All groups share the same neutral accent so the section feels cohesive.
  */
 const GROUP_META = {
-  Frontend: { icon: Code2, accent: '#6366f1' },
-  Backend: { icon: Boxes, accent: '#8b5cf6' },
-  'AI / ML': { icon: Cpu, accent: '#0ea5e9' },
-  Databases: { icon: Database, accent: '#06b6d4' },
-  Deployment: { icon: Cloud, accent: '#10b981' },
-  Tools: { icon: Wrench, accent: '#f59e0b' },
+  Frontend: { icon: Code2 },
+  Backend: { icon: Boxes },
+  'AI / ML': { icon: Cpu },
+  Databases: { icon: Database },
+  Deployment: { icon: Cloud },
+  Tools: { icon: Wrench },
 };
 
 /**
@@ -21,20 +22,13 @@ const GROUP_META = {
  * accent icon, and tech-icon chips.
  */
 const BentoSkill = ({ group, items, index }) => {
-  const meta = GROUP_META[group] || { icon: Code2, accent: 'var(--accent)' };
+  const meta = GROUP_META[group] || { icon: Code2 };
   const Icon = meta.icon;
 
   return (
     <Reveal delay={index * 0.05} className='bento group'>
       <div className='flex items-center justify-between'>
-        <div
-          className='w-9 h-9 rounded-lg grid place-items-center border transition-colors'
-          style={{
-            borderColor: `color-mix(in oklab, ${meta.accent} 35%, var(--border))`,
-            background: `color-mix(in oklab, ${meta.accent} 12%, transparent)`,
-            color: meta.accent,
-          }}
-        >
+        <div className='w-9 h-9 rounded-lg grid place-items-center border border-[var(--border)] bg-[var(--bg-subtle)] text-[var(--text)] transition-colors'>
           <Icon className='w-4 h-4' />
         </div>
         <div className='text-[10.5px] font-mono uppercase tracking-wider text-[var(--text-muted)]'>

@@ -20,7 +20,7 @@ const BulletList = ({ label, items }) =>
       <ul className='space-y-2'>
         {items.map((item, i) => (
           <li key={i} className='flex gap-2.5 text-[14.5px] leading-relaxed text-[var(--text-secondary)]'>
-            <span aria-hidden='true' className='mt-2 h-1 w-1 rounded-full shrink-0' style={{ background: 'var(--accent)' }} />
+            <span aria-hidden='true' className='mt-2 h-1 w-1 rounded-full bg-[var(--text-muted)] shrink-0' />
             <span>{item}</span>
           </li>
         ))}
@@ -113,12 +113,7 @@ const ProjectDetail = ({ project, onClose }) => {
             <div className='flex items-center justify-between gap-4 px-5 sm:px-7 py-4 border-b border-[var(--border)] shrink-0 pt-[max(1rem,env(safe-area-inset-top))] sm:pt-4'>
               <div className='flex flex-wrap items-center gap-2 font-mono text-[12px] text-[var(--text-muted)] min-w-0'>
                 <span
-                  className='inline-flex items-center px-1.5 py-0.5 rounded border'
-                  style={{
-                    color: 'var(--accent)',
-                    borderColor: 'color-mix(in oklab, var(--accent) 30%, transparent)',
-                    background: 'var(--accent-soft)',
-                  }}
+                  className='inline-flex items-center px-1.5 py-0.5 rounded border border-[var(--border-strong)] bg-[var(--bg-subtle)] text-[var(--text)]'
                 >
                   {project.year}
                 </span>

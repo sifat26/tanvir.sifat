@@ -103,8 +103,8 @@ const ProjectsSection = () => {
                   onClick={() => setFilterTech(tech)}
                   className={`px-3 py-1.5 text-xs font-medium rounded-full transition-colors border ${
                     filterTech === tech
-                      ? 'bg-[var(--accent)] text-white border-[var(--accent)]'
-                      : 'bg-transparent text-[var(--text-muted)] border-[var(--border)] hover:border-[var(--accent)] hover:text-[var(--text)]'
+                      ? 'bg-[var(--text)] text-[var(--bg)] border-[var(--text)]'
+                      : 'bg-transparent text-[var(--text-muted)] border-[var(--border)] hover:border-[var(--text)] hover:text-[var(--text)]'
                   }`}
                 >
                   {tech}

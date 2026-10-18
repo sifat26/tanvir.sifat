@@ -32,12 +32,12 @@ const ExperienceSection = () => {
                 as='article'
                 key={exp._id || i}
                 delay={i * 0.07}
-                className='card p-5 sm:p-6 md:p-7 border-l-2 border-l-[var(--accent)] hover:border-l-[var(--accent-hover)]'
+                className='card p-5 sm:p-6 md:p-7 border-l-2 border-l-[var(--text)] hover:border-l-[var(--text)]'
               >
                 <div className='flex flex-wrap items-start justify-between gap-x-4 gap-y-1'>
                   <div>
                     <h3 className='text-[17px] font-semibold text-[var(--text)]'>{exp.role}</h3>
-                    <div className='mt-0.5 text-[13.5px] font-medium text-[var(--accent)]'>
+                    <div className='mt-0.5 text-[13.5px] font-medium text-[var(--text-secondary)]'>
                       {exp.company}
                       {exp.location ? ` · ${exp.location}` : ''}
                       {exp.type ? ` · ${exp.type}` : ''}
@@ -58,7 +58,7 @@ const ExperienceSection = () => {
                   <ul className='space-y-2.5'>
                     {(exp.highlights || []).map((h, idx) => (
                       <li key={idx} className='flex gap-3 text-[14px] leading-relaxed text-[var(--text-secondary)]'>
-                        <span aria-hidden='true' className='mt-2 h-1 w-1 rounded-full bg-[var(--accent)] shrink-0' />
+                        <span aria-hidden='true' className='mt-2 h-1 w-1 rounded-full bg-[var(--text-muted)] shrink-0' />
                         <span>{h}</span>
                       </li>
                     ))}

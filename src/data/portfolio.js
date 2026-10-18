@@ -127,7 +127,10 @@ export const education = [
     institute: 'Mawlana Bhashani Science & Technology University',
     period: '2020 — 2025',
     status: 'Completed',
-    notes: ['Coursework across software engineering, data structures, algorithms, computer networks, and databases.'],
+    notes: [
+      'Coursework across software engineering, data structures, algorithms, computer networks, and databases.',
+      'CGPA 3.65 / 4.00',
+    ],
   },
   {
     degree: 'Higher Secondary Certificate — Science',
@@ -449,23 +452,41 @@ export const research = {
     {
       id: 1,
       title: 'An IoT-Based Lung Cancer Detection System from CT Images Using Deep Learning',
-      role: 'Author',
+      authors: 'Hossain, M. M., Miah, M. B. A., Saedi, M., Sifat, T. A., Hossain, M. N., and Hussain, N.',
+      role: 'Co-author',
       conference:
-        'International Conference on Intelligent Technology, Systems and Services for the Internet of Everything (ITSS-IoE 2025)',
+        '3rd International Conference on Intelligent Technology, System and Service for Internet of Everything (ITSS-IoE 2025)',
       venue: 'University of Wolverhampton, United Kingdom',
-      year: '2025',
-      summary: 'Pairs IoT infrastructure with deep learning to detect lung cancer from CT images.',
+      publisher: 'Springer Nature Singapore',
+      series: 'Lecture Notes in Electrical Engineering, vol. 10154, pp. 207–224',
+      year: '2026',
+      doi: '10.1007/978-981-92-3681-7_14',
+      doiUrl: 'https://doi.org/10.1007/978-981-92-3681-7_14',
+      summary:
+        'Published by Springer — hybrid deep learning system combining ResNet152V2 and InceptionV3 with a novel Hybrid Channel-Spatial Attention (HCSA) module for lung cancer detection from CT images.',
       context:
-        'Presented at ITSS-IoE 2025, held alongside the CyberVehiCare Launch Event — my first international publication.',
+        'Presented at ITSS-IoE 2025, held alongside the CyberVehiCare Launch Event — my first international publication, now published as a Springer book chapter.',
       abstract:
-        'Running inference at the edge rather than in a central hospital system is what makes the approach useful in practice: screening can happen where the scanner is, without shipping patient imaging off-site or waiting on specialist review. That constraint drove the work — the model had to stay accurate while small enough to deploy on limited IoT hardware. The open problems are the ones that decide whether it reaches patients: how reliably it holds up on scanners and populations it was never trained on.',
-      tags: ['Deep Learning', 'Computer Vision', 'IoT', 'Healthcare'],
+        'Proposed a hybrid IoT-based deep learning system combining ResNet152V2 and InceptionV3 via transfer learning, a novel Hybrid Channel-Spatial Attention (HCSA) module, and focal loss to address class imbalance. Achieved 98% accuracy on the benchmark IQ-OTH/NCCD lung CT dataset; contributed to data pipeline design and model evaluation as co-author. Running inference at the edge rather than in a central hospital system is what makes the approach useful in practice: screening can happen where the scanner is, without shipping patient imaging off-site.',
+      highlights: [
+        'Hybrid ResNet152V2 + InceptionV3 via transfer learning with novel HCSA attention module',
+        'Focal loss to address class imbalance in medical imaging data',
+        '98% accuracy on the IQ-OTH/NCCD lung CT benchmark dataset',
+        'Contributed to data pipeline design and model evaluation',
+      ],
+      tags: ['Deep Learning', 'Computer Vision', 'IoT', 'Healthcare', 'Transfer Learning'],
     },
   ],
   timeline: [
     {
+      year: '2026',
+      title: 'Springer publication — ITSS-IoE 2025, Lecture Notes in Electrical Engineering (vol. 10154)',
+      description:
+        'Co-authored chapter published by Springer Nature Singapore (DOI: 10.1007/978-981-92-3681-7_14) — hybrid deep learning system for lung cancer detection from CT images.',
+    },
+    {
       year: '2025',
-      title: 'International publication — ITSS-IoE 2025 (United Kingdom)',
+      title: 'International presentation — ITSS-IoE 2025 (United Kingdom)',
       description:
         'Presented research on IoT-based lung cancer detection using deep learning at the University of Wolverhampton.',
     },

@@ -22,12 +22,7 @@ const ProjectCard = ({ project, index = 0, onOpen }) => {
 
       <div className='mt-5 flex flex-wrap items-center gap-2 font-mono text-[12px] text-[var(--text-muted)]'>
         <span
-          className='inline-flex items-center px-1.5 py-0.5 rounded border'
-          style={{
-            color: 'var(--accent)',
-            borderColor: 'color-mix(in oklab, var(--accent) 30%, transparent)',
-            background: 'var(--accent-soft)',
-          }}
+          className='inline-flex items-center px-1.5 py-0.5 rounded border border-[var(--border-strong)] bg-[var(--bg-subtle)] text-[var(--text)]'
         >
           {project.year}
         </span>

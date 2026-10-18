@@ -35,8 +35,8 @@ const ProjectPreview = ({ project, interactive = true, className = '' }) => {
       />
       <div className='text-center px-6 relative'>
         <div
-          className='mx-auto w-14 h-14 sm:w-16 sm:h-16 rounded-xl grid place-items-center text-xl sm:text-2xl font-semibold text-white shadow-lg'
-          style={{ background: 'var(--gradient-brand)' }}
+          className='mx-auto w-14 h-14 sm:w-16 sm:h-16 rounded-xl grid place-items-center text-xl sm:text-2xl font-semibold shadow-lg'
+          style={{ background: 'var(--accent)', color: 'var(--accent-contrast)' }}
         >
           {project.title.charAt(0)}
         </div>
@@ -58,10 +58,10 @@ const ProjectPreview = ({ project, interactive = true, className = '' }) => {
             <div className='ml-2 flex-1 min-w-0 truncate font-mono text-[10.5px] text-[var(--text-muted)]'>
               {live.replace(/^https?:\/\//, '').replace(/\/$/, '')}
             </div>
-            <span className='inline-flex items-center gap-1 text-[10px] font-mono text-green-500 shrink-0'>
+            <span className='inline-flex items-center gap-1 text-[10px] font-mono shrink-0' style={{ color: 'var(--success)' }}>
               <span className='relative flex h-1.5 w-1.5'>
-                <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-70' />
-                <span className='relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500' />
+                <span className='animate-ping absolute inline-flex h-full w-full rounded-full opacity-70' style={{ background: 'var(--success)' }} />
+                <span className='relative inline-flex rounded-full h-1.5 w-1.5' style={{ background: 'var(--success)' }} />
               </span>
               LIVE
             </span>

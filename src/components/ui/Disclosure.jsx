@@ -22,7 +22,7 @@ export const DisclosureToggle = ({
     onClick={onClick}
     aria-expanded={open}
     aria-controls={controls}
-    className={`inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] rounded-md transition-colors duration-[220ms] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--accent)] ${className}`}
+    className={`inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--text-secondary)] hover:text-[var(--text)] rounded-md transition-colors duration-[220ms] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--text)] ${className}`}
   >
     {open ? lessLabel : moreLabel}
     <ChevronDown

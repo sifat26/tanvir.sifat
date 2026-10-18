@@ -47,7 +47,7 @@ const LiveCodeCard = () => {
           <span className='text-[var(--text-secondary)]'>{line.val}</span>
         </motion.div>
         <div className='mt-3 text-[var(--text-muted)]'>
-          <span className='text-green-500'>{'>'}</span> ready in <span className='text-[var(--text)]'>42ms</span>
+          <span style={{ color: 'var(--success)' }}>{'>'}</span> ready in <span className='text-[var(--text)]'>42ms</span>
         </div>
       </div>
     </div>
@@ -94,7 +94,7 @@ const HeroSection = () => {
           height: 480,
           top: -120,
           right: -100,
-          background: 'radial-gradient(circle, #6366f1, transparent 70%)',
+          background: 'radial-gradient(circle, color-mix(in oklab, var(--text) 8%, transparent), transparent 70%)',
         }}
       />
       <div
@@ -105,7 +105,7 @@ const HeroSection = () => {
           height: 320,
           bottom: -60,
           left: -80,
-          background: 'radial-gradient(circle, #a5b4fc, transparent 70%)',
+          background: 'radial-gradient(circle, color-mix(in oklab, var(--text) 5%, transparent), transparent 70%)',
           animationDelay: '-4s',
         }}
       />

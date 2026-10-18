@@ -27,23 +27,28 @@
   --accent: #111111;
   --accent-hover: #27272a;
   --accent-soft: rgba(0, 0, 0, 0.04);
-  --accent-glow: rgba(0, 0, 0, 0.1);
+  --accent-glow: rgba(0, 0, 0, 0.08);
   --accent-contrast: #ffffff;
   --link: #111111;
-  --ring: rgba(0, 0, 0, 0.15);
+  --ring: rgba(0, 0, 0, 0.12);
+  --success: #16a34a;
+  --success-soft: rgba(22, 163, 74, 0.08);
+  --error: #dc2626;
+  --error-soft: rgba(220, 38, 38, 0.08);
   
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.06);
   --shadow-glow: 0 0 0 rgba(0,0,0,0);
   --shadow-btn: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-btn-hover: 0 2px 4px rgba(0, 0, 0, 0.05);
-  --shadow-accent-btn: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --shadow-accent-btn-hover: 0 2px 6px rgba(0, 0, 0, 0.1);
+  --shadow-btn-hover: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-accent-btn: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --shadow-accent-btn-hover: 0 4px 14px rgba(0, 0, 0, 0.15);
   
   --radius: 8px;
   --radius-lg: 12px;
-  --gradient-brand: none;
+  --radius-xl: 16px;
+  --gradient-brand: linear-gradient(180deg, #18181b 0%, #09090b 100%);
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
@@ -52,34 +57,38 @@
    Stark, neutral charcoal palette. Cool and highly technical, lacking the
    gimmicky "neon" feel of typical dark modes. True professional aesthetic. */
 .dark {
-  --bg: #000000;
-  --bg-subtle: #09090b;
-  --bg-elevated: #09090b;
-  --bg-muted: #18181b;
-  --border: rgba(255, 255, 255, 0.1);
-  --border-strong: rgba(255, 255, 255, 0.15);
+  --bg: #09090b;
+  --bg-subtle: #111113;
+  --bg-elevated: #18181b;
+  --bg-muted: #1f1f23;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
   --text: #fafafa;
   --text-secondary: #a1a1aa;
   --text-muted: #71717a;
   --text-subtle: #52525b;
   
-  --accent: #ffffff;
+  --accent: #fafafa;
   --accent-hover: #e4e4e7;
-  --accent-soft: rgba(255, 255, 255, 0.08);
-  --accent-glow: rgba(255, 255, 255, 0.15);
-  --accent-contrast: #000000;
-  --link: #ffffff;
-  --ring: rgba(255, 255, 255, 0.3);
+  --accent-soft: rgba(255, 255, 255, 0.06);
+  --accent-glow: rgba(255, 255, 255, 0.1);
+  --accent-contrast: #09090b;
+  --link: #fafafa;
+  --ring: rgba(255, 255, 255, 0.2);
+  --success: #22c55e;
+  --success-soft: rgba(34, 197, 94, 0.1);
+  --error: #ef4444;
+  --error-soft: rgba(239, 68, 68, 0.1);
   
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.6);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.6);
   --shadow-glow: 0 0 0 rgba(0,0,0,0);
-  --shadow-btn: 0 1px 2px rgba(0, 0, 0, 0.5);
-  --shadow-btn-hover: 0 2px 4px rgba(0, 0, 0, 0.5);
-  --shadow-accent-btn: 0 1px 3px rgba(0, 0, 0, 0.8);
-  --shadow-accent-btn-hover: 0 2px 6px rgba(0, 0, 0, 0.8);
-  --gradient-brand: none;
+  --shadow-btn: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-btn-hover: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-accent-btn: 0 1px 3px rgba(0, 0, 0, 0.6);
+  --shadow-accent-btn-hover: 0 4px 14px rgba(0, 0, 0, 0.7);
+  --gradient-brand: linear-gradient(180deg, #fafafa 0%, #e4e4e7 100%);
 }
 *,
 *::before,
@@ -243,30 +252,26 @@ span {
 }
 
 /*
- * Primary — solid vibrant green (DevPro / GitHub CTA style)
- *
- * The fill does the work: flat, saturated green with a subtle top-to-bottom
- * darkening (2% shade at the bottom) for the barely-there sense of a light
- * source from above. No glass, no gloss, no inset rings — just a confident
- * pill that reads well from any distance.
+ * Primary — monochrome solid fill using design tokens.
+ * Light: near-black gradient. Dark: near-white gradient.
+ * No indigo, no color clash — stays consistent with the site palette.
  */
 .btn-primary {
-  background: var(--gradient-brand);
-  color: #ffffff;
+  background: var(--accent);
+  color: var(--accent-contrast);
   box-shadow: var(--shadow-accent-btn);
   overflow: hidden;
 }
-/* Brighter indigo reveals on hover */
 .btn-primary::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, #818cf8 0%, #6366f1 100%);
+  background: var(--accent-hover);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.25s ease;
   z-index: -1;
+  border-radius: inherit;
 }
-/* Subtle diagonal sheen that scans across on hover */
 .btn-primary::after {
   content: '';
   position: absolute;
@@ -274,15 +279,17 @@ span {
   left: -120%;
   width: 40%;
   height: 100%;
-  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.12) 50%, transparent 70%);
   transform: skewX(-20deg);
-  transition: left 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: left 0.7s cubic-bezier(0.22, 1, 0.36, 1);
   pointer-events: none;
+}
+.dark .btn-primary::after {
+  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.08) 50%, transparent 70%);
 }
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-accent-btn-hover);
-  color: #ffffff;
 }
 .btn-primary:hover::before {
   opacity: 1;
@@ -294,23 +301,22 @@ span {
   transform: translateY(0);
 }
 
-/* Accent — solid indigo (same fill as primary, no shine sweep) */
+/* Accent — same monochrome treatment, no sweep */
 .btn-accent {
-  background: var(--gradient-brand);
-  color: #ffffff;
+  background: var(--accent);
+  color: var(--accent-contrast);
   box-shadow: var(--shadow-accent-btn);
 }
 .btn-accent:hover {
   transform: translateY(-2px);
-  background: linear-gradient(180deg, #818cf8 0%, #6366f1 100%);
+  background: var(--accent-hover);
   box-shadow: var(--shadow-accent-btn-hover);
 }
 .btn-accent:active {
   transform: translateY(0);
 }
 
-/* Secondary — outlined, background transparent so it sits over the terminal
-   grid pattern. Green ring on hover mirrors the reference. */
+/* Secondary — outlined, token-driven */
 .btn-secondary {
   background: var(--bg-elevated);
   color: var(--text);
@@ -319,8 +325,8 @@ span {
 }
 .btn-secondary:hover {
   background: var(--bg-muted);
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--text);
+  color: var(--text);
   transform: translateY(-2px);
   box-shadow: var(--shadow-btn-hover);
 }
@@ -435,7 +441,7 @@ span {
   left: 0;
   right: 0;
   height: 2px;
-  background: var(--gradient-brand);
+  background: var(--text);
   z-index: 60;
   transform-origin: 0 0;
 }
@@ -850,9 +856,9 @@ span {
    SIGNATURE VISUAL SYSTEM — Grid, glow, gradient text, bento cards
    ================================================================ */
 
-/* Gradient text — for headline accent words */
+/* Gradient text — subtle monochrome emphasis for headline accent words */
 .text-gradient {
-  background: var(--gradient-brand);
+  background: linear-gradient(180deg, var(--text) 0%, var(--text-secondary) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1067,10 +1073,10 @@ span {
   opacity: 0.35;
 }
 
-/* Availability dot uses accent now */
+/* Availability dot — uses success token for semantic "available" meaning */
 .dot-live {
-  background: var(--accent);
-  box-shadow: 0 0 12px var(--accent-glow);
+  background: var(--success);
+  box-shadow: 0 0 10px color-mix(in oklab, var(--success) 40%, transparent);
 }
 
 /* Focus ring for accent buttons */

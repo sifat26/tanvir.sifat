@@ -1,4 +1,4 @@
-import { Brain, Layers, MapPin, Server, Sparkles, Zap } from 'lucide-react';
+import { Brain, Layers, MapPin, Server, Sparkles } from 'lucide-react';
 import Disclosure from '../../../components/ui/Disclosure';
 import ResumeButton from '../../../components/ui/ResumeButton';
 import Reveal from '../../../components/ui/Reveal';
@@ -8,38 +8,42 @@ import { useAbout, usePersonal } from '../../../hooks/usePortfolioData';
 const PILLARS = [
   {
     num: '01',
-    category: 'Scale',
+    category: 'SCALE',
     title: 'Full-Stack Delivery',
     description:
       'Production React, Next.js, and Angular interfaces backed by Node.js, Express, and relational databases. Deployed to IIS, VPS, and cloud.',
     metric: '3+ Platforms Shipped',
+    context: 'React · Next.js · Node',
     icon: Layers,
   },
   {
     num: '02',
-    category: 'AI Research',
+    category: 'AI RESEARCH',
     title: 'Published AI Research',
     description:
       'Graduate M.Sc. research in deep learning, medical image analysis, and network security. Peer-reviewed paper presented at ITSS-IoE 2025 (UK).',
     metric: '98% Model Accuracy',
+    context: 'Springer · ITSS-IoE',
     icon: Brain,
   },
   {
     num: '03',
-    category: 'Architecture',
+    category: 'ARCHITECTURE',
     title: 'End-to-End Ownership',
     description:
       'From database schemas and typed REST API contracts to production deployments, automated builds, and server management.',
     metric: 'Zero-Handoff Dev',
+    context: 'Schema → Cloud',
     icon: Server,
   },
   {
     num: '04',
-    category: 'Craft',
+    category: 'CRAFT',
     title: 'Clean UI Craft',
     description:
       'Obsession with sub-50ms micro-interactions, dark mode surface depth, fluid responsiveness, and accessible semantic components.',
     metric: 'WCAG AA & Polish',
+    context: '< 50ms Interactions',
     icon: Sparkles,
   },
 ];
@@ -106,58 +110,56 @@ const AboutMeSection = () => {
           </Reveal>
         </div>
 
-        {/* Bottom Bento: Engineering Pillars & Core Metrics */}
+        {/* Bottom Bento: Engineering Pillars (Spacious 2x2 Grid) */}
         <div className='mt-12 sm:mt-16 md:mt-20'>
-          <div className='flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-3 border-b border-[var(--border-subtle)]'>
-            <div className='flex items-center gap-2.5'>
-              <div className='w-6 h-6 rounded-md bg-[var(--accent-soft)] border border-[var(--accent-border)] text-[var(--accent)] grid place-items-center text-xs'>
-                <Zap className='w-3.5 h-3.5' />
-              </div>
-              <span className='font-mono text-xs uppercase tracking-wider text-[var(--text-muted)]'>
-                Engineering Pillars & Technical Focus
-              </span>
-            </div>
-            <div className='flex items-center gap-2 font-mono text-[11px] text-[var(--text-dim)]'>
-              <span className='w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse' />
+          {/* Minimal Section Header Bar */}
+          <div className='flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-3 border-b border-[var(--border-subtle)]'>
+            <span className='font-mono text-xs uppercase tracking-widest text-[var(--accent)]'>
+              • Engineering Pillars
+            </span>
+            <span className='font-mono text-xs text-[var(--text-dim)]'>
               Production Systems · Applied Deep Learning
-            </div>
+            </span>
           </div>
 
-          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5'>
+          {/* Balanced 2x2 Grid */}
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5'>
             {PILLARS.map((pillar, i) => {
               const Icon = pillar.icon;
               return (
                 <Reveal
                   key={pillar.num}
-                  delay={i * 0.07}
-                  className='surface-card group p-5 sm:p-6 flex flex-col justify-between hover:-translate-y-1 hover:border-[var(--border-card-hover)] transition-all duration-300'
+                  delay={i * 0.08}
+                  className='surface-card group bg-[var(--bg-card)] border border-[var(--border-card)] hover:border-[var(--border-card-hover)] rounded-2xl p-6 flex flex-col justify-between transition-all duration-200'
                 >
                   <div>
+                    {/* Top Row: Icon Left, Index Label Right */}
                     <div className='flex items-center justify-between'>
-                      <span className='font-mono text-[10.5px] font-bold text-[var(--accent)] uppercase tracking-wider'>
-                        {pillar.num} · {pillar.category}
-                      </span>
-                      <div className='w-8 h-8 rounded-lg bg-[var(--bg-pill)] border border-[var(--border-subtle)] grid place-items-center text-[var(--text-muted)] group-hover:text-[var(--accent)] group-hover:border-[var(--accent-border)] transition-colors'>
+                      <div className='w-9 h-9 rounded-xl bg-[var(--bg-pill)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--text-muted)] group-hover:text-[var(--accent)] group-hover:border-[var(--accent-border)] transition-colors'>
                         <Icon className='w-4 h-4' />
                       </div>
+                      <span className='font-mono text-[11px] tracking-widest uppercase text-[var(--text-dim)]'>
+                        <span className='text-[var(--accent)] font-semibold'>{pillar.num}</span> · {pillar.category}
+                      </span>
                     </div>
 
-                    <h3 className='mt-3.5 text-[15px] sm:text-[16px] font-semibold text-[var(--text-main)] transition-colors'>
+                    <h3 className='mt-4 text-[16px] sm:text-[17px] font-semibold text-[var(--text-main)] transition-colors'>
                       {pillar.title}
                     </h3>
 
-                    <p className='mt-2 text-[12.5px] sm:text-[13px] text-[var(--text-muted)] leading-relaxed'>
+                    <p className='mt-2 text-[13px] sm:text-[13.5px] text-[var(--text-muted)] leading-relaxed'>
                       {pillar.description}
                     </p>
                   </div>
 
-                  <div className='mt-5 pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between'>
-                    <span className='inline-flex items-center gap-1.5 font-mono text-[11px] font-medium text-[var(--text-main)] bg-[var(--bg-pill)] px-2.5 py-1 rounded-md border border-[var(--border-subtle)] group-hover:border-[var(--accent-border)] transition-colors'>
+                  {/* Footer Row: Metric Pill Left, Tech Context Right */}
+                  <div className='pt-4 mt-6 border-t border-[var(--border-subtle)] flex items-center justify-between gap-3'>
+                    <span className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent-soft)] border border-[var(--accent-border)] text-[var(--accent)] font-mono text-xs whitespace-nowrap'>
                       <span className='w-1.5 h-1.5 rounded-full bg-[var(--accent)]' />
                       {pillar.metric}
                     </span>
-                    <span className='text-[10px] font-mono text-[var(--text-dim)] uppercase tracking-wider'>
-                      Pillar
+                    <span className='font-mono text-[11px] text-[var(--text-dim)] truncate'>
+                      {pillar.context}
                     </span>
                   </div>
                 </Reveal>

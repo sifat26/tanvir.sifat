@@ -25,7 +25,7 @@ const LiveCodeCard = () => {
   }, []);
   const line = CODE_LINES[i];
   return (
-    <div className='demo-window rounded-2xl border border-[var(--border)] dark:border-white/[0.08] bg-[var(--bg-elevated)] dark:bg-zinc-900/50 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)] overflow-hidden'>
+    <div className='demo-window rounded-2xl border border-[var(--border)] dark:border-white/[0.08] bg-[var(--bg-elevated)] dark:bg-zinc-900/50 backdrop-blur-md shadow-sm dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)] overflow-hidden'>
       <div className='demo-window-bar px-4 py-2.5 flex items-center gap-1.5 border-b border-[var(--border)] dark:border-white/[0.07] bg-[var(--bg-muted)] dark:bg-zinc-950/40'>
         <span className='demo-window-dot' style={{ background: '#ff5f57' }} />
         <span className='demo-window-dot' style={{ background: '#febc2e' }} />
@@ -41,10 +41,10 @@ const LiveCodeCard = () => {
           transition={{ duration: 0.35 }}
           className='mt-2 flex flex-wrap items-center'
         >
-          <span className='text-purple-400 font-medium'>{line.k}</span>
-          <span className='text-zinc-100 mx-1.5'>{line.v}</span>
-          <span className='text-zinc-500 mr-1.5'>{line.op}</span>
-          <span className='text-emerald-400'>{line.val}</span>
+          <span className='text-purple-700 dark:text-purple-400 font-medium'>{line.k}</span>
+          <span className='text-zinc-900 dark:text-zinc-100 font-medium mx-1.5'>{line.v}</span>
+          <span className='text-zinc-400 dark:text-zinc-500 mr-1.5'>{line.op}</span>
+          <span className='text-emerald-700 dark:text-emerald-400 font-normal'>{line.val}</span>
         </motion.div>
         <div className='mt-3 text-[var(--text-muted)]'>
           <span style={{ color: 'var(--success)' }}>{'>'}</span> ready in <span className='text-[var(--text)] font-medium'>42ms</span>
@@ -55,7 +55,7 @@ const LiveCodeCard = () => {
 };
 
 const StatCell = ({ label, value, icon: Icon }) => (
-  <div className='rounded-2xl border border-[var(--border)] dark:border-white/[0.08] p-4 bg-[var(--bg-elevated)] dark:bg-zinc-900/40 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)] hover:border-[var(--border-strong)] dark:hover:border-white/15 transition-all duration-300'>
+  <div className='rounded-2xl border border-[var(--border)] dark:border-white/[0.08] p-4 bg-[var(--bg-elevated)] dark:bg-zinc-900/40 backdrop-blur-md shadow-sm dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)] hover:border-[var(--border-strong)] dark:hover:border-white/15 transition-all duration-300'>
     <div className='flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)]'>
       {Icon && <Icon className='w-3.5 h-3.5' />}
       {label}
@@ -169,7 +169,7 @@ const HeroSection = () => {
           <motion.div {...intro(0.08)} className='lg:col-span-5 order-first lg:order-last'>
             <div className='grid grid-cols-2 gap-3 sm:gap-4 max-w-md mx-auto lg:mx-0 lg:ml-auto'>
               {/* Portrait tile — spans full width row */}
-              <div className='col-span-2 rounded-2xl border border-[var(--border)] dark:border-white/[0.08] p-0 overflow-hidden bg-[var(--bg-elevated)] dark:bg-zinc-900/40 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)]'>
+              <div className='col-span-2 rounded-2xl border border-[var(--border)] dark:border-white/[0.08] p-0 overflow-hidden bg-[var(--bg-elevated)] dark:bg-zinc-900/40 backdrop-blur-md shadow-sm dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)]'>
                 <div className='relative aspect-[16/10]'>
                   <picture>
                     {personal.portraitWebp && <source srcSet={personal.portraitWebp} type='image/webp' />}

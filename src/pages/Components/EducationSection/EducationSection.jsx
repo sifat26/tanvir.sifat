@@ -20,8 +20,8 @@ const EducationSection = () => {
                 return (
                   <Reveal as='li' key={e._id || i} delay={i * 0.05}>
                     {isActive ? (
-                      <span className='absolute -left-[6px] mt-1.5 w-3 h-3 rounded-full bg-emerald-400 ring-4 ring-emerald-500/20 shadow-[0_0_10px_rgba(52,211,153,0.4)]'>
-                        <span className='animate-ping absolute inset-0 rounded-full bg-emerald-400 opacity-50' />
+                      <span className='absolute -left-[6px] mt-1.5 w-3 h-3 rounded-full bg-emerald-500 dark:bg-emerald-400 ring-4 ring-emerald-500/20 shadow-[0_0_10px_rgba(52,211,153,0.4)]'>
+                        <span className='animate-ping absolute inset-0 rounded-full bg-emerald-500 dark:bg-emerald-400 opacity-50' />
                       </span>
                     ) : (
                       <span className='absolute -left-[5px] mt-1.5 w-2.5 h-2.5 rounded-full bg-zinc-400 dark:bg-zinc-700 ring-4 ring-[var(--bg)] dark:ring-zinc-900' />

@@ -25,18 +25,18 @@ const AboutMeSection = () => {
             <SectionHeader eyebrow='About' title={about.headline} />
 
             {/* Engineering Philosophy & Core Metrics bento card */}
-            <div className='mt-6 sm:mt-8 p-5 rounded-2xl border border-[var(--border)] dark:border-white/[0.08] bg-[var(--bg-elevated)] dark:bg-zinc-900/40 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)] space-y-4'>
+            <div className='mt-6 sm:mt-8 p-5 rounded-2xl border border-[var(--border)] dark:border-white/[0.08] bg-[var(--bg-elevated)] dark:bg-zinc-900/40 backdrop-blur-md shadow-sm dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)] space-y-4'>
               <div className='flex items-center justify-between border-b border-[var(--border)] dark:border-white/[0.07] pb-3'>
                 <div className='flex items-center gap-2'>
-                  <div className='w-6 h-6 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 grid place-items-center text-xs'>
+                  <div className='w-6 h-6 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 grid place-items-center text-xs'>
                     <Zap className='w-3.5 h-3.5' />
                   </div>
                   <span className='font-mono text-[11px] uppercase tracking-wider text-[var(--text-muted)]'>
                     Core Philosophy
                   </span>
                 </div>
-                <span className='inline-flex items-center gap-1.5 text-[10.5px] font-mono text-emerald-400'>
-                  <span className='w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse' />
+                <span className='inline-flex items-center gap-1.5 text-[10.5px] font-mono text-emerald-700 dark:text-emerald-400 font-medium'>
+                  <span className='w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400 animate-pulse' />
                   Active
                 </span>
               </div>

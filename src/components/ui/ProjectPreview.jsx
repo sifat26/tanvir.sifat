@@ -15,7 +15,7 @@ const ProjectPreview = ({ project, interactive = true, className = '' }) => {
   const hasLive = isRealLink(live);
 
   const inner = project.image ? (
-    <div className='relative w-full h-full ring-1 ring-inset ring-black/10 dark:ring-white/10 overflow-hidden after:absolute after:inset-x-0 after:bottom-0 after:h-12 after:bg-gradient-to-t after:from-zinc-950/70 after:to-transparent after:pointer-events-none'>
+    <div className='relative w-full h-full ring-1 ring-inset ring-black/10 dark:ring-white/10 overflow-hidden dark:after:absolute dark:after:inset-x-0 dark:after:bottom-0 dark:after:h-12 dark:after:bg-gradient-to-t dark:after:from-zinc-950/70 dark:after:to-transparent dark:after:pointer-events-none'>
       <img
         src={project.image}
         alt={`${project.title} — product screenshot`}

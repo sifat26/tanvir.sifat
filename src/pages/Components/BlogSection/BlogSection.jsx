@@ -13,7 +13,7 @@ const BlogSection = () => {
   if (isLoading || !blogs?.length) return null;
 
   return (
-    <section id='blog' className='py-14 sm:py-20 md:py-28 border-b border-[var(--border)]'>
+    <section id='blog' className='py-14 sm:py-20 md:py-28 border-b border-[var(--border-card)]'>
       <div className='container-page'>
         <SectionHeader eyebrow='Writing' title='Thoughts, research, and technical guides.' className='mb-10 sm:mb-14' />
 
@@ -22,7 +22,7 @@ const BlogSection = () => {
             <Link
               key={blog._id}
               to={`/blog/${blog.slug}`}
-              className='group card flex flex-col h-full overflow-hidden hover:-translate-y-1 transition-all duration-300'
+              className='group surface-card flex flex-col h-full overflow-hidden hover:-translate-y-1 transition-all duration-300'
             >
               {blog.coverImage && (
                 <div className='w-full h-48 bg-[var(--bg-subtle)] overflow-hidden'>

@@ -15,7 +15,7 @@ const ProjectPreview = ({ project, interactive = true, className = '' }) => {
   const hasLive = isRealLink(live);
 
   const inner = project.image ? (
-    <div className='relative w-full h-full ring-1 ring-inset ring-black/10 dark:ring-white/10 overflow-hidden dark:after:absolute dark:after:inset-x-0 dark:after:bottom-0 dark:after:h-12 dark:after:bg-gradient-to-t dark:after:from-zinc-950/70 dark:after:to-transparent dark:after:pointer-events-none'>
+    <div className='relative w-full h-full ring-1 ring-inset ring-[var(--border-subtle)] overflow-hidden after:absolute after:inset-x-0 after:bottom-0 after:h-12 after:bg-gradient-to-t after:from-white/70 dark:after:from-[#0F1219]/90 after:to-transparent after:pointer-events-none'>
       <img
         src={project.image}
         alt={`${project.title} — product screenshot`}
@@ -51,7 +51,7 @@ const ProjectPreview = ({ project, interactive = true, className = '' }) => {
 
   const frame = (
     <div className={`project-media aspect-[16/10] shrink-0 ${className}`}>
-      <div className='absolute top-0 inset-x-0 z-10 flex items-center gap-1.5 px-3 py-2 bg-[var(--bg-muted)]/90 backdrop-blur border-b border-[var(--border)]'>
+      <div className='absolute top-0 inset-x-0 z-10 flex items-center gap-1.5 px-3 py-2 bg-zinc-100 dark:bg-zinc-900/90 backdrop-blur border-b border-[var(--border-subtle)]'>
         <span className='w-2.5 h-2.5 rounded-full shrink-0' style={{ background: '#ff5f57' }} />
         <span className='w-2.5 h-2.5 rounded-full shrink-0' style={{ background: '#febc2e' }} />
         <span className='w-2.5 h-2.5 rounded-full shrink-0' style={{ background: '#28c840' }} />
@@ -60,10 +60,10 @@ const ProjectPreview = ({ project, interactive = true, className = '' }) => {
             <div className='ml-2 flex-1 min-w-0 truncate font-mono text-[10.5px] text-[var(--text-muted)]'>
               {live.replace(/^https?:\/\//, '').replace(/\/$/, '')}
             </div>
-            <span className='inline-flex items-center gap-1 text-[10px] font-mono shrink-0' style={{ color: 'var(--success)' }}>
+            <span className='inline-flex items-center gap-1 text-[10px] font-mono shrink-0' style={{ color: 'var(--accent)' }}>
               <span className='relative flex h-1.5 w-1.5'>
-                <span className='animate-ping absolute inline-flex h-full w-full rounded-full opacity-70' style={{ background: 'var(--success)' }} />
-                <span className='relative inline-flex rounded-full h-1.5 w-1.5' style={{ background: 'var(--success)' }} />
+                <span className='animate-ping absolute inline-flex h-full w-full rounded-full opacity-70' style={{ background: 'var(--accent)' }} />
+                <span className='relative inline-flex rounded-full h-1.5 w-1.5' style={{ background: 'var(--accent)' }} />
               </span>
               LIVE
             </span>

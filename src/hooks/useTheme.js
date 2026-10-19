@@ -6,14 +6,23 @@ import { useEffect, useState, useCallback } from "react";
  */
 export function useTheme() {
   const [theme, setTheme] = useState(() => {
-    if (typeof window === "undefined") return "light";
-    return document.documentElement.classList.contains("dark") ? "dark" : "light";
+    if (typeof window === "undefined") return "dark";
+    const saved = localStorage.getItem("theme");
+    if (saved === "light" || saved === "dark") return saved;
+    return document.documentElement.classList.contains("light") ? "light" : "dark";
   });
 
   useEffect(() => {
     const root = document.documentElement;
-    if (theme === "dark") root.classList.add("dark");
-    else root.classList.remove("dark");
+    if (theme === "light") {
+      root.classList.remove("dark");
+      root.classList.add("light");
+      root.setAttribute("data-theme", "light");
+    } else {
+      root.classList.add("dark");
+      root.classList.remove("light");
+      root.removeAttribute("data-theme");
+    }
     try {
       localStorage.setItem("theme", theme);
     } catch (_) {

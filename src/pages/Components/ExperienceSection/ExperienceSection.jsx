@@ -14,7 +14,7 @@ const ExperienceSection = () => {
   return (
     <section
       id='experience'
-      className='py-14 sm:py-20 md:py-28 border-b border-[var(--border)]'
+      className='py-14 sm:py-20 md:py-28 border-b border-[var(--border-card)]'
       aria-label='Professional experience'
     >
       <div className='container-page'>
@@ -32,18 +32,18 @@ const ExperienceSection = () => {
                 as='article'
                 key={exp._id || i}
                 delay={i * 0.07}
-                className='card p-5 sm:p-6 md:p-7'
+                className='surface-card p-5 sm:p-6 md:p-7'
               >
                 <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2'>
                   <div>
-                    <h3 className='text-[17px] font-semibold text-[var(--text)]'>{exp.role}</h3>
+                    <h3 className='text-[17px] font-semibold text-[var(--text-main)]'>{exp.role}</h3>
                     <div className='mt-0.5 text-[13.5px] font-medium text-[var(--text-secondary)]'>
                       {exp.company}
                       {exp.location ? ` · ${exp.location}` : ''}
                       {exp.type ? ` · ${exp.type}` : ''}
                     </div>
                   </div>
-                  <span className='self-start sm:self-auto font-mono text-[11.5px] text-[var(--text-muted)] bg-[var(--bg-subtle)] dark:bg-white/[0.04] border border-[var(--border)] dark:border-white/[0.08] px-2.5 py-1 rounded-md shrink-0'>
+                  <span className='self-start sm:self-auto font-mono text-[11.5px] text-[var(--text-muted)] bg-[var(--bg-pill)] border border-[var(--border-subtle)] px-2.5 py-1 rounded-md shrink-0'>
                     {exp.period}
                   </span>
                 </div>

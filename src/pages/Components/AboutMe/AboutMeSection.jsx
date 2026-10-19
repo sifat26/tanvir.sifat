@@ -16,7 +16,7 @@ const AboutMeSection = () => {
   return (
     <section
       id='about'
-      className='py-14 sm:py-20 md:py-28 border-b border-[var(--border)] bg-[var(--bg-subtle)]'
+      className='py-14 sm:py-20 md:py-28 border-b border-[var(--border-card)] bg-[var(--bg-page)]'
       aria-label='About Tanvir Ahmmed Sifat'
     >
       <div className='container-page'>
@@ -24,62 +24,58 @@ const AboutMeSection = () => {
           <div className='md:col-span-4'>
             <SectionHeader eyebrow='About' title={about.headline} />
 
-            {/* Engineering Philosophy & Core Metrics bento card */}
-            <div className='mt-6 sm:mt-8 p-5 rounded-2xl border border-[var(--border)] dark:border-white/[0.08] bg-[var(--bg-elevated)] dark:bg-zinc-900/40 backdrop-blur-md shadow-sm dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)] space-y-4'>
-              <div className='flex items-center justify-between border-b border-[var(--border)] dark:border-white/[0.07] pb-3'>
+            {/* Engineering Pillars & Quick Metrics — surface-card */}
+            <div className='surface-card mt-6 sm:mt-8 p-5 space-y-4'>
+              <div className='flex items-center justify-between border-b border-[var(--border-card)] pb-3'>
                 <div className='flex items-center gap-2'>
-                  <div className='w-6 h-6 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 grid place-items-center text-xs'>
+                  <div className='w-6 h-6 rounded-md bg-[var(--accent-soft)] border border-[var(--accent-border)] text-[var(--accent)] grid place-items-center text-xs'>
                     <Zap className='w-3.5 h-3.5' />
                   </div>
                   <span className='font-mono text-[11px] uppercase tracking-wider text-[var(--text-muted)]'>
-                    Core Philosophy
+                    Engineering Pillars
                   </span>
                 </div>
-                <span className='inline-flex items-center gap-1.5 text-[10.5px] font-mono text-emerald-700 dark:text-emerald-400 font-medium'>
-                  <span className='w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400 animate-pulse' />
+                <span className='badge-accent'>
+                  <span className='badge-accent-dot' />
                   Active
                 </span>
               </div>
 
-              <div className='space-y-3'>
-                <div className='flex items-start gap-2.5'>
-                  <span className='text-[10px] text-zinc-500 font-mono font-bold mt-0.5'>01</span>
-                  <div>
-                    <div className='text-[var(--text)] font-medium text-[13px]'>Performance-First Architecture</div>
-                    <div className='text-[var(--text-muted)] text-[12px] mt-0.5 leading-snug'>
-                      Sub-50ms interactions, zero unneeded re-renders, and tree-shaken bundles.
-                    </div>
-                  </div>
+              {/* 2x2 Pillars Grid */}
+              <div className='grid grid-cols-2 gap-2.5'>
+                <div className='p-3 rounded-xl bg-[var(--bg-pill)] border border-[var(--border-subtle)] space-y-1'>
+                  <div className='text-[10px] text-[var(--accent)] font-mono font-bold uppercase tracking-wider'>01 · Scale</div>
+                  <div className='text-[var(--text-main)] font-semibold text-[13px] leading-tight'>Full-Stack Delivery</div>
+                  <div className='text-[var(--text-muted)] text-[11.5px] leading-snug'>Production React, Next.js & Node.js systems.</div>
                 </div>
 
-                <div className='flex items-start gap-2.5'>
-                  <span className='text-[10px] text-zinc-500 font-mono font-bold mt-0.5'>02</span>
-                  <div>
-                    <div className='text-[var(--text)] font-medium text-[13px]'>End-to-End Ownership</div>
-                    <div className='text-[var(--text-muted)] text-[12px] mt-0.5 leading-snug'>
-                      From component design and typed APIs to production server deployments.
-                    </div>
-                  </div>
+                <div className='p-3 rounded-xl bg-[var(--bg-pill)] border border-[var(--border-subtle)] space-y-1'>
+                  <div className='text-[10px] text-[var(--accent)] font-mono font-bold uppercase tracking-wider'>02 · AI</div>
+                  <div className='text-[var(--text-main)] font-semibold text-[13px] leading-tight'>Published AI Research</div>
+                  <div className='text-[var(--text-muted)] text-[11.5px] leading-snug'>Springer-published deep learning with 98% accuracy.</div>
                 </div>
 
-                <div className='flex items-start gap-2.5'>
-                  <span className='text-[10px] text-zinc-500 font-mono font-bold mt-0.5'>03</span>
-                  <div>
-                    <div className='text-[var(--text)] font-medium text-[13px]'>Rigorous Research</div>
-                    <div className='text-[var(--text-muted)] text-[12px] mt-0.5 leading-snug'>
-                      Springer-published hybrid deep learning model with 98% CT accuracy.
-                    </div>
-                  </div>
+                <div className='p-3 rounded-xl bg-[var(--bg-pill)] border border-[var(--border-subtle)] space-y-1'>
+                  <div className='text-[10px] text-[var(--accent)] font-mono font-bold uppercase tracking-wider'>03 · Architecture</div>
+                  <div className='text-[var(--text-main)] font-semibold text-[13px] leading-tight'>End-to-End Ownership</div>
+                  <div className='text-[var(--text-muted)] text-[11.5px] leading-snug'>From DB models & typed APIs to cloud deploys.</div>
+                </div>
+
+                <div className='p-3 rounded-xl bg-[var(--bg-pill)] border border-[var(--border-subtle)] space-y-1'>
+                  <div className='text-[10px] text-[var(--accent)] font-mono font-bold uppercase tracking-wider'>04 · Craft</div>
+                  <div className='text-[var(--text-main)] font-semibold text-[13px] leading-tight'>Clean UI Craft</div>
+                  <div className='text-[var(--text-muted)] text-[11.5px] leading-snug'>Sub-50ms interactions, dark mode & polish.</div>
                 </div>
               </div>
 
-              <div className='pt-2.5 border-t border-[var(--border)] dark:border-white/[0.07] grid grid-cols-2 gap-2 text-center'>
-                <div className='p-2 rounded-lg bg-[var(--bg-subtle)] dark:bg-white/[0.02] border border-[var(--border)] dark:border-white/[0.05]'>
-                  <div className='text-[15px] font-semibold text-[var(--text)] font-mono'>3+</div>
+              {/* Quick Metrics */}
+              <div className='pt-2.5 border-t border-[var(--border-card)] grid grid-cols-2 gap-2 text-center'>
+                <div className='p-2 rounded-lg bg-[var(--bg-pill)] border border-[var(--border-card)]'>
+                  <div className='text-[15px] font-semibold text-[var(--text-main)] font-mono'>3+</div>
                   <div className='text-[10px] text-[var(--text-muted)] font-mono uppercase tracking-wider mt-0.5'>Platforms Shipped</div>
                 </div>
-                <div className='p-2 rounded-lg bg-[var(--bg-subtle)] dark:bg-white/[0.02] border border-[var(--border)] dark:border-white/[0.05]'>
-                  <div className='text-[15px] font-semibold text-[var(--text)] font-mono'>98%</div>
+                <div className='p-2 rounded-lg bg-[var(--bg-pill)] border border-[var(--border-card)]'>
+                  <div className='text-[15px] font-semibold text-[var(--text-main)] font-mono'>98%</div>
                   <div className='text-[10px] text-[var(--text-muted)] font-mono uppercase tracking-wider mt-0.5'>Model Accuracy</div>
                 </div>
               </div>

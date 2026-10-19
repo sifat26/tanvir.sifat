@@ -17,10 +17,10 @@ const ResumeCard = () => {
   if (!resumeUrl || resumeUrl === '[ADD_RESUME_URL]') return null;
 
   return (
-    <Reveal className='card p-5 sm:p-6 md:p-7 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-6'>
+    <Reveal className='surface-card p-5 sm:p-6 md:p-7 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-6'>
       {/* Icon + meta */}
       <div className='flex items-start gap-4 flex-1 min-w-0'>
-        <span className='w-12 h-12 grid place-items-center rounded-xl border border-[var(--border)] bg-[var(--bg-subtle)] text-[var(--text)] shrink-0'>
+        <span className='w-12 h-12 grid place-items-center rounded-xl border border-[var(--border-card)] bg-[var(--bg-pill)] text-[var(--accent)] shrink-0'>
           <FileText className='w-5 h-5' />
         </span>
         <div className='min-w-0'>

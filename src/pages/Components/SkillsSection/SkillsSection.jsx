@@ -43,10 +43,10 @@ const BentoSkill = ({ group, items, index }) => {
   const spanClass = SPAN_BY_GROUP[group] || 'lg:col-span-6';
 
   return (
-    <Reveal delay={index * 0.05} className={`bento group ${spanClass} flex flex-col justify-between`}>
+    <Reveal delay={index * 0.05} className={`bento group ${spanClass} flex flex-col`}>
       <div>
         <div className='flex items-center justify-between'>
-          <div className='w-9 h-9 rounded-lg grid place-items-center border border-[var(--border)] dark:border-white/[0.08] bg-[var(--bg-subtle)] dark:bg-white/[0.03] text-[var(--text)] transition-colors shadow-xs'>
+          <div className='w-9 h-9 rounded-lg grid place-items-center border border-[var(--border-subtle)] bg-[var(--bg-pill)] text-[var(--accent)] transition-colors shadow-xs'>
             <Icon className='w-4 h-4' />
           </div>
           <div className='text-[10.5px] font-mono uppercase tracking-wider text-[var(--text-muted)]'>
@@ -54,13 +54,13 @@ const BentoSkill = ({ group, items, index }) => {
           </div>
         </div>
 
-        <div className='mt-4 text-[15px] font-semibold text-[var(--text)]'>{group}</div>
+        <div className='mt-4 text-[15px] font-semibold text-[var(--text-main)]'>{group}</div>
 
         <ul className='mt-3.5 flex flex-wrap gap-2'>
           {items.map((item) => (
             <li
               key={item}
-              className='inline-flex items-center gap-1.5 font-mono text-[12px] px-3 py-1.5 rounded-lg border border-[var(--border)] dark:border-white/[0.07] bg-[var(--bg-subtle)] dark:bg-white/[0.03] hover:border-[var(--border-strong)] dark:hover:border-white/20 hover:bg-[var(--bg-elevated)] dark:hover:bg-white/[0.06] text-[var(--text-secondary)] dark:text-zinc-300 hover:text-[var(--text)] dark:hover:text-white transition-colors group/item shadow-xs cursor-default'
+              className='inline-flex items-center gap-1.5 font-mono text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-pill)] hover:border-[var(--border-card-hover)] hover:bg-[var(--bg-pill-hover)] text-[var(--text-secondary)] hover:text-[var(--text-main)] transition-colors group/item shadow-xs cursor-default'
             >
               <TechIcon
                 name={item}

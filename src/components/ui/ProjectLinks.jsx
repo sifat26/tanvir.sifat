@@ -25,7 +25,7 @@ const ProjectLinks = ({ project, only, className = '' }) => {
           rel='noopener noreferrer'
           className={
             only === 'live'
-              ? 'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12.5px] sm:text-[13px] font-medium border border-[var(--border-strong)] dark:border-white/20 bg-transparent text-[var(--text)] dark:text-white group-hover:bg-[var(--text)] group-hover:text-[var(--bg)] dark:group-hover:bg-white dark:group-hover:text-zinc-950 dark:group-hover:border-white transition-all duration-200 shadow-xs'
+              ? 'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12.5px] sm:text-[13px] font-medium border border-[var(--border-card)] bg-transparent text-[var(--text-secondary)] group-hover:bg-[var(--btn-primary-bg)] group-hover:text-[var(--btn-primary-text)] group-hover:border-[var(--btn-primary-bg)] transition-all duration-200 shadow-xs'
               : 'btn btn-primary text-[13px]'
           }
         >

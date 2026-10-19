@@ -1,4 +1,4 @@
-﻿import { Users, X } from 'lucide-react';
+import { Users, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useRef } from 'react';
 import ProjectLinks from './ProjectLinks';
@@ -108,9 +108,9 @@ const ProjectDetail = ({ project, onClose }) => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.96 }}
             transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-            className='relative flex flex-col w-full sm:max-w-[680px] sm:max-h-[88vh] max-h-[100dvh] bg-[var(--bg-elevated)] sm:border border-[var(--border)] sm:rounded-[var(--radius-lg)] shadow-[var(--shadow-lg)] overflow-hidden'
+            className='relative flex flex-col w-full sm:max-w-[680px] sm:max-h-[88vh] max-h-[100dvh] bg-[var(--bg-card)] sm:border border-[var(--border-card)] sm:rounded-2xl shadow-[var(--shadow-card)] overflow-hidden'
           >
-            <div className='flex items-center justify-between gap-4 px-5 sm:px-7 py-4 border-b border-[var(--border)] shrink-0 pt-[max(1rem,env(safe-area-inset-top))] sm:pt-4'>
+            <div className='flex items-center justify-between gap-4 px-5 sm:px-7 py-4 border-b border-[var(--border-card)] shrink-0 pt-[max(1rem,env(safe-area-inset-top))] sm:pt-4'>
               <div className='flex flex-wrap items-center gap-2 font-mono text-[12px] text-[var(--text-muted)] min-w-0'>
                 <span
                   className='inline-flex items-center px-1.5 py-0.5 rounded border border-[var(--border-strong)] bg-[var(--bg-subtle)] text-[var(--text)]'
@@ -171,7 +171,7 @@ const ProjectDetail = ({ project, onClose }) => {
               </div>
             </div>
 
-            <div className='shrink-0 border-t border-[var(--border)] px-5 sm:px-7 py-4 pb-[max(1rem,env(safe-area-inset-bottom))]'>
+            <div className='shrink-0 border-t border-[var(--border-card)] px-5 sm:px-7 py-4 pb-[max(1rem,env(safe-area-inset-bottom))]'>
               <ProjectLinks project={project} />
             </div>
           </motion.div>

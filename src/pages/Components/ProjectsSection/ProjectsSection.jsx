@@ -97,10 +97,10 @@ const ProjectsSection = () => {
                 <div className='shrink-0 w-1 sm:hidden' aria-hidden='true' />
                 <button
                   onClick={() => setFilterTech(null)}
-                  className={`px-3.5 py-1.5 text-xs font-medium rounded-full shrink-0 transition-all border ${
+                  className={`px-3.5 py-1.5 text-xs font-medium rounded-full shrink-0 transition-all ${
                     !filterTech
-                      ? 'bg-[var(--text)] text-[var(--bg)] border-[var(--text)] shadow-xs'
-                      : 'bg-[var(--bg-subtle)] dark:bg-white/[0.03] text-[var(--text-muted)] border-[var(--border)] dark:border-white/[0.08] hover:border-[var(--text)] hover:text-[var(--text)]'
+                      ? 'btn-primary shadow-xs'
+                      : 'bg-[var(--bg-pill)] text-[var(--text-muted)] border border-[var(--border-card)] hover:border-[var(--border-card-hover)] hover:text-[var(--text-main)]'
                   }`}
                 >
                   All Projects
@@ -109,10 +109,10 @@ const ProjectsSection = () => {
                   <button
                     key={tech}
                     onClick={() => setFilterTech(tech)}
-                    className={`px-3.5 py-1.5 text-xs font-medium rounded-full shrink-0 transition-all border ${
+                    className={`px-3.5 py-1.5 text-xs font-medium rounded-full shrink-0 transition-all ${
                       filterTech === tech
-                        ? 'bg-[var(--text)] text-[var(--bg)] border-[var(--text)] shadow-xs'
-                        : 'bg-[var(--bg-subtle)] dark:bg-white/[0.03] text-[var(--text-muted)] border-[var(--border)] dark:border-white/[0.08] hover:border-[var(--text)] hover:text-[var(--text)]'
+                        ? 'btn-primary shadow-xs'
+                        : 'bg-[var(--bg-pill)] text-[var(--text-muted)] border border-[var(--border-card)] hover:border-[var(--border-card-hover)] hover:text-[var(--text-main)]'
                     }`}
                   >
                     {tech}

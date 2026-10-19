@@ -149,14 +149,19 @@
       }
     </script>
 
-    <!-- No-flash theme init -->
+    <!-- No-flash theme init: Dark (Obsidian & Emerald) by default -->
     <script>
       (function () {
         try {
           var saved = localStorage.getItem('theme');
-          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          if (saved === 'dark' || (!saved && prefersDark)) {
+          if (saved === 'light') {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+            document.documentElement.setAttribute('data-theme', 'light');
+          } else {
             document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+            document.documentElement.removeAttribute('data-theme');
           }
         } catch (e) {}
       })();

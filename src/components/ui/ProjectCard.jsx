@@ -48,7 +48,7 @@ const ProjectCard = ({ project, index = 0, onOpen }) => {
         <button
           type='button'
           onClick={() => onOpen(project)}
-          className='inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12.5px] sm:text-[13px] font-medium bg-[var(--bg-subtle)] dark:bg-white/[0.06] hover:bg-[var(--bg-muted)] dark:hover:bg-white/[0.12] text-[var(--text)] dark:text-zinc-200 border border-[var(--border)] dark:border-white/[0.08] shadow-xs dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] transition-all'
+          className='inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12.5px] sm:text-[13px] font-medium bg-[var(--bg-pill)] hover:bg-[var(--bg-pill-hover)] text-[var(--text-secondary)] hover:text-[var(--text)] border border-[var(--border-card)] hover:border-[var(--border-card-hover)] shadow-xs transition-all'
           aria-label={`View details for ${project.title}`}
         >
           View details

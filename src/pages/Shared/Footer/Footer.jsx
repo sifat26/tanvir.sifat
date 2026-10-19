@@ -17,9 +17,10 @@ const Footer = () => {
             <a href='#top' className='inline-flex items-center gap-2.5 group' title='Back to top'>
               <div
                 aria-hidden='true'
-                className='w-8 h-8 rounded-lg bg-zinc-900 text-white border border-zinc-800 dark:border-white/15 shadow-xs dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)] grid place-items-center font-bold text-xs tracking-wider shrink-0 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105'
+                className='w-7 h-7 rounded-lg grid place-items-center font-bold text-[11px] tracking-wider shrink-0 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105'
+                style={{ background: 'var(--btn-primary-bg)', color: 'var(--btn-primary-text)' }}
               >
-                TS
+                S
               </div>
               <span className='text-[15px] font-semibold tracking-tight text-[var(--text)]'>
                 {personal ? personal.name : 'Loading...'}

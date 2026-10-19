@@ -31,20 +31,20 @@ const ResearchSection = () => {
               <Reveal
                 as='article'
                 key={pub._id || i}
-                className='card p-5 sm:p-6 md:p-8'
+                className='surface-card p-5 sm:p-6 md:p-8'
                 aria-labelledby={`pub-${pub._id || i}-title`}
               >
                 {/* Conference badge row */}
                 <div className='flex flex-wrap items-center gap-2 mb-5'>
-                  <span className='inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider px-2 py-1 rounded-md border border-[var(--border-strong)] bg-[var(--bg-subtle)] text-[var(--text)]'>
+                  <span className='inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider px-2 py-1 rounded-md border border-[var(--accent-border)] bg-[var(--accent-soft)] text-[var(--accent)] font-medium'>
                     <BookOpen className='w-3 h-3' />
                     Peer-reviewed
                   </span>
-                  <span className='inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider px-2 py-1 rounded-md border border-[var(--border)] text-[var(--text-secondary)]'>
+                  <span className='inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider px-2 py-1 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-pill)] text-[var(--text-secondary)]'>
                     <Calendar className='w-3 h-3' />
                     {pub.year}
                   </span>
-                  <span className='inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider px-2 py-1 rounded-md border border-[var(--border)] text-[var(--text-secondary)]'>
+                  <span className='inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider px-2 py-1 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-pill)] text-[var(--text-secondary)]'>
                     <MapPin className='w-3 h-3' />
                     United Kingdom
                   </span>
@@ -95,24 +95,24 @@ const ResearchSection = () => {
                   </div>
 
                   <div className='grid sm:grid-cols-2 gap-4'>
-                    <div className='rounded-[var(--radius)] border border-[var(--border)] bg-[var(--bg-subtle)] p-4'>
+                    <div className='rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-pill)] p-4'>
                       <div className='text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)] mb-3'>
                         Research interests
                       </div>
                       <TagList items={research.interests || []} variant='secondary' />
                     </div>
 
-                    <div className='rounded-[var(--radius)] border border-[var(--border)] bg-[var(--bg-subtle)] p-4'>
+                    <div className='rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-pill)] p-4'>
                       <div className='text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)] mb-2'>
                         Current thesis
                       </div>
-                      <div className='text-[14.5px] font-medium text-[var(--text)]'>{research.thesis?.title}</div>
+                      <div className='text-[14.5px] font-medium text-[var(--text-main)]'>{research.thesis?.title}</div>
                       <p className='mt-2 text-[13.5px] leading-relaxed text-[var(--text-secondary)]'>
                         {research.thesis?.description}
                       </p>
                     </div>
 
-                    <div className='sm:col-span-2 rounded-[var(--radius)] border border-[var(--border)] bg-[var(--bg-subtle)] p-4'>
+                    <div className='sm:col-span-2 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-pill)] p-4'>
                       <div className='text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)] mb-2'>
                         Future direction
                       </div>

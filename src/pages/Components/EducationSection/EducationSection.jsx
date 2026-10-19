@@ -43,7 +43,7 @@ const EducationSection = () => {
                     {/* Entry content: M.Sc. is wrapped in highlighted surface-card */}
                     {isActive ? (
                       <div className='surface-card border border-[var(--accent-border)] p-4 sm:p-5 rounded-2xl'>
-                        <div className='flex flex-wrap items-baseline justify-between gap-x-4'>
+                        <div className='flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1.5'>
                           <div className='text-[15.5px] font-semibold text-[var(--accent)]'>{e.degree}</div>
                           <div className='font-mono text-[12px] text-[var(--accent)] bg-[var(--accent-soft)] border border-[var(--accent-border)] px-2.5 py-1 rounded-md'>
                             {e.period}
@@ -64,7 +64,7 @@ const EducationSection = () => {
                       </div>
                     ) : (
                       <div className='py-0.5'>
-                        <div className='flex flex-wrap items-baseline justify-between gap-x-4'>
+                        <div className='flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1.5'>
                           <div className='text-[15.5px] font-semibold text-[var(--text-main)]'>{e.degree}</div>
                           <div className='font-mono text-[12px] text-[var(--text-muted)] bg-[var(--bg-pill)] border border-[var(--border-subtle)] px-2.5 py-1 rounded-md'>
                             {e.period}

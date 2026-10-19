@@ -55,7 +55,7 @@ const ContactSection = () => {
   };
 
   const INPUT_STYLES =
-    'w-full bg-[var(--bg-input)] border border-[var(--border-card)] rounded-xl px-4 py-3 text-sm text-[var(--text)] placeholder:text-[var(--text-subtle)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--ring)] focus:bg-[var(--bg-card)] transition-all';
+    'w-full bg-[var(--bg-input)] border border-[var(--border-card)] rounded-xl px-4 py-3 text-[16px] sm:text-sm text-[var(--text)] placeholder:text-[var(--text-subtle)] focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--ring)] focus:bg-[var(--bg-card)] transition-all';
 
   return (
     <section id='contact' className='py-14 sm:py-20 md:py-28' aria-label='Contact'>

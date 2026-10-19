@@ -167,7 +167,7 @@ const Navbar = () => {
                   href={personal.resumeUrl}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='hidden 2xl:inline-flex btn btn-secondary text-sm'
+                  className='hidden xl:inline-flex btn btn-secondary text-sm'
                 >
                   Resume
                   <ArrowUpRight className='w-3.5 h-3.5' />

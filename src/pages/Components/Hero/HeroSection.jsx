@@ -164,7 +164,7 @@ const HeroSection = () => {
           </motion.div>
 
           {/* Interactive bento visual */}
-          <motion.div {...intro(0.08)} className='lg:col-span-5 order-first lg:order-last'>
+          <motion.div {...intro(0.08)} className='lg:col-span-5 order-last lg:order-last'>
             <div className='grid grid-cols-2 gap-3 sm:gap-4 max-w-md mx-auto lg:mx-0 lg:ml-auto'>
               {/* Portrait tile — spans full width row */}
               <div className='col-span-2 rounded-2xl border border-[var(--border-card)] p-0 overflow-hidden bg-[var(--bg-card)] dark:backdrop-blur-md shadow-xs dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.10)]'>

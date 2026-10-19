@@ -130,7 +130,7 @@ const AboutMeSection = () => {
                 <Reveal
                   key={pillar.num}
                   delay={i * 0.08}
-                  className='surface-card group bg-[var(--bg-card)] border border-[var(--border-card)] hover:border-[var(--border-card-hover)] rounded-2xl p-6 flex flex-col justify-between transition-all duration-200'
+                  className='surface-card group bg-[var(--bg-card)] border border-[var(--border-card)] hover:border-[var(--border-card-hover)] rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all duration-200'
                 >
                   <div>
                     {/* Top Row: Icon Left, Index Label Right */}
@@ -154,11 +154,11 @@ const AboutMeSection = () => {
 
                   {/* Footer Row: Metric Pill Left, Tech Context Right */}
                   <div className='pt-4 mt-6 border-t border-[var(--border-subtle)] flex items-center justify-between gap-3'>
-                    <span className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent-soft)] border border-[var(--accent-border)] text-[var(--accent)] font-mono text-xs whitespace-nowrap'>
+                    <span className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent-soft)] border border-[var(--accent-border)] text-[var(--accent)] font-mono text-xs whitespace-nowrap shrink-0'>
                       <span className='w-1.5 h-1.5 rounded-full bg-[var(--accent)]' />
                       {pillar.metric}
                     </span>
-                    <span className='font-mono text-[11px] text-[var(--text-dim)] truncate'>
+                    <span className='font-mono text-[11px] text-[var(--text-dim)] truncate min-w-0 text-right'>
                       {pillar.context}
                     </span>
                   </div>

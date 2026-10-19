@@ -7,7 +7,7 @@ import { usePersonal, useSocials } from '../../hooks/usePortfolioData';
  * mailto: address; the rest come from the `socials` data.
  */
 
-const SocialLinks = ({ links = ['github', 'linkedin'], className = '' }) => {
+const SocialLinks = ({ links = ['github', 'linkedin'], variant = 'tactile', className = '' }) => {
   const { data: personal } = usePersonal();
   const { data: socials } = useSocials();
 
@@ -20,8 +20,10 @@ const SocialLinks = ({ links = ['github', 'linkedin'], className = '' }) => {
     twitter: { Icon: Twitter, label: 'X (Twitter)', href: socials.twitter },
   };
 
+  const isTactile = variant === 'tactile';
+
   return (
-    <div className={`flex items-center gap-1 ${className}`}>
+    <div className={`flex items-center gap-2 ${className}`}>
       {links.map((key) => {
         const item = ICONS[key];
         if (!item || !item.href) return null;
@@ -33,7 +35,11 @@ const SocialLinks = ({ links = ['github', 'linkedin'], className = '' }) => {
             href={href}
             aria-label={label}
             {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-            className='w-9 h-9 grid place-items-center rounded-md text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-muted)] transition-colors'
+            className={
+              isTactile
+                ? 'w-10 h-10 rounded-xl border border-[var(--border)] dark:border-white/10 bg-[var(--bg-subtle)] dark:bg-white/[0.02] hover:bg-[var(--bg-muted)] dark:hover:bg-white/[0.08] hover:border-[var(--border-strong)] dark:hover:border-white/20 text-[var(--text-muted)] hover:text-[var(--text)] dark:text-zinc-400 dark:hover:text-white flex items-center justify-center transition-all shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]'
+                : 'w-9 h-9 grid place-items-center rounded-md text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-muted)] transition-colors'
+            }
           >
             <Icon className='w-4 h-4' />
           </a>

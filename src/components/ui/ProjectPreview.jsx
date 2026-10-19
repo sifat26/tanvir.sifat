@@ -1,4 +1,4 @@
-﻿import { ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { isRealLink } from '../../lib/links';
 
 /**
@@ -15,13 +15,15 @@ const ProjectPreview = ({ project, interactive = true, className = '' }) => {
   const hasLive = isRealLink(live);
 
   const inner = project.image ? (
-    <img
-      src={project.image}
-      alt={`${project.title} — product screenshot`}
-      loading='lazy'
-      decoding='async'
-      className='w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.06]'
-    />
+    <div className='relative w-full h-full ring-1 ring-inset ring-black/10 dark:ring-white/10 overflow-hidden after:absolute after:inset-x-0 after:bottom-0 after:h-12 after:bg-gradient-to-t after:from-zinc-950/70 after:to-transparent after:pointer-events-none'>
+      <img
+        src={project.image}
+        alt={`${project.title} — product screenshot`}
+        loading='lazy'
+        decoding='async'
+        className='w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.05]'
+      />
+    </div>
   ) : (
     <div className='w-full h-full grid place-items-center bg-[var(--bg-subtle)] relative overflow-hidden'>
       <div

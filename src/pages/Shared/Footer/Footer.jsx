@@ -14,12 +14,12 @@ const Footer = () => {
           <div className='md:col-span-5'>
             {/* No aria-label: the visible name is the accessible name, so
                 voice-control users can activate it by what they see. */}
-            <a href='#top' className='inline-flex items-center gap-2' title='Back to top'>
+            <a href='#top' className='inline-flex items-center gap-2.5 group' title='Back to top'>
               <div
                 aria-hidden='true'
-                className='w-8 h-8 rounded-md bg-[var(--text)] text-[var(--bg)] grid place-items-center font-semibold text-sm'
+                className='w-8 h-8 rounded-lg bg-zinc-900 border border-white/10 text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)] grid place-items-center font-bold text-xs tracking-wider shrink-0 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105'
               >
-                {personal ? personal.name.charAt(0).toUpperCase() : 'S'}
+                TS
               </div>
               <span className='text-[15px] font-semibold tracking-tight text-[var(--text)]'>
                 {personal ? personal.name : 'Loading...'}

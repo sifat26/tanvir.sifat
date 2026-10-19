@@ -354,9 +354,17 @@ span {
   overflow: hidden;
   isolation: isolate;
   transition:
-    border-color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.dark .card {
+  background: rgba(24, 24, 27, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12), 0 4px 20px rgba(0, 0, 0, 0.25);
 }
 /* Cursor-tracked spotlight — coordinates set by useCursorSpotlight */
 .card::before {
@@ -377,6 +385,11 @@ span {
   border-color: color-mix(in oklab, var(--accent) 30%, var(--border-strong));
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+}
+.dark .card:hover {
+  background: rgba(24, 24, 27, 0.65);
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.18), 0 8px 30px rgba(0, 0, 0, 0.4);
 }
 .card:hover::before {
   opacity: 1;
@@ -581,17 +594,15 @@ span {
   width: 100%;
   background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 11px 14px;
+  border-radius: 12px;
+  padding: 12px 16px;
   color: var(--text);
   font-family: var(--font-sans);
   /* iOS Safari zooms into inputs when the font-size is < 16px on focus. Keep
      inputs at 16px on phones, and drop back to the tighter 0.9rem on wider
      screens where zoom isn't triggered. */
   font-size: 16px;
-  transition:
-    border-color 0.15s ease,
-    box-shadow 0.15s ease;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
   outline: none;
 }
 @media (min-width: 640px) {
@@ -599,12 +610,28 @@ span {
     font-size: 0.9rem;
   }
 }
+.dark .input {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f4f4f5;
+}
+.dark .input:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+}
 .input:focus {
   border-color: var(--text);
   box-shadow: 0 0 0 3px var(--ring);
 }
+.dark .input:focus {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
 .input::placeholder {
   color: var(--text-subtle);
+}
+.dark .input::placeholder {
+  color: #71717a;
 }
 
 /* ---- Timeline (used by Experience / Education) ---- */
@@ -933,11 +960,19 @@ span {
   padding: 20px;
   box-shadow: var(--shadow-sm);
   transition:
+    background-color 0.32s cubic-bezier(0.22, 1, 0.36, 1),
     border-color 0.32s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.32s cubic-bezier(0.22, 1, 0.36, 1);
   overflow: hidden;
   isolation: isolate;
+}
+.dark .bento {
+  background: rgba(24, 24, 27, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12), 0 4px 20px rgba(0, 0, 0, 0.25);
 }
 .bento::before {
   content: '';
@@ -955,17 +990,18 @@ span {
 }
 .bento:hover {
   border-color: color-mix(in oklab, var(--accent) 35%, var(--border-strong));
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow:
     0 1px 2px rgba(15, 23, 42, 0.06),
     0 12px 28px rgba(15, 23, 42, 0.08),
     0 0 0 1px color-mix(in oklab, var(--accent) 12%, transparent);
 }
 .dark .bento:hover {
+  background: rgba(24, 24, 27, 0.65);
+  border-color: rgba(255, 255, 255, 0.16);
   box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.5),
-    0 14px 32px rgba(0, 0, 0, 0.4),
-    0 0 0 1px color-mix(in oklab, var(--accent) 20%, transparent);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.18),
+    0 8px 30px rgba(0, 0, 0, 0.4);
 }
 .bento:hover::before {
   opacity: 1;
@@ -1003,14 +1039,30 @@ span {
   }
 }
 
+/* Scrollbar suppression utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Live demo card (used in Hero) */
 .demo-window {
   position: relative;
   background: var(--bg-elevated);
   border: 1px solid var(--border-strong);
-  border-radius: 12px;
+  border-radius: 16px;
   box-shadow: var(--shadow-lg);
   overflow: hidden;
+}
+.dark .demo-window {
+  background: rgba(24, 24, 27, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12), 0 8px 30px rgba(0, 0, 0, 0.35);
 }
 .demo-window-bar {
   display: flex;
@@ -1019,6 +1071,10 @@ span {
   padding: 10px 14px;
   background: var(--bg-muted);
   border-bottom: 1px solid var(--border);
+}
+.dark .demo-window-bar {
+  background: rgba(39, 39, 42, 0.45);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 .demo-window-dot {
   width: 10px;

@@ -11,10 +11,10 @@ import { useReducedMotion } from '../../../hooks/useReducedMotion';
  * not a blog. Cycles through short frontend snippets.
  */
 const CODE_LINES = [
-  { k: 'const', v: ' role', op: ' = ', val: "'Frontend Engineer'" },
-  { k: 'const', v: ' stack', op: ' = ', val: "['React','Next','Node']" },
-  { k: 'const', v: ' shipped', op: ' = ', val: '3 // production apps' },
-  { k: 'const', v: ' focus', op: ' = ', val: "'UI · UX · Performance'" },
+  { k: 'const', v: 'role', op: '=', val: "'Frontend Engineer'" },
+  { k: 'const', v: 'stack', op: '=', val: "['React', 'Next', 'Node']" },
+  { k: 'const', v: 'shipped', op: '=', val: '3 // production apps' },
+  { k: 'const', v: 'focus', op: '=', val: "'UI · UX · Performance'" },
 ];
 
 const LiveCodeCard = () => {
@@ -25,8 +25,8 @@ const LiveCodeCard = () => {
   }, []);
   const line = CODE_LINES[i];
   return (
-    <div className='demo-window'>
-      <div className='demo-window-bar'>
+    <div className='demo-window rounded-2xl border border-[var(--border)] dark:border-white/[0.08] bg-[var(--bg-elevated)] dark:bg-zinc-900/50 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)] overflow-hidden'>
+      <div className='demo-window-bar px-4 py-2.5 flex items-center gap-1.5 border-b border-[var(--border)] dark:border-white/[0.07] bg-[var(--bg-muted)] dark:bg-zinc-950/40'>
         <span className='demo-window-dot' style={{ background: '#ff5f57' }} />
         <span className='demo-window-dot' style={{ background: '#febc2e' }} />
         <span className='demo-window-dot' style={{ background: '#28c840' }} />
@@ -39,15 +39,15 @@ const LiveCodeCard = () => {
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35 }}
-          className='mt-2 flex flex-wrap'
+          className='mt-2 flex flex-wrap items-center'
         >
-          <span style={{ color: 'var(--accent)' }}>{line.k}</span>
-          <span className='text-[var(--text)]'>{line.v}</span>
-          <span className='text-[var(--text-muted)]'>{line.op}</span>
-          <span className='text-[var(--text-secondary)]'>{line.val}</span>
+          <span className='text-purple-400 font-medium'>{line.k}</span>
+          <span className='text-zinc-100 mx-1.5'>{line.v}</span>
+          <span className='text-zinc-500 mr-1.5'>{line.op}</span>
+          <span className='text-emerald-400'>{line.val}</span>
         </motion.div>
         <div className='mt-3 text-[var(--text-muted)]'>
-          <span style={{ color: 'var(--success)' }}>{'>'}</span> ready in <span className='text-[var(--text)]'>42ms</span>
+          <span style={{ color: 'var(--success)' }}>{'>'}</span> ready in <span className='text-[var(--text)] font-medium'>42ms</span>
         </div>
       </div>
     </div>
@@ -55,7 +55,7 @@ const LiveCodeCard = () => {
 };
 
 const StatCell = ({ label, value, icon: Icon }) => (
-  <div className='bento p-4'>
+  <div className='rounded-2xl border border-[var(--border)] dark:border-white/[0.08] p-4 bg-[var(--bg-elevated)] dark:bg-zinc-900/40 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)] hover:border-[var(--border-strong)] dark:hover:border-white/15 transition-all duration-300'>
     <div className='flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)]'>
       {Icon && <Icon className='w-3.5 h-3.5' />}
       {label}
@@ -90,22 +90,22 @@ const HeroSection = () => {
         aria-hidden
         className='gradient-blob'
         style={{
-          width: 480,
-          height: 480,
-          top: -120,
-          right: -100,
-          background: 'radial-gradient(circle, color-mix(in oklab, var(--text) 8%, transparent), transparent 70%)',
+          width: 520,
+          height: 520,
+          top: -140,
+          right: -120,
+          background: 'radial-gradient(circle, rgba(16, 185, 129, 0.07), rgba(20, 184, 166, 0.03) 50%, transparent 70%)',
         }}
       />
       <div
         aria-hidden
         className='gradient-blob'
         style={{
-          width: 320,
-          height: 320,
-          bottom: -60,
-          left: -80,
-          background: 'radial-gradient(circle, color-mix(in oklab, var(--text) 5%, transparent), transparent 70%)',
+          width: 380,
+          height: 380,
+          bottom: -80,
+          left: -100,
+          background: 'radial-gradient(circle, rgba(20, 184, 166, 0.05), transparent 70%)',
           animationDelay: '-4s',
         }}
       />
@@ -116,7 +116,7 @@ const HeroSection = () => {
           <motion.div {...intro(0)} className='lg:col-span-7'>
             {/* Availability pill */}
             {personal.availability && (
-              <div className='inline-flex items-center gap-2 mb-6 sm:mb-8 px-2.5 py-1 rounded-full border border-[var(--border)] bg-[var(--bg-subtle)] text-[12px] font-medium text-[var(--text-secondary)]'>
+              <div className='inline-flex items-center gap-2 mb-6 sm:mb-8 px-2.5 py-1 rounded-full border border-[var(--border)] dark:border-white/10 bg-[var(--bg-subtle)] dark:bg-white/[0.03] text-[12px] font-medium text-[var(--text-secondary)] shadow-xs'>
                 <span className='relative flex h-1.5 w-1.5'>
                   <span className='animate-ping absolute inline-flex h-full w-full rounded-full dot-live opacity-70' />
                   <span className='relative inline-flex rounded-full h-1.5 w-1.5 dot-live' />
@@ -125,10 +125,12 @@ const HeroSection = () => {
               </div>
             )}
 
-            {/* Headline with gradient accent */}
+            {/* Headline with metallic gradient accent */}
             <h1 className='text-[clamp(2rem,8vw,2.7rem)] sm:text-5xl md:text-6xl font-semibold tracking-tightest leading-[1.05] text-[var(--text)]'>
               {personal.headline.split('scalable')[0]}
-              <span className='text-gradient'>scalable</span>
+              <span className='bg-gradient-to-b from-zinc-900 via-zinc-700 to-zinc-500 dark:from-white dark:via-zinc-200 dark:to-zinc-400 bg-clip-text text-transparent drop-shadow-sm font-semibold'>
+                scalable
+              </span>
               {personal.headline.split('scalable')[1]}
             </h1>
 
@@ -167,7 +169,7 @@ const HeroSection = () => {
           <motion.div {...intro(0.08)} className='lg:col-span-5 order-first lg:order-last'>
             <div className='grid grid-cols-2 gap-3 sm:gap-4 max-w-md mx-auto lg:mx-0 lg:ml-auto'>
               {/* Portrait tile — spans full width row */}
-              <div className='col-span-2 bento p-0 overflow-hidden'>
+              <div className='col-span-2 rounded-2xl border border-[var(--border)] dark:border-white/[0.08] p-0 overflow-hidden bg-[var(--bg-elevated)] dark:bg-zinc-900/40 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)]'>
                 <div className='relative aspect-[16/10]'>
                   <picture>
                     {personal.portraitWebp && <source srcSet={personal.portraitWebp} type='image/webp' />}

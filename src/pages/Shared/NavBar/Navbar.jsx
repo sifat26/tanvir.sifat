@@ -36,10 +36,11 @@ const Navbar = () => {
 
   const hasBlogs = Boolean(blogs && blogs.length > 0);
 
-  // Filter out Blog link if no blogs exist
+  // Filter out Blog link if no blogs exist, and deduplicate Resume (already an elevated CTA)
   const visibleNavLinks = useMemo(() => {
     return navLinks.filter((link) => {
       if (link.href === '#blog' && !hasBlogs) return false;
+      if (link.href === '#resume') return false;
       return true;
     });
   }, [hasBlogs]);
@@ -114,12 +115,12 @@ const Navbar = () => {
         <div className='container-page'>
           <div className='flex items-center justify-between h-14 sm:h-16 gap-2'>
             {/* Logo */}
-            <a href='#top' onClick={close} className='flex items-center gap-2 group min-w-0 shrink'>
+            <a href='#top' onClick={close} className='flex items-center gap-2.5 group min-w-0 shrink'>
               <span
                 aria-hidden='true'
-                className='w-8 h-8 rounded-md bg-[var(--text)] text-[var(--bg)] grid place-items-center font-semibold text-sm shrink-0 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105'
+                className='w-8 h-8 rounded-lg bg-zinc-900 border border-white/10 text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)] grid place-items-center font-bold text-xs tracking-wider shrink-0 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105'
               >
-                {personal ? personal.shortName.charAt(0).toUpperCase() : 'S'}
+                TS
               </span>
               <span className='text-[15px] font-semibold tracking-tight text-[var(--text)] truncate'>
                 {personal ? personal.shortName : 'Loading...'}

@@ -54,6 +54,9 @@ const ContactSection = () => {
     }
   };
 
+  const INPUT_STYLES =
+    'w-full bg-[var(--bg-subtle)] dark:bg-white/[0.03] border border-[var(--border)] dark:border-white/[0.1] rounded-xl px-4 py-3 text-sm text-[var(--text)] dark:text-zinc-100 placeholder:text-[var(--text-muted)] dark:placeholder:text-zinc-500 focus:outline-none focus:border-[var(--text)] dark:focus:border-white/30 focus:bg-[var(--bg)] dark:focus:bg-white/[0.05] focus:ring-2 focus:ring-[var(--ring)] dark:focus:ring-white/10 transition-all';
+
   return (
     <section id='contact' className='py-14 sm:py-20 md:py-28' aria-label='Contact'>
       <div className='container-page'>
@@ -151,7 +154,7 @@ const ContactSection = () => {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className='input w-full'
+                    className={INPUT_STYLES}
                     placeholder='Your name'
                   />
                 </div>
@@ -166,7 +169,7 @@ const ContactSection = () => {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className='input w-full'
+                    className={INPUT_STYLES}
                     placeholder='you@example.com'
                   />
                 </div>
@@ -180,7 +183,7 @@ const ContactSection = () => {
                     type='tel'
                     value={formData.phone}
                     onChange={handleChange}
-                    className='input w-full'
+                    className={INPUT_STYLES}
                     placeholder='+880 …'
                   />
                 </div>
@@ -195,7 +198,7 @@ const ContactSection = () => {
                     required
                     value={formData.subject}
                     onChange={handleChange}
-                    className='input w-full'
+                    className={INPUT_STYLES}
                     placeholder="What's this about?"
                   />
                 </div>
@@ -212,7 +215,7 @@ const ContactSection = () => {
                   rows={5}
                   value={formData.message}
                   onChange={handleChange}
-                  className='input w-full resize-y'
+                  className={`${INPUT_STYLES} resize-y`}
                   placeholder='Tell me a little about your project or role…'
                 />
               </div>

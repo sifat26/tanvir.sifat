@@ -86,30 +86,40 @@ const ProjectsSection = () => {
           />
 
           {allTechs.length > 0 && (
-            <div className='flex flex-wrap items-center gap-2 mb-10 sm:mb-14'>
-              <button
-                onClick={() => setFilterTech(null)}
-                className={`px-3 py-1.5 text-xs font-medium rounded-full transition-colors border ${
-                  !filterTech
-                    ? 'bg-[var(--text)] text-[var(--bg)] border-[var(--text)]'
-                    : 'bg-transparent text-[var(--text-muted)] border-[var(--border)] hover:border-[var(--text)]'
-                }`}
+            <div className='relative mb-10 sm:mb-14 -mx-4 px-4 sm:mx-0 sm:px-0'>
+              <div
+                className='flex items-center gap-2 overflow-x-auto no-scrollbar py-1 scroll-smooth'
+                style={{
+                  WebkitMaskImage: 'linear-gradient(to right, transparent, black 16px, black calc(100% - 24px), transparent)',
+                  maskImage: 'linear-gradient(to right, transparent, black 16px, black calc(100% - 24px), transparent)',
+                }}
               >
-                All Projects
-              </button>
-              {allTechs.slice(0, 15).map((tech) => (
+                <div className='shrink-0 w-1 sm:hidden' aria-hidden='true' />
                 <button
-                  key={tech}
-                  onClick={() => setFilterTech(tech)}
-                  className={`px-3 py-1.5 text-xs font-medium rounded-full transition-colors border ${
-                    filterTech === tech
-                      ? 'bg-[var(--text)] text-[var(--bg)] border-[var(--text)]'
-                      : 'bg-transparent text-[var(--text-muted)] border-[var(--border)] hover:border-[var(--text)] hover:text-[var(--text)]'
+                  onClick={() => setFilterTech(null)}
+                  className={`px-3.5 py-1.5 text-xs font-medium rounded-full shrink-0 transition-all border ${
+                    !filterTech
+                      ? 'bg-[var(--text)] text-[var(--bg)] border-[var(--text)] shadow-xs'
+                      : 'bg-[var(--bg-subtle)] dark:bg-white/[0.03] text-[var(--text-muted)] border-[var(--border)] dark:border-white/[0.08] hover:border-[var(--text)] hover:text-[var(--text)]'
                   }`}
                 >
-                  {tech}
+                  All Projects
                 </button>
-              ))}
+                {allTechs.slice(0, 15).map((tech) => (
+                  <button
+                    key={tech}
+                    onClick={() => setFilterTech(tech)}
+                    className={`px-3.5 py-1.5 text-xs font-medium rounded-full shrink-0 transition-all border ${
+                      filterTech === tech
+                        ? 'bg-[var(--text)] text-[var(--bg)] border-[var(--text)] shadow-xs'
+                        : 'bg-[var(--bg-subtle)] dark:bg-white/[0.03] text-[var(--text-muted)] border-[var(--border)] dark:border-white/[0.08] hover:border-[var(--text)] hover:text-[var(--text)]'
+                    }`}
+                  >
+                    {tech}
+                  </button>
+                ))}
+                <div className='shrink-0 w-2 sm:hidden' aria-hidden='true' />
+              </div>
             </div>
           )}
 

@@ -32,9 +32,9 @@ const ExperienceSection = () => {
                 as='article'
                 key={exp._id || i}
                 delay={i * 0.07}
-                className='card p-5 sm:p-6 md:p-7 border-l-2 border-l-[var(--text)] hover:border-l-[var(--text)]'
+                className='card p-5 sm:p-6 md:p-7'
               >
-                <div className='flex flex-wrap items-start justify-between gap-x-4 gap-y-1'>
+                <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2'>
                   <div>
                     <h3 className='text-[17px] font-semibold text-[var(--text)]'>{exp.role}</h3>
                     <div className='mt-0.5 text-[13.5px] font-medium text-[var(--text-secondary)]'>
@@ -43,7 +43,7 @@ const ExperienceSection = () => {
                       {exp.type ? ` · ${exp.type}` : ''}
                     </div>
                   </div>
-                  <span className='font-mono text-[11.5px] text-[var(--text-muted)] bg-[var(--bg-muted)] px-2.5 py-1 rounded-md shrink-0 mt-0.5'>
+                  <span className='self-start sm:self-auto font-mono text-[11.5px] text-[var(--text-muted)] bg-[var(--bg-subtle)] dark:bg-white/[0.04] border border-[var(--border)] dark:border-white/[0.08] px-2.5 py-1 rounded-md shrink-0'>
                     {exp.period}
                   </span>
                 </div>

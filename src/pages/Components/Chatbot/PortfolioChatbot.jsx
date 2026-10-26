@@ -40,10 +40,13 @@ function buildProfileContext({ personal, about, experiences, clientProjects, pro
     .map((e) => `- ${e.degree}, ${e.institute} (${e.period}, ${e.status}).`)
     .join('\n');
 
-  const pub = research?.publications?.[0];
-  const publicationLine = pub
-    ? `- "${pub.title}" (${pub.role}), ${pub.conference}, ${pub.venue}, ${pub.year}. ${pub.abstract}`
-    : 'None listed.';
+  const publicationLines = (research?.publications || [])
+    .map(
+      (pub) =>
+        `- "${pub.title}" (${pub.role || 'Co-author'}), ${pub.journal || pub.conference || ''}, ${pub.publisher || ''} (${pub.year}). DOI: ${pub.doi || 'N/A'}. Link: ${pub.url || pub.doiUrl || 'N/A'}. ${pub.abstract || pub.summary}`
+    )
+    .join('\n');
+  const publicationLine = publicationLines || 'None listed.';
 
   return `Name: ${personal.name} (goes by ${personal.shortName})
 Role: ${personal.role}

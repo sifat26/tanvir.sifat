@@ -21,9 +21,9 @@ const PILLARS = [
     category: 'AI RESEARCH',
     title: 'Published AI Research',
     description:
-      'Graduate M.Sc. research in deep learning, medical image analysis, and network security. Peer-reviewed paper presented at ITSS-IoE 2025 (UK).',
-    metric: '98% Model Accuracy',
-    context: 'Springer · ITSS-IoE',
+      'Graduate M.Sc. research in deep learning, medical imaging & network security with 3 publications across MDPI, Springer, and IEEE.',
+    metric: '3 Publications',
+    context: 'MDPI · Springer · IEEE',
     icon: Brain,
   },
   {

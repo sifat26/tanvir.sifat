@@ -64,7 +64,7 @@ export const about = {
   paragraphs: [
     'At Universal Technology Research and Development Limited I build Angular and Next.js interfaces for live business systems. Through client work I have delivered full-stack e-commerce platforms end to end, deployed to cPanel, VPS, and Azure — including Bazarica, a multi-vendor marketplace with payment integration and separate admin, seller, and customer dashboards.',
     'Most of what I care about is the part users never see: reusable components, clear API contracts, and deployments I understand end to end instead of handing off. Loading and error states, data flow, the boring details that decide whether an app feels solid or breaks under real traffic.',
-    'My graduate research at Mawlana Bhashani Science & Technology University covers applied deep learning for medical image analysis, computer vision, and network intrusion detection. That work was presented at ITSS-IoE 2025 at the University of Wolverhampton.',
+    'My graduate research at Mawlana Bhashani Science & Technology University covers applied deep learning for medical image analysis, computer vision, and network security — with 3 peer-reviewed publications across MDPI Technologies, Springer Nature, and IEEE ICSECS.',
     "I'm looking for teams building software that has to hold up in production, where the research side is a plus rather than a distraction.",
   ],
 };
@@ -451,6 +451,33 @@ export const research = {
   publications: [
     {
       id: 1,
+      title: 'Detection and Classification of Kidney Disease from CT Images: An Automated Deep Learning Approach',
+      authors: 'Hossain, M. N., Bhuiyan, E., Miah, M. B. A., Sifat, T. A., Muhammad, Z., and Al Masud, M. F.',
+      role: 'Co-author',
+      journal: 'Technologies (MDPI), Vol. 13, Issue 11, Article 508',
+      conference: 'Technologies — MDPI Journal',
+      venue: 'Basel, Switzerland',
+      publisher: 'MDPI',
+      year: '2025',
+      doi: '10.3390/technologies13110508',
+      doiUrl: 'https://doi.org/10.3390/technologies13110508',
+      url: 'https://www.mdpi.com/2227-7080/13/11/508',
+      summary:
+        'Published in MDPI Technologies — an automated deep learning framework integrating DenseNet121 and EfficientNetB0 with soft-voting ensemble classification for kidney abnormalities from CT scans, achieving 99.24% accuracy.',
+      context:
+        'Early and accurate detection of renal abnormalities significantly influences clinical outcomes. This journal study formulates an automated multi-class diagnostic framework evaluated across diverse CT imaging benchmarks.',
+      abstract:
+        'Kidney disease is a critical global health challenge where early and accurate detection significantly influences patient outcomes. Traditional diagnostic workflows are often time-consuming and subject to human error. In this study, we propose an automated deep learning framework designed to detect and classify kidney abnormalities—including cysts, stones, tumors, and normal tissue—using computed tomography (CT) medical images. The architecture integrates DenseNet121 and EfficientNetB0 for deep feature extraction, paired with an ensemble of Support Vector Machine (SVM), Random Forest (RF), and XGBoost classifiers united via soft voting. The proposed framework achieved a state-of-the-art overall diagnostic accuracy of 99.24% on benchmark datasets, offering a highly reliable and scalable clinical decision-support tool for medical imaging.',
+      highlights: [
+        'Hybrid DenseNet121 and EfficientNetB0 deep feature extraction pipeline',
+        'Soft-voting ensemble of Support Vector Machine, Random Forest, and XGBoost',
+        '99.24% overall classification accuracy across cysts, stones, tumors, and normal kidney tissue',
+        'Automated clinical decision support designed for radiology and diagnostic imaging',
+      ],
+      tags: ['Deep Learning', 'Medical Imaging', 'CT Scans', 'Kidney Disease', 'DenseNet121', 'EfficientNetB0', 'Ensemble Learning', 'MDPI'],
+    },
+    {
+      id: 2,
       title: 'An IoT-Based Lung Cancer Detection System from CT Images Using Deep Learning',
       authors: 'Hossain, M. M., Miah, M. B. A., Saedi, M., Sifat, T. A., Hossain, M. N., and Hussain, N.',
       role: 'Co-author',
@@ -458,47 +485,82 @@ export const research = {
         '3rd International Conference on Intelligent Technology, System and Service for Internet of Everything (ITSS-IoE 2025)',
       venue: 'University of Wolverhampton, United Kingdom',
       publisher: 'Springer Nature Singapore',
-      series: 'Lecture Notes in Electrical Engineering, vol. 10154, pp. 207–224',
-      year: '2026',
+      series: 'Lecture Notes in Electrical Engineering (LNEE), vol. 10154, pp. 207–224',
+      year: '2025',
       doi: '10.1007/978-981-92-3681-7_14',
       doiUrl: 'https://doi.org/10.1007/978-981-92-3681-7_14',
+      url: 'https://link.springer.com/chapter/10.1007/978-981-92-3681-7_14',
       summary:
-        'Published by Springer — hybrid deep learning system combining ResNet152V2 and InceptionV3 with a novel Hybrid Channel-Spatial Attention (HCSA) module for lung cancer detection from CT images.',
+        'Published by Springer Nature — hybrid IoT-based deep learning system combining ResNet152V2 and InceptionV3 with a novel Hybrid Channel-Spatial Attention (HCSA) module for lung cancer detection from CT images, achieving 98% accuracy.',
       context:
-        'Presented at ITSS-IoE 2025, held alongside the CyberVehiCare Launch Event — my first international publication, now published as a Springer book chapter.',
+        'Presented internationally at ITSS-IoE 2025 at the University of Wolverhampton, UK, and published as a Springer book chapter in Lecture Notes in Electrical Engineering.',
       abstract:
-        'Proposed a hybrid IoT-based deep learning system combining ResNet152V2 and InceptionV3 via transfer learning, a novel Hybrid Channel-Spatial Attention (HCSA) module, and focal loss to address class imbalance. Achieved 98% accuracy on the benchmark IQ-OTH/NCCD lung CT dataset; contributed to data pipeline design and model evaluation as co-author. Running inference at the edge rather than in a central hospital system is what makes the approach useful in practice: screening can happen where the scanner is, without shipping patient imaging off-site.',
+        'Early detection of lung cancer is essential to increase patient survival rates. This research proposes an IoT-based hybrid deep learning system designed for the accurate and timely detection of lung cancer from computed tomography (CT) scans. To resolve common medical imaging bottlenecks including class imbalance, high computational costs, and feature scarcity, the system integrates pre-trained ResNet152V2 and InceptionV3 architectures, focal loss optimization, and a novel Hybrid Channel-Spatial Attention (HCSA) module with dual-input augmented representations. Evaluated on the benchmark IQ-OTH/NCCD dataset, the proposed framework achieved an outstanding 98% classification accuracy, establishing its efficacy for distributed IoT and edge-assisted healthcare diagnostic workflows.',
       highlights: [
         'Hybrid ResNet152V2 + InceptionV3 via transfer learning with novel HCSA attention module',
         'Focal loss to address class imbalance in medical imaging data',
         '98% accuracy on the IQ-OTH/NCCD lung CT benchmark dataset',
-        'Contributed to data pipeline design and model evaluation',
+        'Feasible for localized, edge-assisted IoT healthcare screening workflows',
       ],
-      tags: ['Deep Learning', 'Computer Vision', 'IoT', 'Healthcare', 'Transfer Learning'],
+      tags: ['Deep Learning', 'Computer Vision', 'IoT', 'Healthcare', 'Lung Cancer', 'Transfer Learning', 'Springer'],
+    },
+    {
+      id: 3,
+      title: 'Classification of Kidney Disease from CT Images: A Deep Learning-Based Comparative Analysis',
+      authors: 'Hossain, M. N., Bhuiyan, E., Miah, M. B. A., Awang, S., Hossain, M. S., and Sifat, T. A.',
+      role: 'Co-author',
+      conference:
+        '2025 IEEE 9th International Conference on Software Engineering & Computer Systems (ICSECS)',
+      venue: 'Pekan, Pahang, Malaysia',
+      publisher: 'IEEE',
+      series: 'IEEE Conference Proceedings, pp. 353–358',
+      year: '2025',
+      doi: '10.1109/ICSECS65227.2025.11279151',
+      doiUrl: 'https://doi.org/10.1109/ICSECS65227.2025.11279151',
+      url: 'https://ieeexplore.ieee.org/abstract/document/11279151',
+      summary:
+        'Published by IEEE — a deep learning comparative analysis on 12,447 CT images combining DenseNet121, EfficientNetB0, and ensemble classifiers with Explainable AI, achieving 98.98% accuracy and 98.60% F1-score.',
+      context:
+        'Presented at the 2025 IEEE 9th International Conference on Software Engineering & Computer Systems (ICSECS), focusing on multi-class renal classification and explainable AI in healthcare.',
+      abstract:
+        'Kidney disease is a significant global health concern where early and precise detection is critical to reducing mortality. Traditional manual diagnostic workflows are labor-intensive and susceptible to human error. In this paper, we conduct a comparative deep learning analysis for automated kidney disease classification from CT images. The framework extracts rich deep features using DenseNet121 and EfficientNetB0, subsequently evaluated across an ensemble of Support Vector Machine (SVM), Random Forest (RF), and XGBoost algorithms combined with soft voting. Across a dataset of 12,447 CT scans (1,869 test images) covering normal kidneys, cysts, stones, and tumors, the model correctly predicted 1,850 cases, delivering an impressive 98.98% accuracy and 98.60% F1-score with integrated Explainable AI (XAI) for enhanced diagnostic transparency and clinical trust.',
+      highlights: [
+        'Evaluated on a comprehensive dataset of 12,447 CT images (1,869 test cases)',
+        'DenseNet121 and EfficientNetB0 deep feature extractors with soft-voting ensemble',
+        '98.98% accuracy and 98.60% F1-score across 4 kidney diagnostic classes',
+        'Explainable AI (XAI) methodology for clinician transparency and trustworthy diagnostic support',
+      ],
+      tags: ['Deep Learning', 'Computed Tomography', 'Kidney Disease', 'Explainable AI', 'IEEE', 'Soft Voting', 'XGBoost'],
     },
   ],
   timeline: [
     {
-      year: '2026',
-      title: 'Springer publication — ITSS-IoE 2025, Lecture Notes in Electrical Engineering (vol. 10154)',
+      year: '2025',
+      title: 'MDPI Journal Publication — Technologies',
       description:
-        'Co-authored chapter published by Springer Nature Singapore (DOI: 10.1007/978-981-92-3681-7_14) — hybrid deep learning system for lung cancer detection from CT images.',
+        'Published in MDPI Technologies (DOI: 10.3390/technologies13110508) — Automated deep learning framework for kidney disease classification from CT images achieving 99.24% accuracy.',
     },
     {
       year: '2025',
-      title: 'International presentation — ITSS-IoE 2025 (United Kingdom)',
+      title: 'Springer Book Chapter — ITSS-IoE, Lecture Notes in Electrical Engineering',
       description:
-        'Presented research on IoT-based lung cancer detection using deep learning at the University of Wolverhampton.',
+        'Published by Springer Nature Singapore (DOI: 10.1007/978-981-92-3681-7_14) — IoT-based lung cancer detection using deep learning with 98% accuracy, presented at the University of Wolverhampton, UK.',
+    },
+    {
+      year: '2025',
+      title: 'IEEE Conference Publication — ICSECS 2025',
+      description:
+        'Published by IEEE (DOI: 10.1109/ICSECS65227.2025.11279151) — Deep learning comparative analysis on 12,447 CT images with 98.98% accuracy and explainable AI in healthcare.',
     },
     {
       year: '2025 — Present',
-      title: 'M.Sc. research at MBSTU',
-      description: 'Graduate research on applied deep learning for medical imaging and network intrusion detection.',
+      title: 'M.Sc. Engineering in ICT — MBSTU',
+      description: 'Graduate research on applied deep learning for medical imaging, computer vision, and network security.',
     },
     {
       year: '2020 — 2025',
-      title: 'B.Sc. in ICT — MBSTU',
-      description: 'Foundations in software engineering, algorithms, computer networks, and databases.',
+      title: 'B.Sc. Engineering in ICT — MBSTU (CGPA 3.65 / 4.00)',
+      description: 'Graduated with CGPA 3.65 / 4.00; foundations in software engineering, algorithms, computer networks, and databases.',
     },
   ],
 };

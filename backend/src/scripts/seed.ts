@@ -160,6 +160,7 @@ async function seed() {
         status: 'Completed',
         notes: [
           'Coursework across software engineering, data structures, algorithms, computer networks, and databases.',
+          'CGPA 3.65 / 4.00',
         ],
         order: 2,
       },

@@ -953,31 +953,47 @@ import httpStatus18 from "http-status";
 
 // backend/src/app/modules/Research/research.model.ts
 import mongoose9, { Schema as Schema11 } from "mongoose";
-var publicationSchema = new Schema11({
-  title: { type: String, required: true },
-  role: String,
-  conference: String,
-  venue: String,
-  year: String,
-  summary: String,
-  context: String,
-  abstract: String,
-  tags: [String],
-  order: { type: Number, default: 0 }
-}, { _id: true, timestamps: true });
-var timelineSchema = new Schema11({
-  year: String,
-  title: String,
-  description: String,
-  order: { type: Number, default: 0 }
-}, { _id: true });
-var researchSchema = new Schema11({
-  interests: [String],
-  thesis: { title: String, description: String },
-  futureDirection: String,
-  publications: [publicationSchema],
-  timeline: [timelineSchema]
-}, { timestamps: true });
+var publicationSchema = new Schema11(
+  {
+    title: { type: String, required: true },
+    authors: String,
+    role: String,
+    conference: String,
+    journal: String,
+    venue: String,
+    publisher: String,
+    year: String,
+    doi: String,
+    doiUrl: String,
+    url: String,
+    summary: String,
+    context: String,
+    abstract: String,
+    highlights: [String],
+    tags: [String],
+    order: { type: Number, default: 0 }
+  },
+  { _id: true, timestamps: true, strict: false }
+);
+var timelineSchema = new Schema11(
+  {
+    year: String,
+    title: String,
+    description: String,
+    order: { type: Number, default: 0 }
+  },
+  { _id: true, strict: false }
+);
+var researchSchema = new Schema11(
+  {
+    interests: [String],
+    thesis: { title: String, description: String },
+    futureDirection: String,
+    publications: [publicationSchema],
+    timeline: [timelineSchema]
+  },
+  { timestamps: true, strict: false }
+);
 var Research = mongoose9.model("Research", researchSchema);
 var research_model_default = Research;
 

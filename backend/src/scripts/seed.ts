@@ -53,7 +53,7 @@ async function seed() {
       whatsapp: 'https://wa.me/8801521565259',
       resumeUrl: '/Tanvir_Ahmmed_Sifat_Resume.pdf',
       resumeDocx: '/Tanvir_Ahmmed_Sifat_Resume.docx',
-      resumeUpdated: 'July 2026',
+      resumeUpdated: 'October 2026',
       portrait: '/portrait-hero.jpg',
       portraitWebp: '/portrait-hero.webp',
       portraitSquare: '/portrait-square.jpg',

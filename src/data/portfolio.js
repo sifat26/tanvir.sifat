@@ -19,7 +19,7 @@ export const personal = {
   whatsapp: 'https://wa.me/8801521565259',
   resumeUrl: '/Tanvir_Ahmmed_Sifat_Resume.pdf', // served from /public
   resumeDocx: '/Tanvir_Ahmmed_Sifat_Resume.docx', // Word version
-  resumeUpdated: 'July 2026', // shown on the resume preview card
+  resumeUpdated: 'October 2026', // shown on the resume preview card
   // Locally served, pre-resized portraits (WebP + JPEG fallback). Self-hosting
   // these removes a cross-origin request on the LCP element.
   portrait: '/portrait-hero.jpg',

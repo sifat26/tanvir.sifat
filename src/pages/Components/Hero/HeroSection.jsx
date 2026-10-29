@@ -178,22 +178,24 @@ const HeroSection = () => {
                       height='750'
                       fetchpriority='high'
                       decoding='async'
-                      className='w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.02]'
+                      className='w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.01]'
                     />
                   </picture>
                   <div
                     aria-hidden
                     className='absolute inset-0 pointer-events-none'
                     style={{
-                      background: 'linear-gradient(180deg, transparent 60%, rgba(9,13,21,0.65) 100%)',
+                      background: 'linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.55) 100%)',
                     }}
                   />
-                  <div className='absolute bottom-3.5 left-3.5 right-3.5 flex items-center justify-between'>
-                    <div>
-                      <div className='text-[10.5px] font-mono uppercase tracking-wider text-white/70'>Currently</div>
-                      <div className='text-white text-[13px] font-medium tracking-tight'>{personal.role.split(',')[0]}</div>
+                  <div className='absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none'>
+                    <div className='inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black/45 backdrop-blur-md border border-white/10'>
+                      <span className='w-1.5 h-1.5 rounded-full bg-emerald-400' />
+                      <span className='text-white text-[12px] font-medium tracking-tight'>
+                        {personal.role.split(',')[0]}
+                      </span>
                     </div>
-                    <div className='inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/20 backdrop-blur-md border border-emerald-400/30 text-emerald-300 text-[11px] font-mono font-medium shadow-xs'>
+                    <div className='inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-black/45 backdrop-blur-md border border-white/10 text-emerald-300 text-[11px] font-mono'>
                       <span className='w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse' />
                       Open to roles
                     </div>

@@ -168,24 +168,24 @@ const HeroSection = () => {
             <div className='grid grid-cols-2 gap-3 sm:gap-4 max-w-md mx-auto lg:mx-0 lg:ml-auto'>
               {/* Portrait tile — spans full width row */}
               <div className='col-span-2 rounded-2xl border border-[var(--border-card)] hover:border-[var(--border-card-hover)] p-0 overflow-hidden bg-[var(--bg-card)] shadow-xs transition-all duration-300'>
-                <div className='relative aspect-[16/10] overflow-hidden group'>
+                <div className='relative aspect-square overflow-hidden group'>
                   <picture>
                     {personal.portraitWebp && <source srcSet={personal.portraitWebp} type='image/webp' />}
                     <img
                       src={personal.portrait}
                       alt={`${personal.name} — portrait`}
-                      width='1200'
-                      height='750'
+                      width='800'
+                      height='800'
                       fetchpriority='high'
                       decoding='async'
-                      className='w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.01]'
+                      className='w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.01]'
                     />
                   </picture>
                   <div
                     aria-hidden
                     className='absolute inset-0 pointer-events-none'
                     style={{
-                      background: 'linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.55) 100%)',
+                      background: 'linear-gradient(180deg, transparent 65%, rgba(0,0,0,0.45) 100%)',
                     }}
                   />
                   <div className='absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none'>

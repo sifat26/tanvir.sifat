@@ -15,6 +15,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@imgly/background-removal-node": "^1.4.5",
+    "@napi-rs/canvas": "^1.0.13",
     "@tailwindcss/typography": "^0.5.20",
     "@tanstack/react-query": "^5.102.8",
     "@types/bcryptjs": "^2.4.6",
@@ -32,6 +34,7 @@
     "motion": "^12.23.12",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.15",
+    "pdfjs-dist": "^6.4.299",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-helmet-async": "^3.0.0",
@@ -39,6 +42,7 @@
     "react-icons": "^5.7.0",
     "react-markdown": "^10.1.0",
     "react-router-dom": "^7.8.1",
+    "sharp": "^0.35.5",
     "zod": "^3.23.8"
   },
   "devDependencies": {
@@ -68,6 +72,13 @@
   },
   "allowScripts": {
     "bcrypt@5.1.1": true,
-    "esbuild@0.25.9": true
+    "esbuild@0.25.9": true,
+    "onnxruntime-node@1.17.3": true,
+    "sharp@0.33.5": true
+  },
+  "overrides": {
+    "@imgly/background-removal-node": {
+      "sharp": "^0.33.5"
+    }
   }
 }

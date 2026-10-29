@@ -167,34 +167,34 @@ const HeroSection = () => {
           <motion.div {...intro(0.08)} className='lg:col-span-5 order-last lg:order-last'>
             <div className='grid grid-cols-2 gap-3 sm:gap-4 max-w-md mx-auto lg:mx-0 lg:ml-auto'>
               {/* Portrait tile — spans full width row */}
-              <div className='col-span-2 rounded-2xl border border-[var(--border-card)] p-0 overflow-hidden bg-[var(--bg-card)] dark:backdrop-blur-md shadow-xs dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.10)]'>
-                <div className='relative aspect-[16/10]'>
+              <div className='col-span-2 rounded-2xl border border-[var(--border-card)] hover:border-[var(--border-card-hover)] p-0 overflow-hidden bg-[var(--bg-card)] shadow-xs transition-all duration-300'>
+                <div className='relative aspect-[16/10] overflow-hidden group'>
                   <picture>
                     {personal.portraitWebp && <source srcSet={personal.portraitWebp} type='image/webp' />}
                     <img
                       src={personal.portrait}
                       alt={`${personal.name} — portrait`}
-                      width='960'
-                      height='600'
+                      width='1200'
+                      height='750'
                       fetchpriority='high'
                       decoding='async'
-                      className='w-full h-full object-cover'
+                      className='w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.02]'
                     />
                   </picture>
                   <div
                     aria-hidden
-                    className='absolute inset-0'
+                    className='absolute inset-0 pointer-events-none'
                     style={{
-                      background: 'linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.55) 100%)',
+                      background: 'linear-gradient(180deg, transparent 60%, rgba(9,13,21,0.65) 100%)',
                     }}
                   />
-                  <div className='absolute bottom-3 left-3 right-3 flex items-center justify-between'>
+                  <div className='absolute bottom-3.5 left-3.5 right-3.5 flex items-center justify-between'>
                     <div>
-                      <div className='text-[11px] font-mono uppercase tracking-wider text-white/70'>Currently</div>
-                      <div className='text-white text-[13px] font-medium'>{personal.role.split(',')[0]}</div>
+                      <div className='text-[10.5px] font-mono uppercase tracking-wider text-white/70'>Currently</div>
+                      <div className='text-white text-[13px] font-medium tracking-tight'>{personal.role.split(',')[0]}</div>
                     </div>
-                    <div className='inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-white/15 backdrop-blur border border-white/20 text-white text-[11px] font-mono'>
-                      <Sparkles className='w-3 h-3' />
+                    <div className='inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/20 backdrop-blur-md border border-emerald-400/30 text-emerald-300 text-[11px] font-mono font-medium shadow-xs'>
+                      <span className='w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse' />
                       Open to roles
                     </div>
                   </div>

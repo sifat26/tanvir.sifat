@@ -1,4 +1,4 @@
-import { ArrowRight, Code2, MapPin, Sparkles, Zap } from 'lucide-react';
+import { ArrowRight, Briefcase, Code2, GraduationCap, MapPin, Sparkles, Zap } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import ResumeButton from '../../../components/ui/ResumeButton';
@@ -207,6 +207,10 @@ const HeroSection = () => {
               <div className='col-span-2'>
                 <LiveCodeCard />
               </div>
+
+              {/* Bottom metric cells — fills the blank space and perfectly aligns with CTAs */}
+              <StatCell label='Current Role' value='Web Dev @ UTRDL' icon={Briefcase} />
+              <StatCell label='Research' value='3 Papers · ICT' icon={GraduationCap} />
             </div>
           </motion.div>
         </div>

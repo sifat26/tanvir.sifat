@@ -17,35 +17,38 @@ async function build() {
     process.exit(1);
   }
 
-  console.log('Generating authentic, uncorrupted portfolio portraits from original photo...');
+  console.log('Generating authentic portfolio portraits from original photo...');
 
-  // 1:1 square crop: 816x816 from top (preserves full head, natural hair, face, collar, tie, and shoulders)
-  const squareMaster = await sharp(MASTER_ORIGINAL)
+  // 1. Hero 4:5 portrait (800 x 1000) preserving 100% of the authentic photograph
+  const hero45 = await sharp(MASTER_ORIGINAL)
+    .resize(800, 1000, { fit: 'cover', position: 'top' })
+    .toBuffer();
+
+  await sharp(hero45)
+    .webp({ quality: 95, effort: 6 })
+    .toFile(path.join(PUBLIC, 'portrait-hero.webp'));
+
+  await sharp(hero45)
+    .jpeg({ quality: 95, mozjpeg: true })
+    .toFile(path.join(PUBLIC, 'portrait-hero.jpg'));
+
+  console.log('✓ portrait-hero.webp / .jpg (800x1000 4:5) generated from authentic original');
+
+  // 2. Square avatar (800 x 800)
+  const square = await sharp(MASTER_ORIGINAL)
     .extract({ left: 0, top: 0, width: 816, height: 816 })
     .resize(800, 800)
     .toBuffer();
 
-  // 1. Hero portrait (WebP + JPEG fallback)
-  await sharp(squareMaster)
-    .webp({ quality: 95, effort: 6 })
-    .toFile(path.join(PUBLIC, 'portrait-hero.webp'));
-
-  await sharp(squareMaster)
-    .jpeg({ quality: 95, mozjpeg: true })
-    .toFile(path.join(PUBLIC, 'portrait-hero.jpg'));
-
-  console.log('✓ portrait-hero.webp / .jpg (800x800) generated from authentic original');
-
-  // 2. Square avatar (WebP + JPEG fallback)
-  await sharp(squareMaster)
+  await sharp(square)
     .webp({ quality: 95, effort: 6 })
     .toFile(path.join(PUBLIC, 'portrait-square.webp'));
 
-  await sharp(squareMaster)
+  await sharp(square)
     .jpeg({ quality: 95, mozjpeg: true })
     .toFile(path.join(PUBLIC, 'portrait-square.jpg'));
 
-  console.log('✓ portrait-square.webp / .jpg (800x800) generated from authentic original');
+  console.log('✓ portrait-square.webp / .jpg (800x800 square) generated from authentic original');
   console.log('Done building portraits.');
 }
 

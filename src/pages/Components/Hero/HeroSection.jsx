@@ -82,7 +82,7 @@ const HeroSection = () => {
   return (
     <section
       id='top'
-      className='relative pt-24 sm:pt-32 md:pt-40 pb-16 sm:pb-20 md:pb-28 border-b border-[var(--border-card)] overflow-hidden'
+      className='relative pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 md:pb-20 border-b border-[var(--border-card)] overflow-hidden'
       aria-label='Introduction'
     >
       {/* Signature background — grid + gradient blobs */}
@@ -112,7 +112,7 @@ const HeroSection = () => {
       />
 
       <div className='container-page relative'>
-        <div className='grid lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-14 items-center'>
+        <div className='grid lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-start'>
           {/* Copy */}
           <motion.div {...intro(0)} className='lg:col-span-7'>
             {/* Availability pill — emerald badge-accent */}
@@ -166,36 +166,30 @@ const HeroSection = () => {
           {/* Interactive bento visual */}
           <motion.div {...intro(0.08)} className='lg:col-span-5 order-last lg:order-last'>
             <div className='grid grid-cols-2 gap-3 sm:gap-4 max-w-md mx-auto lg:mx-0 lg:ml-auto'>
-              {/* Portrait tile — spans full width row */}
-              <div className='col-span-2 rounded-2xl border border-[var(--border-card)] hover:border-[var(--border-card-hover)] p-0 overflow-hidden bg-[var(--bg-card)] shadow-xs transition-all duration-300'>
-                <div className='relative aspect-square overflow-hidden group'>
+              {/* Portrait tile — compact balanced profile card */}
+              <div className='col-span-1 rounded-2xl border border-[var(--border-card)] hover:border-[var(--border-card-hover)] p-0 overflow-hidden bg-[var(--bg-card)] shadow-xs transition-all duration-300'>
+                <div className='relative aspect-[4/5] sm:aspect-square overflow-hidden group'>
                   <picture>
                     {personal.portraitWebp && <source srcSet={personal.portraitWebp} type='image/webp' />}
                     <img
                       src={personal.portrait}
                       alt={`${personal.name} — portrait`}
                       width='800'
-                      height='800'
+                      height='1000'
                       fetchpriority='high'
                       decoding='async'
-                      className='w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.01]'
+                      className='w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.02]'
                     />
                   </picture>
                   <div
                     aria-hidden
                     className='absolute inset-0 pointer-events-none'
                     style={{
-                      background: 'linear-gradient(180deg, transparent 65%, rgba(0,0,0,0.45) 100%)',
+                      background: 'linear-gradient(180deg, transparent 65%, rgba(0,0,0,0.5) 100%)',
                     }}
                   />
-                  <div className='absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none'>
-                    <div className='inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black/45 backdrop-blur-md border border-white/10'>
-                      <span className='w-1.5 h-1.5 rounded-full bg-emerald-400' />
-                      <span className='text-white text-[12px] font-medium tracking-tight'>
-                        {personal.role.split(',')[0]}
-                      </span>
-                    </div>
-                    <div className='inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-black/45 backdrop-blur-md border border-white/10 text-emerald-300 text-[11px] font-mono'>
+                  <div className='absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-center pointer-events-none'>
+                    <div className='inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-black/60 backdrop-blur-md border border-white/10 text-emerald-300 text-[11px] font-mono'>
                       <span className='w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse' />
                       Open to roles
                     </div>
@@ -203,14 +197,16 @@ const HeroSection = () => {
                 </div>
               </div>
 
-              {/* Live code demo */}
+              {/* Small stats stacked beside portrait */}
+              <div className='col-span-1 flex flex-col justify-between gap-3 sm:gap-4'>
+                <StatCell label='Shipped' value='3 platforms' icon={Zap} />
+                <StatCell label='Stack' value='React · Next · Node' icon={Code2} />
+              </div>
+
+              {/* Live code demo across full width */}
               <div className='col-span-2'>
                 <LiveCodeCard />
               </div>
-
-              {/* Small stats */}
-              <StatCell label='Shipped' value='3 platforms' icon={Zap} />
-              <StatCell label='Stack' value='React · Next · Node' icon={Code2} />
             </div>
           </motion.div>
         </div>
